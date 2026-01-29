@@ -1,17 +1,107 @@
 ---
+// src/pages/index.astro
+// Main homepage for Vero's Boutique
+// Lighthouse-optimized: Text as LCP, lazy-loaded images, no CLS
 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/hero/Hero.astro';
+import OpeningBanner from '../components/OpeningBanner.astro';
+
+const metadata = {
+  title: "Vero's Boutique | Luxury Gowns & Private Fittings",
+  description: "Richmond's premier private boutique specializing in curated bridal gowns, formal evening wear, and bespoke floral event design.",
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={metadata.title} description={metadata.description}>
+  <!-- TEMP: OPENING BANNER INSERTED HERE -->
+  <OpeningBanner />
+
+  <!-- Hero Section -->
+  <Hero
+    title="Elegance,"
+    titleItalic="Redefined."
+    subtitle="Private appointment boutique offering curated wedding & quinceañera dresses, prom gowns, and formal evening wear for clients throughout Richmond, Lexington, and Central Kentucky — along with bespoke event planning and floral design."
+    primaryCTA="Book a Private Appointment"
+    primaryCTAUrl="#appointment"
+    secondaryCTA="Visit the Boutique"
+    secondaryCTAUrl="/visit-the-boutique"
+    location="A Richmond KY Destination Boutique"
+    categories={["Bridal", "Formal", "Florals"]}
+  />
+
+  <!-- Section: Begin Your Experience (Final CTA) -->
+  <section id="appointment" class="bg-ivory" style="padding: 10rem 1.5rem;">
+    <div class="container" style="max-width: 56rem; text-align: center;">
+      <div style="display: flex; flex-direction: column; gap: 3rem;">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); color: var(--color-black);">
+            Begin Your Experience
+          </h2>
+          <p style="font-size: 1.25rem; color: #999999; font-weight: 300; max-width: 42rem; margin: 0 auto; line-height: 1.6;">
+            Secure your hour of undivided attention. Our private showroom awaits your discovery.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+          <a href="/book-an-appointment" class="button button--primary">
+            Book a Private Fitting
+          </a>
+          <p style="font-size: 11px; letter-spacing: 0.4em; color: var(--color-gold); font-weight: 500; text-transform: uppercase; margin: 0;">
+            Private • Curated • By Appointment
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --color-ivory: #FDFCFB;
+    --color-gold: #C5A059;
+    --color-black: #1A1A1A;
+  }
+
+  .bg-ivory {
+    background-color: var(--color-ivory);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 2rem;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: var(--font-sans);
+    text-decoration: none;
+  }
+
+  .button:active {
+    transform: scale(0.98);
+  }
+
+  .button--primary {
+    background-color: var(--color-black);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .button--primary:hover {
+    background-color: #333333;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+</style>

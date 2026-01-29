@@ -1,0 +1,394 @@
+---
+// Footer.astro - Global luxury footer with SEO, authority, and conversions
+// Appears on all pages via BaseLayout import
+---
+
+<footer class="footer">
+  <div class="footer__container">
+    <!-- Logo & Brand Block -->
+    <div class="footer__brand-section">
+      <div class="footer__logo-badge">
+        <img 
+          src="/images/veros-boutique-badge.webp" 
+          alt="Vero's Boutique LLC Logo"
+          width="100"
+          height="100"
+          loading="lazy"
+        />
+      </div>
+      <div class="footer__brand-text">
+        <h3 class="footer__brand-name">VERO'S BOUTIQUE LLC</h3>
+        <p class="footer__brand-tagline">
+          A Richmond, Kentucky destination boutique for bridal, prom, quinceañera, and formal wear.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact & Services Grid -->
+    <div class="footer__content-grid">
+      <!-- Contact Block -->
+      <div class="footer__block">
+        <h4 class="footer__block-title">Contact</h4>
+        <div class="footer__contact-info">
+          <address class="footer__address">
+            <a href="https://maps.google.com/?q=100+Saint+George+St,+Richmond,+KY+40475" target="_blank" rel="noopener noreferrer" class="footer__address-link">
+              <span class="footer__address-line">100 Saint George St</span>
+              <span class="footer__address-line">Richmond, KY 40475</span>
+            </a>
+          </address>
+          <a href="mailto:hello@verosboutiqueky.com" class="footer__email">
+            hello@verosboutiqueky.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Services Block -->
+      <div class="footer__block">
+        <h4 class="footer__block-title">Specializing In</h4>
+        <ul class="footer__services-list">
+          <li><a href="/wedding-dresses-richmond-ky" class="footer__services-link">Wedding Dresses & Bridal Appointments (Richmond & Lexington, KY)</a></li>
+          <li><a href="/formal-gowns-richmond-ky" class="footer__services-link">Prom Dresses & Formal Gowns in Richmond, KY</a></li>
+          <li><a href="/quinceanera-dresses-richmond-ky" class="footer__services-link">Quinceañera Dresses across Central Kentucky</a></li>
+          <li><a href="/event-planning-richmond-ky" class="footer__services-link">Event Planning</a> & <a href="/event-decor-florals-richmond-ky" class="footer__services-link">Bespoke Floral Design</a></li>
+        </ul>
+      </div>
+
+      <!-- CTAs Block -->
+      <div class="footer__block">
+        <h4 class="footer__block-title">Actions</h4>
+        <div class="footer__cta-group">
+          <a href="/book-an-appointment" class="footer__cta footer__cta--primary">
+            BOOK APPOINTMENT
+          </a>
+          <button class="footer__cta footer__cta--secondary" disabled title="Coming soon">
+            SHOP ONLINE
+          </button>
+          <p class="footer__cta-note">Opening February 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer__divider"></div>
+
+    <!-- Footer Bottom -->
+    <div class="footer__bottom">
+      <div class="footer__bottom-left">
+        <a href="/privacy-policy" class="footer__link">Privacy Policy</a>
+      </div>
+      <div class="footer__bottom-center">
+        <p>© Vero's Boutique LLC · Richmond, Kentucky</p>
+        <p>Site by <a href="https://nozallc.us" class="footer__noza-link">NOZA LLC</a></p>
+      </div>
+      <div class="footer__bottom-right">
+        <a href="/terms" class="footer__link">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ========== FOOTER BASE ========== */
+  .footer {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+    border-top: 1px solid rgba(197, 160, 89, 0.2); /* Subtle gold border */
+    color: #E8E6E1; /* Warm light text */
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .footer__container {
+    max-width: 1380px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* ========== BRAND SECTION ========== */
+  .footer__brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-10);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+  }
+
+  .footer__logo-badge {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .footer__logo-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .footer__brand-text {
+    flex: 1;
+  }
+
+  .footer__brand-name {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: var(--space-1);
+  }
+
+  .footer__brand-tagline {
+    font-size: 0.9375rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #D4D0CC;
+  }
+
+  /* ========== CONTENT GRID ========== */
+  .footer__content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-10);
+  }
+
+  @media (min-width: 640px) {
+    .footer__content-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer__content-grid {
+      grid-template-columns: 0.9fr 1.4fr 0.9fr;
+      gap: var(--space-12);
+    }
+  }
+
+  /* ========== FOOTER BLOCKS ========== */
+  .footer__block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer__block:last-child {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__block-title {
+    font-family: var(--font-serif);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    width: 100%;
+  }
+
+  /* Contact Block */
+  .footer__contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    align-items: center;
+  }
+
+  .footer__address {
+    font-style: normal;
+  }
+
+  .footer__address-line {
+    display: block;
+    color: #E8E6E1;
+  }
+
+  .footer__address-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+
+  .footer__address-link:hover {
+    color: var(--color-gold);
+  }
+
+  .footer__email {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+
+  .footer__email:hover {
+    color: #E8E6E1;
+  }
+
+  /* Services Block */
+  .footer__services-list {
+    list-style: none;
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: #D4D0CC;
+    width: 100%;
+  }
+
+  .footer__services-list li {
+    margin-bottom: var(--space-2);
+  }
+
+  .footer__services-link {
+    color: #D4D0CC;
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+
+  .footer__services-link:hover {
+    color: var(--color-gold);
+  }
+
+  /* CTA Block */
+  .footer__cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+  }
+
+  .footer__cta {
+    display: inline-block;
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 0;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .footer__cta--primary {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    background: transparent;
+  }
+
+  .footer__cta--primary:hover {
+    background: var(--color-gold);
+    color: #1A1A1A;
+  }
+
+  .footer__cta--secondary {
+    border-color: rgba(197, 160, 89, 0.3);
+    color: #D4D0CC;
+  }
+
+  .footer__cta--secondary:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+  }
+
+  .footer__cta-note {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #999999;
+    text-transform: uppercase;
+  }
+
+  /* ========== DIVIDER ========== */
+  .footer__divider {
+    height: 1px;
+    background: rgba(197, 160, 89, 0.1);
+    margin: var(--space-6) 0;
+  }
+
+  /* ========== FOOTER BOTTOM ========== */
+  .footer__bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    justify-items: center;
+  }
+
+  @media (max-width: 639px) {
+    .footer__bottom {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+  }
+
+  .footer__bottom-left,
+  .footer__bottom-right {
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .footer__bottom-left {
+      justify-self: start;
+    }
+
+    .footer__bottom-right {
+      justify-self: end;
+    }
+  }
+
+  .footer__bottom-center {
+    text-align: center;
+  }
+
+  .footer__bottom-center p {
+    font-size: 0.8125rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #999999;
+    margin: 0;
+  }
+
+  .footer__bottom-center p:not(:last-child) {
+    margin-bottom: var(--space-1);
+  }
+
+  .footer__link {
+    font-size: 0.8125rem;
+    color: #999999;
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+
+  .footer__link:hover {
+    color: var(--color-gold);
+  }
+
+  .footer__noza-link {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+
+  .footer__noza-link:hover {
+    color: #E8E6E1;
+  }
+</style>

@@ -1,0 +1,58 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                    ✅ FFMPEG INSTALLED - READY TO USE                     ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+THE SIMPLEST WAY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. DOUBLE-CLICK: CONVERT_IMAGE.bat
+
+  2. PASTE your bridal PNG path
+     (Example: C:\Users\josep\Downloads\bridal.png)
+
+  3. DONE! (Takes 10 seconds)
+
+
+WHERE TO FIND YOUR IMAGE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Common locations:
+  • C:\Users\josep\Downloads\
+  • C:\Users\josep\OneDrive\Pictures\
+  • C:\Users\josep\Desktop\
+  • Check file explorer for PNG files
+
+Right-click PNG → Properties → copy full path
+Paste into the bat file prompt
+
+
+WHAT YOU GET:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6 files in /public/images/:
+
+  hero-bridal.jpg        (main hero JPEG fallback)
+  hero-bridal.webp       (main hero WebP - 81% smaller!)
+  
+  hero-evening.jpg       (accent JPEG fallback)
+  hero-evening.webp      (accent WebP - 81% smaller!)
+  
+  hero-floral.jpg        (accent JPEG fallback)
+  hero-floral.webp       (accent WebP - 81% smaller!)
+
+
+THEN:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Refresh browser: http://localhost:4321
+
+2. See your bridal image on the hero!
+
+3. Run Lighthouse for 95+ score
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+That's it! Just find your PNG and run the batch file.
+
+═══════════════════════════════════════════════════════════════════════════════

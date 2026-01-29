@@ -1,0 +1,109 @@
+---
+// Hero.astro - Full-width collage-style hero section
+// No React. Pure Astro + CSS.
+
+interface Props {
+  title?: string;
+  titleItalic?: string;
+  subtitle?: string;
+  primaryCTA?: string;
+  primaryCTAUrl?: string;
+  secondaryCTA?: string;
+  secondaryCTAUrl?: string;
+  location?: string;
+  heroImage?: string;
+  categories?: string[];
+}
+
+const {
+  title = "Elegance",
+  titleItalic = "Redefined.",
+  subtitle = "A private, appointment-only boutique specializing in curated bridal gowns, formal evening wear, and bespoke floral event design.",
+  primaryCTA = "Book a Private Appointment",
+  primaryCTAUrl = "#appointment",
+  secondaryCTA = "Visit the Boutique",
+  secondaryCTAUrl = "#",
+  location = "A Richmond Destination",
+  heroImage = "/images/hero.webp",
+  categories = ["Bridal", "Formal", "Florals"],
+} = Astro.props;
+---
+
+<section class="hero">
+  <!-- Single Background Image (Cropped: 1024x847, art-directed composition) -->
+  <div class="hero__backdrop">
+    <img 
+      src={heroImage} 
+      alt="Bridal Couture Editorial"
+      width="1024"
+      height="847"
+      decoding="async"
+      loading="eager"
+      class="hero__background-image"
+    />
+  </div>
+
+  <!-- Gradient Overlay for Text Readability -->
+  <div class="hero__overlay"></div>
+
+  <!-- Editorial Text & CTAs -->
+  <div class="hero__content">
+    <div class="hero__text-block">
+      <div class="space-y-12">
+        <!-- Accent line + location tag -->
+        <div class="accent-line">
+          <span class="accent-line-text">{location}</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero__headline">
+          {title}<br />
+          <span class="hero__headline-italic">{titleItalic}</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="hero__subheading">
+          {subtitle}
+        </p>
+
+        <!-- Primary & Secondary CTAs -->
+        <div class="hero__ctas">
+          <a href={primaryCTAUrl} class="button button--primary">
+            {primaryCTA}
+          </a>
+          <a href={secondaryCTAUrl} class="button button--outline">
+            {secondaryCTA}
+          </a>
+        </div>
+
+        <!-- Category Badges -->
+        {categories && categories.length > 0 && (
+          <div class="hero__category-badges">
+            {categories.map((category) => {
+              const categoryUrls: { [key: string]: string } = {
+                "Bridal": "/wedding-dresses-richmond-ky",
+                "Formal": "/formal-gowns-richmond-ky",
+                "Florals": "/event-decor-florals-richmond-ky"
+              };
+              const url = categoryUrls[category] || "#";
+              return (
+                <a href={url} class="hero__category-badge">{category}</a>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky CTA -->
+  <div class="hero__mobile-cta">
+    <a href={primaryCTAUrl} class="button button--primary">
+      Book Appointment
+    </a>
+  </div>
+</section>
+
+<style>
+  /* All styles are in /src/styles/global.css for consistency */
+</style>

@@ -1,0 +1,514 @@
+---
+// src/pages/book-an-appointment/index.astro
+// Appointment booking page with form placeholders + SEO/AEO schema
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BookFittingForm from '../../components/forms/BookFittingForm.astro';
+import EventFloralConsultForm from '../../components/forms/EventFloralConsultForm.astro';
+
+// Page metadata
+const pageTitle = "Book an Appointment | Vero's Boutique Richmond KY";
+const pageDescription = "Book a bridal, prom, quinceañera, or formal fitting in Richmond, KY. Request event décor, floral, and planning consultations—serving Richmond & Lexington.";
+
+// FAQ content (must match FAQPage schema exactly)
+const faqs = [
+  {
+    question: "Do I need an appointment to shop at Vero's Boutique?",
+    answer: "Walk-ins are welcome when available, but we strongly encourage appointments to ensure you receive personalized, undivided attention. Appointments allow us to curate selections and dedicate time exclusively to you."
+  },
+  {
+    question: "How long does a fitting appointment take?",
+    answer: "A typical dress fitting appointment lasts about one hour. This gives you plenty of time to explore our collection, try on selections, and discuss your vision in a relaxed, pressure-free environment."
+  },
+  {
+    question: "Do you serve Lexington and Central Kentucky clients?",
+    answer: "Yes! We proudly serve clients throughout Lexington, Frankfort, and Central Kentucky. Our private showroom in Richmond is easily accessible, and we welcome clients from the entire region."
+  },
+  {
+    question: "What should I bring to my appointment?",
+    answer: "Bring any inspiration photos, desired color palettes, or style references. If you're shopping for a special event, bring details about the date, venue, and dress code. Comfortable undergarments and shoes are recommended for trying on gowns."
+  },
+  {
+    question: "Can I request a floral or event planning consultation before choosing a venue?",
+    answer: "Absolutely! We offer bespoke floral and event planning consultations independent of dress fittings. Many clients find that exploring décor and floral options early helps inform their overall vision and venue selection."
+  },
+  {
+    question: "Do you offer rush appointments?",
+    answer: "We do our best to accommodate time-sensitive requests. If you need an urgent appointment, contact us directly to discuss availability. Same-day or next-day appointments may be possible depending on our schedule."
+  }
+];
+
+// Construct unified schema with @graph (FAQPage + Service schemas)
+const graphSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    },
+    {
+      "@type": "Service",
+      "@id": "https://verosboutiqueky.com/services/dress-fittings",
+      "name": "Dress Fitting Appointment",
+      "description": "Personalized fitting appointments for bridal gowns, prom dresses, quinceañera gowns, and formal wear.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Vero's Boutique",
+        "url": "https://verosboutiqueky.com"
+      },
+      "serviceType": ["Bridal Gown Fitting", "Prom Dress Fitting", "Quinceañera Dress Fitting", "Formal Wear Fitting"],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Richmond",
+          "addressRegion": "Kentucky"
+        },
+        {
+          "@type": "City",
+          "name": "Lexington",
+          "addressRegion": "Kentucky"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Central Kentucky"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://verosboutiqueky.com/services/event-consulting",
+      "name": "Event Décor, Floral & Planning Consultation",
+      "description": "Bespoke consultations for event florals, décor design, and wedding/event planning in Richmond, Kentucky.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Vero's Boutique",
+        "url": "https://verosboutiqueky.com"
+      },
+      "serviceType": ["Floral Design", "Event Décor", "Event Planning", "Wedding Planning"],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Richmond",
+          "addressRegion": "Kentucky"
+        },
+        {
+          "@type": "City",
+          "name": "Lexington",
+          "addressRegion": "Kentucky"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Central Kentucky"
+        }
+      ]
+    }
+  ]
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Unified Schema with @graph (FAQPage + Services) -->
+  <script type="application/ld+json">
+    {JSON.stringify(graphSchema)}
+  </script>
+
+  <!-- Canonical (explicit for this page) -->
+  <link rel="canonical" href="https://verosboutiqueky.com/book-an-appointment" />
+
+  <!-- Page Header Section -->
+  <section class="appointment-header">
+    <div class="appointment-header__container">
+      <h1 class="appointment-header__title">Book an Appointment</h1>
+      <p class="appointment-header__subtext">
+        Schedule a personalized fitting for bridal, prom, quinceañera, and formal gowns — or request an event décor, floral, and planning consultation in Richmond, Kentucky.
+      </p>
+      <p class="appointment-header__trust-line">
+        Walk-ins are welcome when available, but appointments ensure dedicated time and the best experience.
+      </p>
+    </div>
+  </section>
+
+  <!-- Form Panels Section -->
+  <section class="appointment-panels">
+    <div class="appointment-panels__container">
+      
+      <!-- Panel A: Dress Fittings -->
+      <div class="appointment-panel">
+        <div class="appointment-panel__header">
+          <h2 class="appointment-panel__title">Dress Fittings</h2>
+          <p class="appointment-panel__services">Bridal • Prom • Quinceañera • Formal</p>
+        </div>
+        
+        <p class="appointment-panel__description">
+          Reserve your private fitting and discover the gown of your dreams with personalized styling guidance. We specialize in bridal, prom, and quinceañera dress fittings in Richmond, KY, with expertise in formal wear for all occasions.
+        </p>
+
+        <!-- Book Fitting Form -->
+        <BookFittingForm />
+      </div>
+
+      <!-- Panel B: Event Décor, Floral & Planning -->
+      <div class="appointment-panel">
+        <div class="appointment-panel__header">
+          <h2 class="appointment-panel__title">Event Décor, Floral & Planning</h2>
+          <p class="appointment-panel__services">Florals • Décor • Planning • Coordination</p>
+        </div>
+        
+        <p class="appointment-panel__description">
+          Request a bespoke consultation for custom florals, event design, and full planning services. We offer comprehensive event floral and décor consultations in Richmond & Lexington, tailoring every detail to your vision.
+        </p>
+
+        <!-- Event Floral Consult Form -->
+        <EventFloralConsultForm />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="appointment-faq">
+    <div class="appointment-faq__container">
+      <h2 class="appointment-faq__title">Frequently Asked Questions</h2>
+      
+      <div class="appointment-faq__list">
+        {faqs.map((faq, index) => (
+          <div class="faq-item">
+            <h3 class="faq-item__question">{faq.question}</h3>
+            <p class="faq-item__answer">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ============================================================================
+     APPOINTMENT PAGE STYLES
+     ============================================================================ */
+
+  /* Header Section */
+  .appointment-header {
+    background-color: var(--color-ivory);
+    padding: 4rem 1.5rem;
+  }
+
+  .appointment-header__container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .appointment-header__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 400;
+    color: var(--color-black);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .appointment-header__subtext {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .appointment-header__trust-line {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--color-gray-medium);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* Form Panels Section */
+  .appointment-panels {
+    background-color: var(--color-ivory);
+    padding: 3rem 1.5rem;
+  }
+
+  .appointment-panels__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  /* Individual Panel */
+  .appointment-panel {
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    padding: 2.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--transition-fast);
+    height: 100%;
+  }
+
+  .appointment-panel:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .appointment-panel__header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-champagne);
+    padding-bottom: 1rem;
+  }
+
+  .appointment-panel__title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
+    font-weight: 500;
+    color: var(--color-black);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+  }
+
+  .appointment-panel__services {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .appointment-panel__description {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* Form Placeholder */
+  .appointment-panel__placeholder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-ivory);
+    border: 2px dashed var(--color-champagne);
+    border-radius: 2px;
+    min-height: 400px;
+    padding: 2rem;
+  }
+
+  .placeholder-content {
+    text-align: center;
+  }
+
+  .placeholder-text {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-gray-medium);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .placeholder-subtext {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-gray-light);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .placeholder-subtext a {
+    color: var(--color-gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .placeholder-subtext a:hover {
+    color: var(--color-black);
+  }
+
+  /* FAQ Section */
+  .appointment-faq {
+    background-color: var(--color-ivory);
+    padding: 4rem 1.5rem;
+  }
+
+  .appointment-faq__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .appointment-faq__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    font-weight: 400;
+    color: var(--color-black);
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  .appointment-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* FAQ Item */
+  .faq-item {
+    padding: 1.5rem;
+    background-color: white;
+    border-left: 3px solid var(--color-gold);
+    border-radius: 2px;
+  }
+
+  .faq-item__question {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    color: var(--color-black);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+  }
+
+  .faq-item__answer {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 767px) {
+    .appointment-header {
+      padding: 3rem 1.5rem;
+    }
+
+    .appointment-header__title {
+      font-size: clamp(1.875rem, 6vw, 2.5rem);
+      margin-bottom: 1.25rem;
+    }
+
+    .appointment-header__subtext {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .appointment-panels {
+      padding: 2rem 1.5rem;
+    }
+
+    .appointment-panels__container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .appointment-panel {
+      padding: 2rem;
+    }
+
+    .appointment-panel__placeholder {
+      min-height: 350px;
+    }
+
+    .appointment-faq {
+      padding: 3rem 1.5rem;
+    }
+
+    .appointment-faq__title {
+      margin-bottom: 2rem;
+    }
+
+    .appointment-faq__list {
+      gap: 1.5rem;
+    }
+
+    .faq-item {
+      padding: 1.25rem;
+    }
+  }
+
+  /* Responsive: Tablet & Desktop */
+  @media (min-width: 768px) {
+    .appointment-header {
+      padding: 5rem 2rem;
+    }
+
+    .appointment-header__title {
+      margin-bottom: 1.5rem;
+    }
+
+    .appointment-panels {
+      padding: 4rem 2rem;
+    }
+
+    .appointment-panel {
+      padding: 3rem;
+    }
+
+    .appointment-faq {
+      padding: 4rem 2rem;
+    }
+
+    .faq-item {
+      padding: 1.5rem;
+    }
+  }
+
+  /* Responsive: Desktop Enhancements */
+  @media (min-width: 1024px) {
+    .appointment-header {
+      padding: 6rem 3rem;
+    }
+
+    .appointment-header__title {
+      margin-bottom: 2rem;
+    }
+
+    .appointment-header__subtext {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .appointment-panels {
+      padding: 5rem 3rem;
+    }
+
+    .appointment-panels__container {
+      gap: 3rem;
+    }
+
+    .appointment-faq {
+      padding: 5rem 3rem;
+    }
+
+    .faq-item {
+      padding: 2rem;
+    }
+  }
+</style>

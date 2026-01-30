@@ -5,7 +5,6 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/hero/Hero.astro';
-import OpeningBanner from '../components/OpeningBanner.astro';
 
 const metadata = {
   title: "Vero's Boutique | Luxury Gowns & Private Fittings",
@@ -14,8 +13,7 @@ const metadata = {
 ---
 
 <BaseLayout title={metadata.title} description={metadata.description}>
-  <!-- TEMP: OPENING BANNER INSERTED HERE -->
-  <OpeningBanner />
+  <!-- Early offer banner now displays sitewide via BaseLayout.astro -->
 
   <!-- Hero Section -->
   <Hero

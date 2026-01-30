@@ -1,0 +1,396 @@
+---
+// src/components/forms/BookFittingForm.astro
+// Book a Dress Fitting Form
+// Fields: firstName, lastName, email, phone, preferredDate (x3), preferredTime (x3), eventType, message
+// Posts to /api/lead with formType="fitting"
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "re_Jaax25mD_EwCxGKPcQsD7UAVxw6GHrta8";
+---
+
+<form class="book-fitting-form" method="POST" action="/api/lead">
+  {/* Hidden form type identifier */}
+  <input type="hidden" name="formType" value="fitting" />
+
+  {/* Form Body - grows to fill available space */}
+  <div class="form-body">
+    {/* Required: Full Name */}
+    <div class="form-group">
+      <label for="fitting-fullName" class="form-label">Full Name *</label>
+      <input
+        type="text"
+        id="fitting-fullName"
+        name="fullName"
+        required
+        class="form-input"
+        placeholder="Full Name"
+      />
+    </div>
+
+    {/* Required: Email */}
+    <div class="form-group">
+      <label for="fitting-email" class="form-label">Email *</label>
+      <input
+        type="email"
+        id="fitting-email"
+        name="email"
+        required
+        class="form-input"
+        placeholder="your@email.com"
+      />
+    </div>
+
+    {/* Recommended: Phone */}
+    <div class="form-group">
+      <label for="fitting-phone" class="form-label">Phone</label>
+      <input
+        type="tel"
+        id="fitting-phone"
+        name="phone"
+        class="form-input"
+        placeholder="(123) 456-7890"
+      />
+    </div>
+
+    {/* Optional: Preferred Dates */}
+    <div class="form-group">
+      <label class="form-label">Preferred Dates</label>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredDate1"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredTime1"
+          class="form-input form-input--half"
+        />
+      </div>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredDate2"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredTime2"
+          class="form-input form-input--half"
+        />
+      </div>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredDate3"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredTime3"
+          class="form-input form-input--half"
+        />
+      </div>
+    </div>
+
+    {/* Required: Event Type */}
+    <div class="form-group">
+      <label for="fitting-eventType" class="form-label">Dress Type *</label>
+      <select
+        id="fitting-eventType"
+        name="eventType"
+        required
+        class="form-input form-select"
+      >
+        <option value="">Select dress type</option>
+        <option value="bridal">Bridal Gown</option>
+        <option value="prom">Prom Dress</option>
+        <option value="quince">Quinceañera Gown</option>
+        <option value="gala">Gala / Formal</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    {/* Optional: Message */}
+    <div class="form-group">
+      <label for="fitting-message" class="form-label">Additional Notes</label>
+      <textarea
+        id="fitting-message"
+        name="message"
+        class="form-textarea"
+        placeholder="Tell us about your vision, style preferences, or any special requests..."
+        rows="4"
+      ></textarea>
+    </div>
+  </div>
+
+  {/* Form Footer - pinned to bottom */}
+  <div class="form-footer">
+    {/* Cross-Sell: Also Interested in Event/Floral Services? */}
+    <div class="cross-sell-section">
+      <h3 class="cross-sell-heading">ALSO INTERESTED?</h3>
+      <p class="cross-sell-subtext">
+        If you'd like florals, décor, or planning help for your event, tell us here and we'll follow up.
+      </p>
+
+      {/* Services Toggle Pills - 2 Column Grid */}
+      <div class="services-pills">
+        <label class="pill-label">
+          <input type="checkbox" name="addOnServices" value="florals" class="pill-input" />
+          <span class="pill-text">Florals</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="addOnServices" value="decor" class="pill-input" />
+          <span class="pill-text">Décor</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="addOnServices" value="planning" class="pill-input" />
+          <span class="pill-text">Planning</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="addOnServices" value="coordination" class="pill-input" />
+          <span class="pill-text">Coordination</span>
+        </label>
+      </div>
+
+      {/* Optional: Event Date */}
+      <div class="form-group cross-sell-date">
+        <label for="fitting-addOnEventDate" class="form-label">Event date (optional)</label>
+        <input
+          type="date"
+          id="fitting-addOnEventDate"
+          name="addOnEventDate"
+          class="form-input"
+        />
+      </div>
+    </div>
+
+    {/* Turnstile CAPTCHA */}
+    <div class="form-group">
+      <div class="cf-turnstile" data-sitekey={siteKey}></div>
+    </div>
+
+    {/* Submit Button */}
+    <button type="submit" class="form-submit button button--primary">
+      REQUEST A FITTING
+    </button>
+
+    {/* Form Note */}
+    <p class="form-note">All dates and times are flexible — we'll confirm availability after you submit.</p>
+  </div>
+</form>
+
+<style>
+  .book-fitting-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1;
+  }
+
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-champagne);
+  }
+
+  /* Cross-Sell Section */
+  .cross-sell-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: rgba(197, 160, 89, 0.05);
+    border: 1px solid var(--color-champagne);
+    border-radius: 2px;
+  }
+
+  .cross-sell-heading {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .cross-sell-subtext {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-gray-medium);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Services Pills - 2 Column Grid */
+  .services-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .pill-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--transition-fast);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-charcoal);
+    font-weight: 500;
+  }
+
+  .pill-input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--color-gold);
+  }
+
+  .pill-label:has(.pill-input:checked) {
+    background-color: rgba(197, 160, 89, 0.1);
+    border-color: var(--color-gold);
+  }
+
+  .pill-text {
+    line-height: 1;
+  }
+
+  /* Cross-Sell Date Field */
+  .cross-sell-date {
+    gap: 0.5rem;
+  }
+
+  .cross-sell-date .form-label {
+    font-size: 0.8125rem;
+  }
+
+  .cross-sell-date .form-input {
+    padding: 0.65rem;
+    font-size: 0.875rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-black);
+    line-height: 1.2;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-black);
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    border-radius: 2px;
+    padding: 0.75rem;
+    transition: all var(--transition-fast);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-gray-light);
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+  }
+
+  .form-input--half {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .date-time-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231A1A1A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-note {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-gray-medium);
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Turnstile */
+  :global(.cf-turnstile) {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 767px) {
+    .book-fitting-form {
+      height: auto;
+    }
+
+    .form-footer {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .date-time-row {
+      flex-direction: column;
+    }
+
+    .form-input--half {
+      width: 100%;
+    }
+  }
+</style>

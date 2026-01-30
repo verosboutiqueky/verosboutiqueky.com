@@ -1,0 +1,374 @@
+---
+// src/components/forms/EventFloralConsultForm.astro
+// Event Décor & Floral Consultation Form
+// Fields: name, email, phone, preferredConsultDate (x3), preferredConsultTime (x3), eventDate, eventLocation, services (checkboxes), message
+// Posts to /api/lead with formType="events"
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "re_Jaax25mD_EwCxGKPcQsD7UAVxw6GHrta8";
+---
+
+<form class="event-floral-form" method="POST" action="/api/lead">
+  {/* Hidden form type identifier */}
+  <input type="hidden" name="formType" value="events" />
+
+  {/* Form Body - grows to fill available space */}
+  <div class="form-body">
+    {/* Required: Full Name */}
+    <div class="form-group">
+      <label for="event-name" class="form-label">Full Name *</label>
+      <input
+        type="text"
+        id="event-name"
+        name="name"
+        required
+        class="form-input"
+        placeholder="Your Name"
+      />
+    </div>
+
+    {/* Required: Email */}
+    <div class="form-group">
+      <label for="event-email" class="form-label">Email *</label>
+      <input
+        type="email"
+        id="event-email"
+        name="email"
+        required
+        class="form-input"
+        placeholder="your@email.com"
+      />
+    </div>
+
+    {/* Required: Phone */}
+    <div class="form-group">
+      <label for="event-phone" class="form-label">Phone *</label>
+      <input
+        type="tel"
+        id="event-phone"
+        name="phone"
+        required
+        class="form-input"
+        placeholder="(123) 456-7890"
+      />
+    </div>
+
+    {/* Recommended: Event Location */}
+    <div class="form-group">
+      <label for="event-location" class="form-label">Event Location</label>
+      <input
+        type="text"
+        id="event-location"
+        name="eventLocation"
+        class="form-input"
+        placeholder="City, venue, or description"
+      />
+    </div>
+
+    {/* Optional: Event Date */}
+    <div class="form-group">
+      <label for="event-date" class="form-label">Event Date (helps confirm availability)</label>
+      <input
+        type="date"
+        id="event-date"
+        name="eventDate"
+        class="form-input"
+      />
+    </div>
+
+    {/* Optional: Preferred Consult Dates/Times */}
+    <div class="form-group">
+      <label class="form-label">Preferred Consultation Dates & Times</label>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredConsultDate1"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredConsultTime1"
+          class="form-input form-input--half"
+        />
+      </div>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredConsultDate2"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredConsultTime2"
+          class="form-input form-input--half"
+        />
+      </div>
+      <div class="date-time-row">
+        <input
+          type="date"
+          name="preferredConsultDate3"
+          class="form-input form-input--half"
+        />
+        <input
+          type="time"
+          name="preferredConsultTime3"
+          class="form-input form-input--half"
+        />
+      </div>
+    </div>
+
+    {/* Optional: Message */}
+    <div class="form-group">
+      <label for="event-message" class="form-label">Tell Us About Your Vision</label>
+      <textarea
+        id="event-message"
+        name="message"
+        class="form-textarea"
+        placeholder="Describe your event, style preferences, color palette, budget range, or any special requests..."
+        rows="3"
+      ></textarea>
+    </div>
+  </div>
+
+  {/* Form Footer - pinned to bottom */}
+  <div class="form-footer">
+    {/* Services Interested In - Selectable Pills */}
+    <div class="form-group">
+      <label class="form-label">Services Interested In</label>
+      <div class="services-pills">
+        <label class="pill-label">
+          <input type="checkbox" name="services[]" value="florals" class="pill-input" />
+          <span class="pill-text">Custom Florals</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="services[]" value="decor" class="pill-input" />
+          <span class="pill-text">Event Décor</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="services[]" value="planning" class="pill-input" />
+          <span class="pill-text">Event Planning</span>
+        </label>
+        <label class="pill-label">
+          <input type="checkbox" name="services[]" value="coordination" class="pill-input" />
+          <span class="pill-text">Coordination</span>
+        </label>
+      </div>
+    </div>
+
+    {/* Turnstile CAPTCHA */}
+    <div class="form-group">
+      <div class="cf-turnstile" data-sitekey={siteKey}></div>
+    </div>
+
+    {/* Submit Button */}
+    <button type="submit" class="form-submit button button--primary">
+      REQUEST A CONSULT
+    </button>
+
+    {/* Form Note */}
+    <p class="form-note">We'll review your request and confirm availability within one business day.</p>
+  </div>
+</form>
+
+<style>
+  .event-floral-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex: 1;
+  }
+
+  .form-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-champagne);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-black);
+    line-height: 1.2;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-black);
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    border-radius: 2px;
+    padding: 0.75rem;
+    transition: all var(--transition-fast);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--color-gray-light);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+  }
+
+  .form-input--half {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .date-time-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  /* Multi-Select Dropdown */
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    padding: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-black);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+  }
+
+  .form-select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+  }
+
+  .form-select--multi {
+    min-height: 120px;
+    padding: 0.5rem;
+  }
+
+  .form-select--multi option {
+    padding: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .form-hint {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-gray-light);
+    margin: 0;
+    line-height: 1.3;
+    font-style: italic;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-submit {
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-note {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-gray-medium);
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* Turnstile */
+  :global(.cf-turnstile) {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Services Pills - 2 Column Grid */
+  .services-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .pill-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    background-color: white;
+    border: 1px solid var(--color-champagne);
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--transition-fast);
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    color: var(--color-charcoal);
+    font-weight: 500;
+  }
+
+  .pill-input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--color-gold);
+  }
+
+  .pill-label:has(.pill-input:checked) {
+    background-color: rgba(197, 160, 89, 0.1);
+    border-color: var(--color-gold);
+  }
+
+  .pill-text {
+    line-height: 1;
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 767px) {
+    .event-floral-form {
+      height: auto;
+    }
+
+    .form-footer {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .date-time-row {
+      flex-direction: column;
+    }
+
+    .form-input--half {
+      width: 100%;
+    }
+
+    .form-select--multi {
+      min-height: 100px;
+    }
+  }
+</style>

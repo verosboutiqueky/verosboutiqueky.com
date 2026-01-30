@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import EarlyOfferBannerForm from '../components/forms/EarlyOfferBannerForm.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -41,9 +42,12 @@ const currentPath = Astro.url.pathname;
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Turnstile CAPTCHA (included once globally) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <body>
     <Header currentPath={currentPath} />
+    <EarlyOfferBannerForm />
     <main>
       <slot />
     </main>

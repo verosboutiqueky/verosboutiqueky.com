@@ -56,7 +56,10 @@
 
         {/* Turnstile CAPTCHA - Hidden until step-2 expands */}
         <div class="early-offer-form__turnstile-cta">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAACWIZrFF9GFEC74s"></div>
+          <div
+            data-turnstile-placeholder
+            data-sitekey="0x4AAAAAACWIZrFF9GFEC74s">
+          </div>
         </div>
       </div>
 
@@ -74,15 +77,21 @@
   const step2 = document.getElementById('early-offer-step-2');
 
   if (emailInput && step2) {
-    // Show Step 2 on focus
+    // Show Step 2 on focus & load Turnstile
     emailInput.addEventListener('focus', () => {
       step2.classList.add('is-expanded');
+      if (window.loadTurnstile) {
+        window.loadTurnstile();
+      }
     });
 
-    // Show Step 2 if email has any value
+    // Show Step 2 if email has any value & load Turnstile
     emailInput.addEventListener('input', () => {
       if (emailInput.value.length > 0) {
         step2.classList.add('is-expanded');
+        if (window.loadTurnstile) {
+          window.loadTurnstile();
+        }
       } else {
         step2.classList.remove('is-expanded');
       }

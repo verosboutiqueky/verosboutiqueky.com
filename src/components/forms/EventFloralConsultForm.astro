@@ -156,7 +156,10 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAACWIZrFF9G
 
     {/* Turnstile CAPTCHA */}
     <div class="form-group">
-      <div class="cf-turnstile" data-sitekey={siteKey}></div>
+      <div
+        data-turnstile-placeholder
+        data-sitekey={siteKey}>
+      </div>
     </div>
 
     {/* Submit Button */}
@@ -372,3 +375,34 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAACWIZrFF9G
     }
   }
 </style>
+
+<script>
+  // Load Turnstile when form comes into view or on first interaction
+  const form = document.querySelector('.event-floral-form') as HTMLElement | null;
+  if (form) {
+    let loaded = false;
+
+    function loadTurnstile() {
+      if (loaded) return;
+      loaded = true;
+      if (window.loadTurnstile) {
+        window.loadTurnstile();
+      }
+    }
+
+    // Option 1: IntersectionObserver (when form scrolls into view, 100px before visible)
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        loadTurnstile();
+        observer.disconnect();
+      }
+    }, { rootMargin: '100px' });
+    observer.observe(form);
+
+    // Option 2: Fallback to first interaction
+    const triggers = ['focusin', 'pointerdown', 'keydown'];
+    triggers.forEach((evt) => {
+      form.addEventListener(evt, loadTurnstile, { once: true, passive: true });
+    });
+  }
+</script>

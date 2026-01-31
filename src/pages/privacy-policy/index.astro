@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const metadata = {
+  title: "Privacy Policy | Vero's Boutique",
+  description: "Privacy policy for Vero's Boutique. Learn how we protect and handle your personal information.",
+};
 ---
 
-<BaseLayout title="OPENING FEBRUARY 2026 | Vero's Boutique">
+<BaseLayout title={metadata.title} description={metadata.description}>
   <div style="padding-top: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
     <div style="text-align: center; max-width: 600px; padding: 0 2rem;">
       <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 1.5rem; color: var(--color-black);">

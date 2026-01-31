@@ -4,10 +4,6 @@
 // Returns: HTML by default (safe for <form> POST), JSON when requested via Accept header
 
 export const onRequestPost = async (context: any) => {
-  // Module-safe log
-  try {
-    console.log("[LEAD] onRequestPost invoked");
-  } catch (_) {}
 
   const json = (status: number, body: any) =>
     new Response(JSON.stringify(body), {
@@ -43,16 +39,7 @@ export const onRequestPost = async (context: any) => {
     const required = ["TURNSTILE_SECRET_KEY", "RESEND_API_KEY", "RESEND_FROM_EMAIL"] as const;
     const missing = required.filter((k) => !env[k]);
 
-    console.log("[LEAD] env present?", {
-      TURNSTILE_SECRET_KEY: Boolean(env.TURNSTILE_SECRET_KEY),
-      RESEND_API_KEY: Boolean(env.RESEND_API_KEY),
-      RESEND_FROM_EMAIL: env.RESEND_FROM_EMAIL ? "set" : "missing",
-      RESEND_FROM_NAME: env.RESEND_FROM_NAME ? "set" : "missing",
-      TO_DEFAULT: env.TO_DEFAULT ? "set" : "missing",
-    });
-
     if (missing.length > 0) {
-      console.error("[LEAD] Missing env vars:", missing);
       return respond(
         500,
         { ok: false, error: "missing_env", missing },
@@ -65,7 +52,6 @@ export const onRequestPost = async (context: any) => {
     try {
       form = await req.formData();
     } catch (e: any) {
-      console.error("[LEAD] Failed to parse formData:", String(e?.message || e));
       return respond(400, { ok: false, error: "invalid_form_data" }, "Invalid form submission.");
     }
 
@@ -77,12 +63,6 @@ export const onRequestPost = async (context: any) => {
     const phone = String(form.get("phone") || "").trim();
     const message = String(form.get("message") || "").trim();
     const turnstileToken = String(form.get("cf-turnstile-response") || "").trim();
-
-    console.log("[LEAD] Parsed:", {
-      formType,
-      email: email ? "present" : "missing",
-      hasTurnstile: Boolean(turnstileToken),
-    });
 
     if (!formType) {
       return respond(400, { ok: false, error: "missing_formtype" }, "Missing form type.");
@@ -102,14 +82,11 @@ export const onRequestPost = async (context: any) => {
     // ---- Verify Turnstile ----
     const ip = req.headers.get("CF-Connecting-IP") || undefined;
 
-    console.log("[LEAD] Verifying Turnstile...");
     const verify = await verifyTurnstileSafe({
       token: turnstileToken,
       secretKey: env.TURNSTILE_SECRET_KEY as string,
       ip,
     });
-
-    console.log("[LEAD] Turnstile verify result:", verify);
 
     if (!verify.ok) {
       return respond(
@@ -122,15 +99,12 @@ export const onRequestPost = async (context: any) => {
     // ---- Route recipient ----
     const to = resolveToEmail(formType, env);
     if (!to) {
-      console.warn("[LEAD] Unknown formType, no recipient:", formType);
       return respond(
         400,
         { ok: false, error: "unknown_formtype", formType },
         "Unknown form type."
       );
     }
-
-    console.log(`[LEAD] Routing "${formType}" -> ${to}`);
 
     // ---- Email content ----
     const subject = `[${formType}] New Lead from ${email}`;
@@ -147,7 +121,6 @@ export const onRequestPost = async (context: any) => {
     });
 
     // ---- Send via Resend ----
-    console.log("[LEAD] Sending email via Resend...");
     const send = await sendWithResendSafe({
       apiKey: env.RESEND_API_KEY as string,
       fromEmail: env.RESEND_FROM_EMAIL as string,
@@ -156,8 +129,6 @@ export const onRequestPost = async (context: any) => {
       subject,
       text,
     });
-
-    console.log("[LEAD] Resend send result:", send.ok ? "ok" : send.details);
 
     if (!send.ok) {
       return respond(
@@ -171,7 +142,6 @@ export const onRequestPost = async (context: any) => {
     return respond(200, { ok: true }, "Thank you! Your message was received.");
   } catch (err: any) {
     // This should prevent Cloudflare from turning it into 502
-    console.error("[LEAD] Uncaught error:", String(err?.message || err), err?.stack);
     return new Response(
       JSON.stringify({ ok: false, error: "server_error", details: String(err?.message || err) }),
       { status: 500, headers: { "Content-Type": "application/json; charset=utf-8" } }

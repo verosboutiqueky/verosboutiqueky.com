@@ -44,8 +44,40 @@ const currentPath = Astro.url.pathname;
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Turnstile CAPTCHA (included once globally) -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Turnstile Lazy Loader: loads only on first form interaction -->
+    <script is:inline>
+      (function () {
+        let loaded = false;
+
+        function loadTurnstile() {
+          if (loaded) return;
+          loaded = true;
+
+          const s = document.createElement("script");
+          s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+          s.async = true;
+          s.defer = true;
+          s.onload = () => {
+            // Render all placeholders
+            document.querySelectorAll("[data-turnstile-placeholder]").forEach((el) => {
+              if (el.dataset.rendered) return;
+              el.dataset.rendered = "1";
+              if (window.turnstile) {
+                window.turnstile.render(el, { sitekey: el.dataset.sitekey });
+              }
+            });
+          };
+          document.head.appendChild(s);
+        }
+
+        // Trigger on first likely intent
+        const triggers = ["focusin", "pointerdown", "keydown"];
+        triggers.forEach((evt) => window.addEventListener(evt, loadTurnstile, { once: true, passive: true }));
+
+        // Also expose loadTurnstile globally for programmatic calls
+        window.loadTurnstile = loadTurnstile;
+      })();
+    </script>
   </head>
   <body>
     <Header currentPath={currentPath} />

@@ -1,62 +1,139 @@
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  try {
-    const req = context.request;
-    const env = context.env;
+// /functions/api/lead.ts
+// Cloudflare Pages Function: POST /api/lead
+// Handles: Turnstile verify + route by formType + send email via Resend
+// Returns: HTML by default (safe for <form> POST), JSON when requested via Accept header
 
-    console.log("📨 Form submission received");
-    console.log("ENV VARS:", {
-      TURNSTILE_SECRET_KEY: env.TURNSTILE_SECRET_KEY ? "✅ SET" : "❌ MISSING",
-      RESEND_API_KEY: env.RESEND_API_KEY ? "✅ SET" : "❌ MISSING",
-      RESEND_FROM_EMAIL: env.RESEND_FROM_EMAIL ? "✅ SET" : "❌ MISSING",
-      TO_EARLY_OFFER: env.TO_EARLY_OFFER || "UNDEFINED",
-      TO_BOOK_FITTING: env.TO_BOOK_FITTING || "UNDEFINED",
-      TO_EVENT_FLORAL: env.TO_EVENT_FLORAL || "UNDEFINED",
-      TO_DEFAULT: env.TO_DEFAULT || "UNDEFINED",
+export const onRequestPost = async (context: any) => {
+  // Module-safe log
+  try {
+    console.log("[LEAD] onRequestPost invoked");
+  } catch (_) {}
+
+  const json = (status: number, body: any) =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { "Content-Type": "application/json; charset=utf-8" },
     });
 
-    // 1) Read form data
-    const form = await req.formData();
-    console.log("✅ FormData parsed");
+  const html = (status: number, message: string) =>
+    new Response(
+      `<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body style="font-family:system-ui; padding:24px;">
+        <h2>${escapeHtml(message)}</h2>
+        <p><a href="/" style="color:#111;">Return to site</a></p>
+      </body></html>`,
+      {
+        status,
+        headers: { "Content-Type": "text/html; charset=utf-8" },
+      }
+    );
 
-    const formType = String(form.get("formType") || "").trim();
-    const email = String(form.get("email") || "").trim();
+  const wantsJson = (() => {
+    const accept = context?.request?.headers?.get?.("Accept") || "";
+    return accept.includes("application/json");
+  })();
+
+  const respond = (status: number, payload: any, fallbackMsg: string) =>
+    wantsJson ? json(status, payload) : html(status, fallbackMsg);
+
+  try {
+    const req = context.request as Request;
+    const env = context.env as Record<string, string | undefined>;
+
+    // ---- Env validation (matches YOUR current env vars) ----
+    const required = ["TURNSTILE_SECRET_KEY", "RESEND_API_KEY", "RESEND_FROM_EMAIL"] as const;
+    const missing = required.filter((k) => !env[k]);
+
+    console.log("[LEAD] env present?", {
+      TURNSTILE_SECRET_KEY: Boolean(env.TURNSTILE_SECRET_KEY),
+      RESEND_API_KEY: Boolean(env.RESEND_API_KEY),
+      RESEND_FROM_EMAIL: env.RESEND_FROM_EMAIL ? "set" : "missing",
+      RESEND_FROM_NAME: env.RESEND_FROM_NAME ? "set" : "missing",
+      TO_DEFAULT: env.TO_DEFAULT ? "set" : "missing",
+    });
+
+    if (missing.length > 0) {
+      console.error("[LEAD] Missing env vars:", missing);
+      return respond(
+        500,
+        { ok: false, error: "missing_env", missing },
+        "Server misconfigured (missing environment variables)."
+      );
+    }
+
+    // ---- Parse form data (x-www-form-urlencoded) ----
+    let form: FormData;
+    try {
+      form = await req.formData();
+    } catch (e: any) {
+      console.error("[LEAD] Failed to parse formData:", String(e?.message || e));
+      return respond(400, { ok: false, error: "invalid_form_data" }, "Invalid form submission.");
+    }
+
+    // ---- Extract fields ----
+    const formType = String(form.get("formType") || "").trim().toLowerCase();
+    const email = String(form.get("email") || "").trim().toLowerCase();
     const firstName = String(form.get("firstName") || "").trim();
     const lastName = String(form.get("lastName") || "").trim();
     const phone = String(form.get("phone") || "").trim();
     const message = String(form.get("message") || "").trim();
-
-    // Turnstile token field name is typically this:
     const turnstileToken = String(form.get("cf-turnstile-response") || "").trim();
 
-    // 2) Basic validation
-    if (!formType) return json({ success: false, error: "Missing formType" }, 400);
-    if (!email) return json({ success: false, error: "Missing email" }, 400);
-    if (!turnstileToken) return json({ success: false, error: "Missing Turnstile token" }, 400);
-
-    // 3) Verify Turnstile token
-    const ip = req.headers.get("CF-Connecting-IP") || undefined;
-
-    const verified = await verifyTurnstile({
-      token: turnstileToken,
-      secretKey: env.TURNSTILE_SECRET_KEY,
-      ip,
+    console.log("[LEAD] Parsed:", {
+      formType,
+      email: email ? "present" : "missing",
+      hasTurnstile: Boolean(turnstileToken),
     });
 
-    if (!verified.ok) {
-      return json(
-        { success: false, error: "Turnstile verification failed", details: verified.details },
-        403
+    if (!formType) {
+      return respond(400, { ok: false, error: "missing_formtype" }, "Missing form type.");
+    }
+    if (!email) {
+      return respond(400, { ok: false, error: "missing_email" }, "Please enter an email.");
+    }
+    if (!turnstileToken) {
+      // If your Turnstile domain is invalid, you will hit this.
+      return respond(
+        400,
+        { ok: false, error: "missing_turnstile" },
+        "Captcha missing. Please refresh and try again."
       );
     }
 
-    // 4) Route by formType to the correct TO email
-    const to = resolveToEmail(formType, env);
-    if (!to) {
-      return json({ success: false, error: `Unknown formType: ${formType}` }, 400);
+    // ---- Verify Turnstile ----
+    const ip = req.headers.get("CF-Connecting-IP") || undefined;
+
+    console.log("[LEAD] Verifying Turnstile...");
+    const verify = await verifyTurnstileSafe({
+      token: turnstileToken,
+      secretKey: env.TURNSTILE_SECRET_KEY as string,
+      ip,
+    });
+
+    console.log("[LEAD] Turnstile verify result:", verify);
+
+    if (!verify.ok) {
+      return respond(
+        400,
+        { ok: false, error: "turnstile_failed", details: verify.details },
+        "Captcha failed. Please try again."
+      );
     }
 
-    // 5) Send email via Resend
-    const subject = `[${formType}] New lead from ${email}`;
+    // ---- Route recipient ----
+    const to = resolveToEmail(formType, env);
+    if (!to) {
+      console.warn("[LEAD] Unknown formType, no recipient:", formType);
+      return respond(
+        400,
+        { ok: false, error: "unknown_formtype", formType },
+        "Unknown form type."
+      );
+    }
+
+    console.log(`[LEAD] Routing "${formType}" -> ${to}`);
+
+    // ---- Email content ----
+    const subject = `[${formType}] New Lead from ${email}`;
     const text = buildTextBody({
       formType,
       email,
@@ -69,23 +146,36 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       referer: req.headers.get("Referer") || "",
     });
 
-    const sendResult = await sendWithResend({
-      apiKey: env.RESEND_API_KEY,
-      fromEmail: env.RESEND_FROM_EMAIL,
+    // ---- Send via Resend ----
+    console.log("[LEAD] Sending email via Resend...");
+    const send = await sendWithResendSafe({
+      apiKey: env.RESEND_API_KEY as string,
+      fromEmail: env.RESEND_FROM_EMAIL as string,
       fromName: env.RESEND_FROM_NAME,
       to,
       subject,
       text,
     });
 
-    if (!sendResult.ok) {
-      return json({ success: false, error: "Email send failed", details: sendResult.details }, 502);
+    console.log("[LEAD] Resend send result:", send.ok ? "ok" : send.details);
+
+    if (!send.ok) {
+      return respond(
+        502,
+        { ok: false, error: "resend_failed", details: send.details },
+        "Message failed to send. Please try again."
+      );
     }
 
-    // 6) Return success
-    return json({ success: true }, 200);
+    // Success
+    return respond(200, { ok: true }, "Thank you! Your message was received.");
   } catch (err: any) {
-    return json({ success: false, error: "Server error", details: String(err?.message || err) }, 500);
+    // This should prevent Cloudflare from turning it into 502
+    console.error("[LEAD] Uncaught error:", String(err?.message || err), err?.stack);
+    return new Response(
+      JSON.stringify({ ok: false, error: "server_error", details: String(err?.message || err) }),
+      { status: 500, headers: { "Content-Type": "application/json; charset=utf-8" } }
+    );
   }
 };
 
@@ -93,37 +183,15 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 // Types + helpers
 // ------------------------
 
-type Env = {
-  TURNSTILE_SECRET_KEY: string;
-  RESEND_API_KEY: string;
-  RESEND_FROM_EMAIL: string;
-  RESEND_FROM_NAME?: string;
+// ------------------------
+// Helpers (runtime-safe)
+// ------------------------
 
-  // routing
-  TO_EARLY_OFFER?: string;
-  TO_BOOK_FITTING?: string;
-  TO_EVENT_FLORAL?: string;
-  TO_DEFAULT?: string;
-};
-
-function json(data: unknown, status = 200) {
-  return new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-    },
-  });
-}
-
-function resolveToEmail(formType: string, env: Env): string | null {
-  const t = formType.toLowerCase();
-
+function resolveToEmail(formType: string, env: Record<string, string | undefined>): string | null {
+  const t = (formType || "").toLowerCase();
   if (t === "early_offer") return env.TO_EARLY_OFFER || env.TO_DEFAULT || null;
   if (t === "fitting") return env.TO_BOOK_FITTING || env.TO_DEFAULT || null;
   if (t === "events") return env.TO_EVENT_FLORAL || env.TO_DEFAULT || null;
-
-  // Fallback:
   return env.TO_DEFAULT || null;
 }
 
@@ -152,85 +220,88 @@ function buildTextBody(input: {
     `User-Agent: ${input.userAgent || "(unknown)"}`,
     `Referer: ${input.referer || "(unknown)"}`,
   ];
-
   return lines.join("\n");
 }
 
-async function verifyTurnstile(args: {
+async function verifyTurnstileSafe(args: {
   token: string;
   secretKey: string;
   ip?: string;
-}): Promise<{ ok: boolean; details?: unknown }> {
-  if (!args.secretKey) {
-    return { ok: false, details: "TURNSTILE_SECRET_KEY missing" };
+}): Promise<{ ok: boolean; details?: any }> {
+  try {
+    const body = new URLSearchParams();
+    body.set("secret", args.secretKey);
+    body.set("response", args.token);
+    if (args.ip) body.set("remoteip", args.ip);
+
+    const resp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+    });
+
+    const data = await resp.json().catch(() => null);
+
+    if (!resp.ok) {
+      return { ok: false, details: { status: resp.status, body: data } };
+    }
+
+    if (!data || data.success !== true) {
+      return { ok: false, details: data };
+    }
+
+    return { ok: true };
+  } catch (e: any) {
+    return { ok: false, details: String(e?.message || e) };
   }
-
-  const body = new URLSearchParams();
-  body.set("secret", args.secretKey);
-  body.set("response", args.token);
-  if (args.ip) body.set("remoteip", args.ip);
-
-  const resp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body,
-  });
-
-  const data: any = await resp.json().catch(() => null);
-
-  // Turnstile response shape includes `success: boolean`
-  if (!data || data.success !== true) {
-    return { ok: false, details: data };
-  }
-
-  return { ok: true };
 }
 
-async function sendWithResend(args: {
+async function sendWithResendSafe(args: {
   apiKey: string;
   fromEmail: string;
   fromName?: string;
   to: string;
   subject: string;
   text: string;
-}): Promise<{ ok: boolean; details?: unknown }> {
-  console.log("📧 Sending email via Resend...");
-  
-  if (!args.apiKey) {
-    console.error("❌ RESEND_API_KEY missing");
-    return { ok: false, details: "RESEND_API_KEY missing" };
+}): Promise<{ ok: boolean; details?: any }> {
+  try {
+    const from = args.fromName ? `${args.fromName} <${args.fromEmail}>` : args.fromEmail;
+
+    const resp = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${args.apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [args.to],
+        subject: args.subject,
+        text: args.text,
+      }),
+    });
+
+    const raw = await resp.text().catch(() => "");
+    let parsed: any = null;
+    try {
+      parsed = raw ? JSON.parse(raw) : null;
+    } catch (_) {}
+
+    if (!resp.ok) {
+      return { ok: false, details: { status: resp.status, body: parsed || raw } };
+    }
+
+    return { ok: true, details: parsed };
+  } catch (e: any) {
+    return { ok: false, details: String(e?.message || e) };
   }
-  if (!args.fromEmail) {
-    console.error("❌ RESEND_FROM_EMAIL missing");
-    return { ok: false, details: "RESEND_FROM_EMAIL missing" };
-  }
+}
 
-  const from = args.fromName ? `${args.fromName} <${args.fromEmail}>` : args.fromEmail;
-  console.log("From:", from, "To:", args.to);
-
-  const resp = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${args.apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [args.to],
-      subject: args.subject,
-      text: args.text,
-    }),
-  });
-
-  console.log("Resend response status:", resp.status);
-
-  if (!resp.ok) {
-    const details = await resp.text().catch(() => "");
-    console.error("❌ Resend error:", details);
-    return { ok: false, details: { status: resp.status, body: details } };
-  }
-
-  const data = await resp.json().catch(() => ({}));
-  console.log("✅ Email sent successfully");
-  return { ok: true, details: data };
+function escapeHtml(str: string) {
+  return (str || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }

@@ -3,8 +3,20 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     const req = context.request;
     const env = context.env;
 
+    console.log("📨 Form submission received");
+    console.log("ENV VARS:", {
+      TURNSTILE_SECRET_KEY: env.TURNSTILE_SECRET_KEY ? "✅ SET" : "❌ MISSING",
+      RESEND_API_KEY: env.RESEND_API_KEY ? "✅ SET" : "❌ MISSING",
+      RESEND_FROM_EMAIL: env.RESEND_FROM_EMAIL ? "✅ SET" : "❌ MISSING",
+      TO_EARLY_OFFER: env.TO_EARLY_OFFER || "UNDEFINED",
+      TO_BOOK_FITTING: env.TO_BOOK_FITTING || "UNDEFINED",
+      TO_EVENT_FLORAL: env.TO_EVENT_FLORAL || "UNDEFINED",
+      TO_DEFAULT: env.TO_DEFAULT || "UNDEFINED",
+    });
+
     // 1) Read form data
     const form = await req.formData();
+    console.log("✅ FormData parsed");
 
     const formType = String(form.get("formType") || "").trim();
     const email = String(form.get("email") || "").trim();
@@ -182,10 +194,19 @@ async function sendWithResend(args: {
   subject: string;
   text: string;
 }): Promise<{ ok: boolean; details?: unknown }> {
-  if (!args.apiKey) return { ok: false, details: "RESEND_API_KEY missing" };
-  if (!args.fromEmail) return { ok: false, details: "RESEND_FROM_EMAIL missing" };
+  console.log("📧 Sending email via Resend...");
+  
+  if (!args.apiKey) {
+    console.error("❌ RESEND_API_KEY missing");
+    return { ok: false, details: "RESEND_API_KEY missing" };
+  }
+  if (!args.fromEmail) {
+    console.error("❌ RESEND_FROM_EMAIL missing");
+    return { ok: false, details: "RESEND_FROM_EMAIL missing" };
+  }
 
   const from = args.fromName ? `${args.fromName} <${args.fromEmail}>` : args.fromEmail;
+  console.log("From:", from, "To:", args.to);
 
   const resp = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -201,11 +222,15 @@ async function sendWithResend(args: {
     }),
   });
 
+  console.log("Resend response status:", resp.status);
+
   if (!resp.ok) {
     const details = await resp.text().catch(() => "");
+    console.error("❌ Resend error:", details);
     return { ok: false, details: { status: resp.status, body: details } };
   }
 
   const data = await resp.json().catch(() => ({}));
+  console.log("✅ Email sent successfully");
   return { ok: true, details: data };
 }

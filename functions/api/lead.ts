@@ -89,8 +89,8 @@ type Env = {
 
   // routing
   TO_EARLY_OFFER?: string;
-  TO_CONTACT?: string;
-  TO_QUOTE?: string;
+  TO_BOOK_FITTING?: string;
+  TO_EVENT_FLORAL?: string;
   TO_DEFAULT?: string;
 };
 
@@ -108,10 +108,10 @@ function resolveToEmail(formType: string, env: Env): string | null {
   const t = formType.toLowerCase();
 
   if (t === "early_offer") return env.TO_EARLY_OFFER || env.TO_DEFAULT || null;
-  if (t === "contact") return env.TO_CONTACT || env.TO_DEFAULT || null;
-  if (t === "quote") return env.TO_QUOTE || env.TO_DEFAULT || null;
+  if (t === "fitting") return env.TO_BOOK_FITTING || env.TO_DEFAULT || null;
+  if (t === "events") return env.TO_EVENT_FLORAL || env.TO_DEFAULT || null;
 
-  // Optional fallback:
+  // Fallback:
   return env.TO_DEFAULT || null;
 }
 

@@ -38,7 +38,8 @@ const faqs = [
   }
 ];
 
-// Construct unified schema with @graph (FAQPage + Service schemas)
+// Check for form submission success
+const submitted = Astro.url.searchParams.get("submitted");
 const graphSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -121,6 +122,14 @@ const graphSchema = {
 
   <!-- Canonical (explicit for this page) -->
   <link rel="canonical" href="https://verosboutiqueky.com/book-an-appointment" />
+
+  {submitted === "success" && (
+    <div class="submission-success-banner">
+      <p class="submission-success-banner__text">
+        ✅ Success! We've received your request.
+      </p>
+    </div>
+  )}
 
   <!-- Page Header Section -->
   <section class="appointment-header">

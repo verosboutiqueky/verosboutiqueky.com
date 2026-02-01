@@ -138,6 +138,47 @@ export const onRequestPost = async (context: any) => {
       );
     }
 
+    // ---- Auto-reply for early_offer ----
+    if (formType === "early_offer") {
+      const replySubject = "Your Vero's Boutique Early Offer 🎁";
+      const replyText = `Hi${firstName ? ` ${firstName}` : ""}!
+
+Thanks for joining our Early Offer list — here's your reward for Grand Opening:
+
+✅ Spend $50+ → get $5 back (Use code VERO5)
+✅ Spend $100+ → get $10 back (Use code VERO10)
+
+How to redeem:
+1) Use code VERO5 or VERO10 at checkout
+2) Offer applies to qualifying purchase totals (before tax)
+3) One offer per customer during the promotion window
+
+We can't wait to see you,
+VERO'S BOUTIQUE LLC
+100 Saint George St. Richmond, KY 40475
+Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475
+
+---
+
+Fine Print: This offer is valid based on your consent to receive promotional emails from Vero's Boutique. Offer expires 04/05/2026. Cannot be combined with other offers. See terms of service for details.
+
+If you don't want early offer emails, reply 'unsubscribe'.
+
+      const autoReply = await sendWithResendSafe({
+        apiKey: env.RESEND_API_KEY as string,
+        fromEmail: env.RESEND_FROM_EMAIL as string,
+        fromName: env.RESEND_FROM_NAME,
+        to: email,
+        subject: replySubject,
+        text: replyText,
+      });
+
+      // Don't fail the whole form if auto-reply fails — lead still counts
+      if (!autoReply.ok) {
+        // Silent fail: internal email already sent
+      }
+    }
+
     // Success
     return respond(200, { ok: true }, "Thank you! Your message was received.");
   } catch (err: any) {

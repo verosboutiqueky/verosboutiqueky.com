@@ -298,8 +298,13 @@ Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
       }
     }
 
-    // Success
-    return respond(200, { ok: true }, "Thank you! Your message was received.");
+    // Success — redirect home with success indicator
+    return new Response(null, {
+      status: 303,
+      headers: {
+        Location: "/?submitted=success",
+      },
+    });
   } catch (err: any) {
     // This should prevent Cloudflare from turning it into 502
     return new Response(

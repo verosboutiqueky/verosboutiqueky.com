@@ -737,3 +737,21 @@ section {
     font-size: 5rem;
   }
 }
+
+/* ============================================================================
+   FORM SUBMISSION SUCCESS BANNER
+   ============================================================================ */
+
+.submission-success-banner {
+  background: linear-gradient(180deg, rgba(245, 241, 233, 0.8) 0%, rgba(245, 241, 233, 0.5) 100%);
+  border-bottom: 2px solid var(--color-gold);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.submission-success-banner__text {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--color-black);
+  font-weight: 500;
+}

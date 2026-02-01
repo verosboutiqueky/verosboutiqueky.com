@@ -10,10 +10,23 @@ const metadata = {
   title: "Vero's Boutique | Luxury Gowns & Private Fittings",
   description: "Richmond's premier private boutique specializing in curated bridal gowns, formal evening wear, and bespoke floral event design.",
 };
+
+// Check for form submission success
+const submitted = Astro.url.searchParams.get("submitted");
 ---
 
 <BaseLayout title={metadata.title} description={metadata.description}>
   <!-- Early offer banner now displays sitewide via BaseLayout.astro -->
+
+  {submitted === "success" && (
+    <div class="submission-success-banner">
+      <div class="container">
+        <p class="submission-success-banner__text">
+          ✨ Thank you! We've received your request and will be in touch shortly.
+        </p>
+      </div>
+    </div>
+  )}
 
   <!-- Hero Section -->
   <Hero

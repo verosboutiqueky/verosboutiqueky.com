@@ -60,6 +60,8 @@ export const onRequestPost = async (context: any) => {
     const email = String(form.get("email") || "").trim().toLowerCase();
     const firstName = String(form.get("firstName") || "").trim();
     const lastName = String(form.get("lastName") || "").trim();
+    const fullName = String(form.get("fullName") || "").trim();
+    const name = String(form.get("name") || "").trim();
     const phone = String(form.get("phone") || "").trim();
     const message = String(form.get("message") || "").trim();
     const turnstileToken = String(form.get("cf-turnstile-response") || "").trim();
@@ -199,7 +201,7 @@ If you don't want early offer emails, reply 'unsubscribe'.`;
         preferredDates.push(`${date} at ${time}`);
       }
 
-      const replyText = `Hi ${firstName || "there"}!
+      const replyText = `Hi ${fullName || "there"}!
 
 We received your appointment request. Thank you for choosing Vero's Boutique for your dress fitting!
 
@@ -207,7 +209,7 @@ This is a request to schedule an appointment — we'll confirm your preferred ti
 
 --- YOUR REQUEST ---
 
-Full Name: ${firstName || "(not provided)"} ${lastName || "(not provided)"}
+Full Name: ${fullName || "(not provided)"}
 Email: ${email}
 Phone: ${phone || "(not provided)"}
 
@@ -248,7 +250,7 @@ Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
     // ---- Auto-reply for events (consultation request) ----
     if (formType === "events") {
       const replySubject = "Consultation Request Received — VERO'S BOUTIQUE LLC";
-      const replyText = `Hi ${firstName || "there"}!
+      const replyText = `Hi ${name || "there"}!
 
 We received your event planning and floral design consultation request. Thank you for thinking of Vero's Boutique!
 
@@ -256,7 +258,7 @@ This is a consultation inquiry — we'll reach out to discuss your vision and av
 
 --- YOUR REQUEST ---
 
-Full Name: ${firstName || "(not provided)"} ${lastName || "(not provided)"}
+Full Name: ${name || "(not provided)"}
 Email: ${email}
 Phone: ${phone || "(not provided)"}
 

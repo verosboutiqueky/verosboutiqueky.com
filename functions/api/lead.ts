@@ -162,7 +162,7 @@ Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475
 
 Fine Print: This offer is valid based on your consent to receive promotional emails from Vero's Boutique. Offer expires 04/05/2026. Cannot be combined with other offers. See terms of service for details.
 
-If you don't want early offer emails, reply 'unsubscribe'.
+If you don't want early offer emails, reply 'unsubscribe'.`;
 
       const autoReply = await sendWithResendSafe({
         apiKey: env.RESEND_API_KEY as string,

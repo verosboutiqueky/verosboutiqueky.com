@@ -119,9 +119,12 @@ const submitted = Astro.url.searchParams.get("submitted");
 
 <script>
   // Clean up URL by removing ?submitted=success after page loads
+  // Delay ensures banner is rendered and visible before URL cleanup
   if (new URLSearchParams(window.location.search).get('submitted') === 'success') {
-    const url = new URL(window.location);
-    url.searchParams.delete('submitted');
-    window.history.replaceState({}, '', url.toString());
+    setTimeout(() => {
+      const url = new URL(window.location);
+      url.searchParams.delete('submitted');
+      window.history.replaceState({}, '', url.toString());
+    }, 500);
   }
 </script>

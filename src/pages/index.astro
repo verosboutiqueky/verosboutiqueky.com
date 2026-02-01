@@ -116,3 +116,12 @@ const submitted = Astro.url.searchParams.get("submitted");
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   }
 </style>
+
+<script>
+  // Clean up URL by removing ?submitted=success after page loads
+  if (new URLSearchParams(window.location.search).get('submitted') === 'success') {
+    const url = new URL(window.location);
+    url.searchParams.delete('submitted');
+    window.history.replaceState({}, '', url.toString());
+  }
+</script>

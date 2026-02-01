@@ -179,6 +179,120 @@ If you don't want early offer emails, reply 'unsubscribe'.`;
       }
     }
 
+    // ---- Auto-reply for fitting (appointment request) ----
+    if (formType === "fitting") {
+      const replySubject = "Appointment Request Received — VERO'S BOUTIQUE LLC";
+      const preferredDates = [];
+      if (form.get("preferredDate1")) {
+        const date = form.get("preferredDate1");
+        const time = form.get("preferredTime1") || "(no time)";
+        preferredDates.push(`${date} at ${time}`);
+      }
+      if (form.get("preferredDate2")) {
+        const date = form.get("preferredDate2");
+        const time = form.get("preferredTime2") || "(no time)";
+        preferredDates.push(`${date} at ${time}`);
+      }
+      if (form.get("preferredDate3")) {
+        const date = form.get("preferredDate3");
+        const time = form.get("preferredTime3") || "(no time)";
+        preferredDates.push(`${date} at ${time}`);
+      }
+
+      const replyText = `Hi ${firstName || "there"}!
+
+We received your appointment request. Thank you for choosing Vero's Boutique for your dress fitting!
+
+This is a request to schedule an appointment — we'll confirm your preferred time within 24 hours.
+
+--- YOUR REQUEST ---
+
+Full Name: ${firstName || "(not provided)"} ${lastName || "(not provided)"}
+Email: ${email}
+Phone: ${phone || "(not provided)"}
+
+Dress Type: ${String(form.get("eventType") || "(not specified)")}
+
+Preferred Dates & Times:
+${preferredDates.length > 0 ? preferredDates.map((d, i) => `  Option ${i + 1}: ${d}`).join("\n") : "  (not provided)"}
+
+Additional Notes:
+${message || "(none)"}
+
+--- NEXT STEPS ---
+
+We'll reach out to confirm your appointment within 24 hours.
+
+If you need to reschedule or have urgent questions, please reply to this email or call us directly.
+
+We look forward to meeting you!
+
+VERO'S BOUTIQUE LLC
+100 Saint George St. Richmond, KY 40475
+Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
+
+      const autoReply = await sendWithResendSafe({
+        apiKey: env.RESEND_API_KEY as string,
+        fromEmail: env.RESEND_FROM_EMAIL as string,
+        fromName: env.RESEND_FROM_NAME,
+        to: email,
+        subject: replySubject,
+        text: replyText,
+      });
+
+      if (!autoReply.ok) {
+        // Silent fail: internal email already sent
+      }
+    }
+
+    // ---- Auto-reply for events (consultation request) ----
+    if (formType === "events") {
+      const replySubject = "Consultation Request Received — VERO'S BOUTIQUE LLC";
+      const replyText = `Hi ${firstName || "there"}!
+
+We received your event planning and floral design consultation request. Thank you for thinking of Vero's Boutique!
+
+This is a consultation inquiry — we'll reach out to discuss your vision and availability within 24 hours.
+
+--- YOUR REQUEST ---
+
+Full Name: ${firstName || "(not provided)"} ${lastName || "(not provided)"}
+Email: ${email}
+Phone: ${phone || "(not provided)"}
+
+Consultation Details:
+${message || "(none)"}
+
+--- NEXT STEPS ---
+
+Our events & florals team will contact you within 24 hours to discuss:
+• Your event vision and style preferences
+• Available dates and timeline
+• Floral arrangements and décor options
+• Pricing and packages
+
+If you have urgent questions or need to reach us faster, please reply to this email or call us directly.
+
+We're excited to help bring your vision to life!
+
+VERO'S BOUTIQUE LLC
+100 Saint George St. Richmond, KY 40475
+Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
+
+      const autoReply = await sendWithResendSafe({
+        apiKey: env.RESEND_API_KEY as string,
+        fromEmail: env.RESEND_FROM_EMAIL as string,
+        fromName: env.RESEND_FROM_NAME,
+        to: email,
+        subject: replySubject,
+        text: replyText,
+      });
+
+      if (!autoReply.ok) {
+        // Silent fail: internal email already sent
+      }
+    }
+
     // Success
     return respond(200, { ok: true }, "Thank you! Your message was received.");
   } catch (err: any) {

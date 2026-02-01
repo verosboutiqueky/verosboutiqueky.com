@@ -142,7 +142,7 @@ export const onRequestPost = async (context: any) => {
 
     // ---- Auto-reply for early_offer ----
     if (formType === "early_offer") {
-      const replySubject = "Your Vero's Boutique Early Offer 🎁";
+      const replySubject = "Your Exclusive Early Offer - Vero's Boutique";
       const replyText = `Hi${firstName ? ` ${firstName}` : ""}!
 
 Thanks for joining our Early Offer list — here's your reward for Grand Opening:
@@ -173,6 +173,7 @@ If you don't want early offer emails, reply 'unsubscribe'.`;
         to: email,
         subject: replySubject,
         text: replyText,
+        isTransactional: true,
       });
 
       // Don't fail the whole form if auto-reply fails — lead still counts
@@ -240,6 +241,7 @@ Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
         to: email,
         subject: replySubject,
         text: replyText,
+        isTransactional: true,
       });
 
       if (!autoReply.ok) {
@@ -288,6 +290,7 @@ Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475`;
         to: email,
         subject: replySubject,
         text: replyText,
+        isTransactional: true,
       });
 
       if (!autoReply.ok) {
@@ -390,9 +393,25 @@ async function sendWithResendSafe(args: {
   to: string;
   subject: string;
   text: string;
+  isTransactional?: boolean;
 }): Promise<{ ok: boolean; details?: any }> {
   try {
     const from = args.fromName ? `${args.fromName} <${args.fromEmail}>` : args.fromEmail;
+
+    const body: any = {
+      from,
+      to: [args.to],
+      subject: args.subject,
+      text: args.text,
+    };
+
+    // Add headers for better deliverability & CAN-SPAM compliance
+    if (args.isTransactional) {
+      body.headers = {
+        "List-Unsubscribe": "<mailto:unsubscribe@verosboutiqueky.com?subject=unsubscribe>",
+        "X-Priority": "3",
+      };
+    }
 
     const resp = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -400,12 +419,7 @@ async function sendWithResendSafe(args: {
         Authorization: `Bearer ${args.apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from,
-        to: [args.to],
-        subject: args.subject,
-        text: args.text,
-      }),
+      body: JSON.stringify(body),
     });
 
     const raw = await resp.text().catch(() => "");

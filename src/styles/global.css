@@ -31,6 +31,9 @@
   --color-gray-medium: #666666;     /* Medium neutrals */
   --color-gray-light: #999999;      /* Light neutrals */
   --color-gray-lighter: #CCCCCC;    /* Lighter neutrals */
+  --color-navy-dark: #0D1B2A;       /* Deep navy for accents */
+  --color-navy: #1B3A52;            /* Navy for highlights & borders */
+  --color-text-muted: #666666;      /* Muted text (secondary content) */
 
   /* TYPOGRAPHY */
   --font-serif: 'Playfair Display', serif;
@@ -71,7 +74,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth removed for Lighthouse performance (LCP impact) */
 }
 
 body {
@@ -175,16 +178,8 @@ a:hover {
   color: #666666;
 }
 
-.text-gray-light {
-  color: #999999;
-}
-
 .bg-ivory {
   background-color: var(--color-ivory);
-}
-
-.bg-gold {
-  background-color: var(--color-gold);
 }
 
 .bg-black {
@@ -377,6 +372,18 @@ a:hover {
   border-color: var(--color-black);
 }
 
+/* Focus-visible accessibility rules */
+.button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* Accent line with text */
 .accent-line {
   display: flex;
@@ -406,6 +413,146 @@ a:hover {
 .divider-accent {
   height: 1px;
   background-color: color-mix(in srgb, var(--color-black) 5%, transparent);
+}
+
+/* ============================================================================
+   NEW COLOR & TEXT UTILITIES
+   ============================================================================ */
+
+/* Navy color utilities */
+.text-navy-dark {
+  color: var(--color-navy-dark);
+}
+
+.text-navy {
+  color: var(--color-navy);
+}
+
+.bg-navy-dark {
+  background-color: var(--color-navy-dark);
+}
+
+.bg-navy {
+  background-color: var(--color-navy);
+}
+
+.border-navy-dark {
+  border-color: var(--color-navy-dark);
+}
+
+.border-navy {
+  border-color: var(--color-navy);
+}
+
+/* Muted text utility */
+.text-text-muted {
+  color: var(--color-text-muted);
+}
+
+/* ============================================================================
+   SECTION SPACING UTILITIES
+   ============================================================================ */
+
+/* Consistent vertical rhythm for page sections */
+.section-spacing {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
+}
+
+/* Tighter section spacing for inline sections */
+.section-spacing-compact {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .section-spacing-compact {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS & TRANSITIONS
+   ============================================================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+/* Staggered fade-in for lists (applies to direct children) */
+.animate-fade-in-stagger > * {
+  animation: fadeIn var(--transition-normal) ease-out;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.animate-fade-in-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.animate-fade-in-stagger > *:nth-child(2) { animation-delay: 100ms; }
+.animate-fade-in-stagger > *:nth-child(3) { animation-delay: 200ms; }
+.animate-fade-in-stagger > *:nth-child(4) { animation-delay: 300ms; }
+.animate-fade-in-stagger > *:nth-child(5) { animation-delay: 400ms; }
+.animate-fade-in-stagger > *:nth-child(n+6) { animation-delay: 500ms; }
+
+/* ============================================================================
+   STAR RATING BASELINE
+   ============================================================================ */
+
+/* Star rating container */
+.star-rating {
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* Individual star */
+.star {
+  display: inline-block;
+  color: var(--color-gray-light);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  user-select: none;
+}
+
+/* Star on hover */
+.star:hover,
+.star.active {
+  color: var(--color-gold);
+}
+
+/* Star filled state */
+.star.filled {
+  color: var(--color-gold);
+}
+
+/* Star in review display (read-only, non-interactive) */
+.star-rating-display .star {
+  cursor: default;
+  pointer-events: none;
 }
 
 /* ============================================================================

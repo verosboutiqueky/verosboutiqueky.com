@@ -65,14 +65,20 @@ export const onRequestPost = async (context: any) => {
     const phone = String(form.get("phone") || "").trim();
     const message = String(form.get("message") || "").trim();
     const turnstileToken = String(form.get("cf-turnstile-response") || "").trim();
+    const rating = String(form.get("rating") || "").trim();
+    const source = String(form.get("source") || "").trim();
 
     if (!formType) {
       return respond(400, { ok: false, error: "missing_formtype" }, "Missing form type.");
     }
-    if (!email) {
+
+    // High-rating reviews (4-5 stars): email and Turnstile are optional
+    const isHighRating = formType === "reviews" && rating && parseInt(rating) >= 4;
+
+    if (!isHighRating && !email) {
       return respond(400, { ok: false, error: "missing_email" }, "Please enter an email.");
     }
-    if (!turnstileToken) {
+    if (!isHighRating && !turnstileToken) {
       // If your Turnstile domain is invalid, you will hit this.
       return respond(
         400,
@@ -81,21 +87,23 @@ export const onRequestPost = async (context: any) => {
       );
     }
 
-    // ---- Verify Turnstile ----
-    const ip = req.headers.get("CF-Connecting-IP") || undefined;
+    // Only verify Turnstile if token is provided (required for forms, optional for tracking)
+    if (turnstileToken) {
+      const ip = req.headers.get("CF-Connecting-IP") || undefined;
 
-    const verify = await verifyTurnstileSafe({
-      token: turnstileToken,
-      secretKey: env.TURNSTILE_SECRET_KEY as string,
-      ip,
-    });
+      const verify = await verifyTurnstileSafe({
+        token: turnstileToken,
+        secretKey: env.TURNSTILE_SECRET_KEY as string,
+        ip,
+      });
 
-    if (!verify.ok) {
-      return respond(
-        400,
-        { ok: false, error: "turnstile_failed", details: verify.details },
-        "Captcha failed. Please try again."
-      );
+      if (!verify.ok) {
+        return respond(
+          400,
+          { ok: false, error: "turnstile_failed", details: verify.details },
+          "Captcha failed. Please try again."
+        );
+      }
     }
 
     // ---- Route recipient ----
@@ -109,7 +117,7 @@ export const onRequestPost = async (context: any) => {
     }
 
     // ---- Email content ----
-    const subject = `[${formType}] New Lead from ${email}`;
+    const subject = formType === "reviews" ? "Review message" : `[${formType}] New Lead from ${email}`;
     const text = buildTextBody({
       formType,
       email,
@@ -120,6 +128,9 @@ export const onRequestPost = async (context: any) => {
       ip,
       userAgent: req.headers.get("User-Agent") || "",
       referer: req.headers.get("Referer") || "",
+      rating: rating || undefined,
+      source: source || undefined,
+      name: name || undefined,
     });
 
     // ---- Send via Resend ----
@@ -327,6 +338,7 @@ function resolveToEmail(formType: string, env: Record<string, string | undefined
   if (t === "early_offer") return env.TO_EARLY_OFFER || env.TO_DEFAULT || null;
   if (t === "fitting") return env.TO_BOOK_FITTING || env.TO_DEFAULT || null;
   if (t === "events") return env.TO_EVENT_FLORAL || env.TO_DEFAULT || null;
+  if (t === "reviews") return env.TO_REVIEWS || env.TO_FEEDBACK || env.TO_DEFAULT || null;
   return env.TO_DEFAULT || null;
 }
 
@@ -340,12 +352,26 @@ function buildTextBody(input: {
   ip?: string;
   userAgent: string;
   referer: string;
+  rating?: string;
+  source?: string;
+  name?: string;
 }) {
   const lines = [
     `Form Type: ${input.formType}`,
     `Email: ${input.email}`,
     `Name: ${[input.firstName, input.lastName].filter(Boolean).join(" ") || "(not provided)"}`,
     `Phone: ${input.phone || "(not provided)"}`,
+  ];
+
+  // Add rating/source for review submissions
+  if (input.formType === "reviews" && input.rating) {
+    lines.push(`Rating: ${input.rating}/5`);
+    if (input.source) {
+      lines.push(`Review Source: ${input.source}`);
+    }
+  }
+
+  lines.push(
     "",
     `Message:`,
     input.message || "(none)",
@@ -353,8 +379,9 @@ function buildTextBody(input: {
     `Meta:`,
     `IP: ${input.ip || "(unknown)"}`,
     `User-Agent: ${input.userAgent || "(unknown)"}`,
-    `Referer: ${input.referer || "(unknown)"}`,
-  ];
+    `Referer: ${input.referer || "(unknown)"}`
+  );
+
   return lines.join("\n");
 }
 

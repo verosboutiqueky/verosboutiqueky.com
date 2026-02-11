@@ -4,6 +4,8 @@
 // Step 1: Email (always visible)
 // Step 2: First Name, Last Name, Phone (reveals on email focus/input)
 // Posts to /api/lead with formType="early_offer"
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAACWIZrFF9GFEC74s";
 ---
 
 <div class="early-offer-banner">
@@ -58,7 +60,7 @@
         <div class="early-offer-form__turnstile-cta">
           <div
             data-turnstile-placeholder
-            data-sitekey="0x4AAAAAACWIZrFF9GFEC74s">
+            data-sitekey={siteKey}>
           </div>
         </div>
       </div>
@@ -112,7 +114,7 @@
     border-top: 1px solid var(--color-gold);
     border-bottom: 1px solid var(--color-gold);
     padding: 1rem 1.5rem 0.1rem 1.5rem;
-    margin-top: calc(var(--header-height) + 0.5rem);
+    margin-top: var(--header-height);
   }
 
   .early-offer-banner__content {

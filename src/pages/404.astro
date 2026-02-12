@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Page Not Found | Vero's Boutique";
+const description = "The page you're looking for doesn't exist. Return to our boutique website.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section style="padding: 10rem 1.5rem; text-align: center; background-color: var(--color-ivory);">
+    <div style="max-width: 56rem; margin: 0 auto;">
+      <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); color: var(--color-black); margin-bottom: 1rem; line-height: 1.1;">
+        Page Not Found
+      </h1>
+      <p style="font-size: 1.125rem; color: var(--color-charcoal); margin-bottom: 2rem; line-height: 1.6;">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a href="/" class="button button--primary">
+        Return to Home
+      </a>
+    </div>
+  </section>
+</BaseLayout>

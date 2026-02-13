@@ -87,10 +87,11 @@ export const onRequestPost = async (context: any) => {
       );
     }
 
+    // Extract IP once at start (needed for both Turnstile and email logging)
+    const ip = req.headers.get("CF-Connecting-IP") || undefined;
+
     // Only verify Turnstile if token is provided (required for forms, optional for tracking)
     if (turnstileToken) {
-      const ip = req.headers.get("CF-Connecting-IP") || undefined;
-
       const verify = await verifyTurnstileSafe({
         token: turnstileToken,
         secretKey: env.TURNSTILE_SECRET_KEY as string,

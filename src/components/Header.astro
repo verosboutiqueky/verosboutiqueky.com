@@ -590,6 +590,13 @@ const ctaButton = {
       }
     }
 
+    // DEFENSIVE: Cleanup scroll lock on page visibility/navigation
+    function handleVisibilityChange() {
+      if (hamburger?.getAttribute("aria-expanded") === "true") {
+        closeMenu();
+      }
+    }
+
     // Event listeners
     window.addEventListener("scroll", handleScroll);
     hamburger?.addEventListener("click", toggleMenu);
@@ -597,6 +604,7 @@ const ctaButton = {
       link.addEventListener("click", closeMenu);
     });
     document.addEventListener("keydown", handleEsc);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Cleanup
     return () => {
@@ -606,6 +614,7 @@ const ctaButton = {
         link.removeEventListener("click", closeMenu);
       });
       document.removeEventListener("keydown", handleEsc);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }
 

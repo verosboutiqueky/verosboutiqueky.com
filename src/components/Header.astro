@@ -444,13 +444,13 @@ const ctaButton = {
     background-color: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     overflow-y: auto;
-    z-index: 99;
+    z-index: 101;
     padding: 2rem 1.5rem;
-    animation: slideIn 0.3s ease forwards;
   }
 
-  .header__mobile-menu[aria-hidden="false"] {
+  .header__mobile-menu--open {
     display: block;
+    animation: slideIn 0.3s ease forwards;
   }
 
   @keyframes slideIn {
@@ -531,6 +531,10 @@ const ctaButton = {
 
 <script>
   function initHeader() {
+    // Phase 1: Guard against duplicate initialization
+    if (window.__headerInitialized) return;
+    window.__headerInitialized = true;
+
     const header = document.getElementById("header");
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -553,6 +557,15 @@ const ctaButton = {
       
       if (mobileMenu) {
         mobileMenu.setAttribute("aria-hidden", isOpen.toString());
+        // Phase 4: Use class toggle for animation control
+        mobileMenu.classList.toggle("header__mobile-menu--open");
+      }
+      
+      // Phase 3: Lock/unlock body scroll
+      if (!isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
       }
     }
 
@@ -562,7 +575,11 @@ const ctaButton = {
       hamburger?.classList.remove("active");
       if (mobileMenu) {
         mobileMenu.setAttribute("aria-hidden", "true");
+        // Phase 4: Remove open class
+        mobileMenu.classList.remove("header__mobile-menu--open");
       }
+      // Phase 3: Unlock body scroll
+      document.body.style.overflow = "";
       hamburger?.focus();
     }
 

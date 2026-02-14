@@ -18,8 +18,8 @@ import eventFloral3 from '../../assets/wedding-prom/event-floral-3.webp';
 import eventFloral4 from '../../assets/wedding-prom/event-floral-4.webp';
 
 const metadata = {
-  title: "Wedding Florist Richmond KY | Prom Corsages & Event Florals | Vero's Boutique",
-  description: "Bridal florals coordinated with couture gowns. Prom corsages, event installations, and quinceañera floral design. Serving Richmond, Berea, Lexington & Madison County.",
+  title: "Wedding Florist Richmond KY | Prom Corsages & Event Florals",
+  description: "Bridal florals coordinated with couture gowns. Prom corsages (Jan–May), same-day pickup, event installations. Serving Richmond, Berea, Lexington & Madison County.",
 };
 
 // Determine if currently in prom season (Jan 1 - May 31)
@@ -79,6 +79,29 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
         with fast, personalized service.
       </p>
 
+      <!-- Shop CTA -->
+      <div style="text-align: center; margin: var(--space-10) 0; padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 8%, transparent); border-radius: 4px;">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: center;">
+          <p style="font-size: 1.125rem; color: var(--color-black); font-weight: 300; margin: 0; max-width: 45ch;">
+            Ready to order? Fresh arrangements available for same-day pickup in Richmond.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://shop.verosboutiqueky.com/?category=seasonal" class="button button--primary" target="_blank" rel="noopener noreferrer">
+              Shop Seasonal Arrangements
+            </a>
+            <a href="/book-an-appointment?service=florals" class="button button--outline">
+              Custom Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width: 90ch; margin: var(--space-8) auto var(--space-12); padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 5%, transparent); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+        <p style="text-align: left; color: var(--color-charcoal); line-height: var(--lh-loose); font-size: var(--text-secondary);">
+          <strong>Same-Day Floral Pickup & Delivery in Richmond:</strong> Our Richmond showroom stocks fresh arrangements for same-day purchase: Valentine's bouquets, Easter lilies, Mother's Day arrangements, everyday gifts. Visit anytime during business hours or call ahead for availability. Delivery available within Madison County; pickup available same-day or next-morning.
+        </p>
+      </div>
+
       <!-- Seasonal offerings grid -->
       <div class="seasonal-grid">
         <div class="seasonal-grid__item">
@@ -136,7 +159,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
         <a href="/visit-the-boutique" class="button button--primary seasonal-cta-btn">
           Visit Our Showroom
         </a>
-        <a href="tel:+1-859-624-0000" class="button button--outline seasonal-cta-btn">
+        <a href="tel:+1-859-353-5119" class="button button--outline seasonal-cta-btn">
           📞 Call for Availability
         </a>
       </div>
@@ -155,6 +178,12 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
         across Madison County. Unlike traditional florists, we match florals directly to your 
         selected gown, creating cohesive aesthetic vision. Our Richmond studio offers <a href="#wedding-florals" class="authority-block__link">bridal consultations</a>, <a href="#prom-corsages" class="authority-block__link">seasonal prom corsages</a>, and <a href="#event-installations" class="authority-block__link">custom event installations</a> for discerning clients.
       </p>
+
+      <div style="max-width: 90ch; margin: var(--space-8) auto var(--space-12); padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 5%, transparent); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+        <p style="text-align: left; color: var(--color-charcoal); line-height: var(--lh-loose); font-size: var(--text-secondary);">
+          <strong>How We Coordinate Florals With Your Gown:</strong> Bring your selected wedding dress or a photo to your consultation. We analyze color, fabric, style, and neckline to curate blooms that complement—not compete. The result: florals that feel like an extension of your dress, not an afterthought. Custom hand-tied bouquets finished on your wedding day.
+        </p>
+      </div>
 
       <!-- CTA Buttons for Quick Navigation -->
       <div class="authority-block__ctas" style="text-align: center;">
@@ -275,6 +304,12 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
         seasonal blooms (roses, gardenias, succulents, orchids). Available January through May. 
         Book your design appointment early—prom season fills up fast.
       </p>
+
+      <div style="max-width: 90ch; margin: var(--space-8) auto var(--space-12); padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 5%, transparent); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+        <p style="text-align: left; color: var(--color-charcoal); line-height: var(--lh-loose); font-size: var(--text-secondary);">
+          <strong>Prom Corsage Seasonal Blooms:</strong> Prom corsages (Jan–May) feature premium seasonal blooms: garden roses, white gardenias, burgundy orchids, seeded eucalyptus, and succulents. Each corsage is custom-designed for your dress color and style. Hand-made fresh the week of your prom. Book 2–3 weeks ahead for best bloom selection.
+        </p>
+      </div>
 
       <!-- 3-image grid with placeholder -->
       <div class="prom-grid">
@@ -543,6 +578,34 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
             request.
           </p>
         </div>
+
+        <div class="faq-item">
+          <h3>Do you offer same-day flower pickup or delivery?</h3>
+          <p>
+            Yes. Our Richmond showroom stocks fresh arrangements for same-day pickup and purchase. Delivery is available within Madison County. Call ahead to confirm availability for seasonal arrangements, corsages, or custom designs. We offer next-morning pickup for special orders placed before 5 PM.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What flowers are best for prom corsages?</h3>
+          <p>
+            Premium prom corsage blooms include garden roses, white gardenias, burgundy orchids, and seasonal succulents. We customize color and style to match your dress. Each corsage is hand-made fresh 3–5 days before your prom. Book 2–3 weeks ahead to secure premium seasonal blooms and custom design time.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you deliver to Lexington and Berea?</h3>
+          <p>
+            Yes. Vero's Boutique delivers custom florals to Lexington, Berea, and surrounding Madison County areas. Delivery fees vary by distance. We specialize in coordinating florals with venue design for weddings, quinceañeras, and events. Contact us for a custom delivery quote based on your event location and scope.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What's included in a custom bridal bouquet consultation?</h3>
+          <p>
+            Your consultation includes reviewing your wedding dress, color palette, bouquet style preference, and budget. We discuss seasonal blooms available and design custom arrangements. You'll see sketches or samples. Final bouquets are hand-tied fresh your wedding morning and delivered to your venue on time.
+          </p>
+        </div>
       </div>
 
       <!-- CTA: More questions? -->
@@ -580,11 +643,11 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Vero's Boutique",
-  "description": "Wedding florist and event floral design studio in Richmond, Kentucky",
+  "name": "Vero's Boutique Florals",
+  "description": "Wedding florist and event floral design studio in Richmond, Kentucky. Custom bridal bouquets, prom corsages, and event installations.",
   "image": "https://verosboutiqueky.com/images/hero.webp",
   "url": "https://verosboutiqueky.com/wedding-prom-florist-richmond-ky",
-  "telephone": "+1-859-624-XXXX",
+  "telephone": "+1-859-353-5119",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Richmond",
@@ -610,37 +673,96 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "name": "Madison County, KY"
     }
   ],
-  "knowsAbout": ["Wedding Florals", "Prom Corsages", "Event Decor", "Quinceañera Floral Design"]
+  "sameAs": [
+    "https://www.facebook.com/verosboutiqueky",
+    "https://www.instagram.com/verosboutiqueky/",
+    "https://share.google/j45agBUoNggUBePvi"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Floral Design Consultation",
+    "telephone": "+1-859-353-5119"
+  },
+  "knowsAbout": ["Wedding Florals", "Prom Corsages", "Event Installations", "Quinceañera Floral Design"]
 })} />
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "AggregateOffer",
-  "priceCurrency": "USD",
+  "@type": "Service",
+  "name": "Wedding Florals",
+  "description": "Custom bridal bouquets and wedding floral designs coordinated with your selected gown. Hand-tied fresh arrangements delivered to your Richmond or Madison County venue.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vero's Boutique"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Central Kentucky"
+  },
+  "serviceType": "Floral Design",
   "offers": [
     {
       "@type": "Offer",
-      "name": "Bridal Bouquet",
-      "price": "75",
+      "name": "Wedding Bridal Florals",
+      "description": "Custom bridal bouquets coordinated with your gown, bridesmaids arrangements, hand-tied fresh on wedding day, delivery included.",
       "priceCurrency": "USD",
-      "url": "https://verosboutiqueky.com/wedding-prom-florist-richmond-ky#pricing",
-      "description": "Hand-tied custom wedding bridal bouquet, coordinated with gown"
-    },
+      "availableChannel": ["OnlineBooking", "PhoneConsultation", "InStorePurchase"],
+      "areaServed": "Central Kentucky"
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Prom Corsages",
+  "description": "Hand-designed prom corsages coordinated with your dress. Seasonal blooms available January through May. Custom colors and styles. Group orders welcome.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vero's Boutique"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Central Kentucky"
+  },
+  "serviceType": "Floral Design",
+  "availableFrom": "01-01",
+  "availableThrough": "05-31",
+  "offers": [
     {
       "@type": "Offer",
-      "name": "Prom Corsage",
-      "price": "20",
+      "name": "Prom Corsage Design",
+      "description": "Custom wrist or pin corsages in seasonal blooms (roses, gardenias, orchids, succulents). Hand-made fresh week of prom. Book 2–3 weeks ahead.",
       "priceCurrency": "USD",
-      "url": "https://verosboutiqueky.com/wedding-prom-florist-richmond-ky#pricing",
-      "description": "Wrist or pin prom corsage in seasonal blooms"
-    },
+      "availability": "Jan–May",
+      "availableChannel": ["OnlineBooking", "PhoneConsultation", "InStorePurchase"],
+      "areaServed": "Central Kentucky"
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Event Floral Installations",
+  "description": "Custom multi-point floral installations for weddings, quinceañeras, and milestone celebrations. Ceremony backdrops, centerpieces, sweetheart tables. Full setup and on-site support included.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vero's Boutique"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Central Kentucky"
+  },
+  "serviceType": "Event Design",
+  "offers": [
     {
       "@type": "Offer",
-      "name": "Event Installation",
-      "price": "500",
+      "name": "Custom Event Installation",
+      "description": "Multi-point floral design for weddings, quinceañeras, events. Custom venue design, delivery, setup, and day-of support included.",
       "priceCurrency": "USD",
-      "url": "https://verosboutiqueky.com/wedding-prom-florist-richmond-ky#pricing",
-      "description": "Custom floral installation for weddings, events, quinceañeras"
+      "availableChannel": ["OnlineBooking", "PhoneConsultation", "InStorePurchase"],
+      "areaServed": "Central Kentucky"
     }
   ]
 })} />
@@ -654,7 +776,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "name": "How much do wedding florals cost in Richmond, Kentucky?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wedding floral pricing in Richmond, Kentucky starts at $100 for bridal bouquets, with typical packages ranging $200–$500+ depending on complexity and seasonal bloom availability. Bundled bridal party packages (bride + bridesmaids + grooms) offer discounts. Event installations start at $1000. Contact Vero's Boutique for custom quotes matching your budget."
+        "text": "Wedding floral pricing in Richmond, Kentucky is consultation-based and depends on complexity, seasonal bloom availability, and design scope. Bundled bridal party packages (bride + bridesmaids + grooms) are available. Contact Vero's Boutique for custom quotes tailored to your vision and budget."
       }
     },
     {
@@ -662,7 +784,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "name": "When should I book prom corsages in Richmond?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Prom corsages in Richmond, Kentucky should be booked January through May, with peak demand March–April. We recommend scheduling your design consultation 2–3 weeks before prom. Corsages start at $35, and group orders receive bundle discounts. Early booking ensures access to premium seasonal blooms."
+        "text": "Prom corsages in Richmond, Kentucky should be booked January through May, with peak demand March–April. We recommend scheduling your design consultation 2–3 weeks before prom. Group orders receive special pricing and discounts. Early booking ensures access to premium seasonal blooms."
       }
     },
     {
@@ -670,7 +792,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "name": "What florist does custom event installations in Lexington and Madison County?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Vero's Boutique in Richmond, Kentucky specializes in custom event installations across Lexington, Berea, and Madison County. We design multi-point floral setups for weddings, quinceañeras, and corporate events. Services include ceremony backdrops, centerpieces, sweetheart tables, and on-site setup. Quotes start at $1000."
+        "text": "Vero's Boutique in Richmond, Kentucky specializes in custom event installations across Lexington, Berea, and Madison County. We design multi-point floral setups for weddings, quinceañeras, and corporate events. Services include ceremony backdrops, centerpieces, sweetheart tables, and on-site setup. Request a custom quote for your event."
       }
     },
     {
@@ -678,7 +800,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "name": "Can a florist coordinate flowers with my wedding dress?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, Vero's Boutique uniquely coordinates floral designs directly with your selected gown. During your consultation, we review your dress color, style, and fabric to match blooms perfectly—ensuring florals echo your gown's luxury aesthetic. This approach avoids generic catalog florals and creates cohesive visual impact. Custom hand-tied bouquets start at $100."
+        "text": "Yes, Vero's Boutique uniquely coordinates floral designs directly with your selected gown. During your consultation, we review your dress color, style, and fabric to match blooms perfectly—ensuring florals echo your gown's luxury aesthetic. This approach avoids generic catalog florals and creates cohesive visual impact. Custom hand-tied bouquets are available through consultation."
       }
     },
     {
@@ -687,6 +809,38 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Vero's Boutique offers complete quinceañera floral design in Richmond, Kentucky and Madison County. Services include the teen's bouquet, court flower arrangements, ceremony installations, and reception centerpieces. We coordinate all florals to match your selected gown and event color palette. Custom event quotes available upon request."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer same-day flower pickup or delivery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our Richmond showroom stocks fresh arrangements for same-day pickup and purchase. Delivery is available within Madison County. Call ahead to confirm availability for seasonal arrangements, corsages, or custom designs. We offer next-morning pickup for special orders placed before 5 PM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What flowers are best for prom corsages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Premium prom corsage blooms include garden roses, white gardenias, burgundy orchids, and seasonal succulents. We customize color and style to match your dress. Each corsage is hand-made fresh 3–5 days before your prom. Book 2–3 weeks ahead to secure premium seasonal blooms and custom design time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you deliver to Lexington and Berea?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Vero's Boutique delivers custom florals to Lexington, Berea, and surrounding Madison County areas. Delivery fees vary by distance. We specialize in coordinating florals with venue design for weddings, quinceañeras, and events. Contact us for a custom delivery quote based on your event location and scope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in a custom bridal bouquet consultation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your consultation includes reviewing your wedding dress, color palette, bouquet style preference, and budget. We discuss seasonal blooms available and design custom arrangements. You'll see sketches or samples. Final bouquets are hand-tied fresh your wedding morning and delivered to your venue on time."
       }
     }
   ]

@@ -28,19 +28,6 @@ const metadata = {
        HERO SECTION
        =================================================================== -->
   <section class="hero-events">
-    <video
-      class="hero-events__video"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="/media/events/hero-quince-poster.webp"
-      preload="metadata"
-    >
-      <source src="/media/events/hero-quince.webm" type="video/webm" />
-      <source src="/media/events/hero-quince.mp4" type="video/mp4" />
-    </video>
-    
     <div class="hero-events__overlay"></div>
     
     <div class="hero-events__content">
@@ -60,6 +47,30 @@ const metadata = {
         <a href="#packages-section" class="button button--outline">
           View Planning Packages
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Start Planning Your Event -->
+  <section style="padding: 6rem 1.5rem; background-color: #F5F5F5;">
+    <div style="max-width: 56rem; margin: 0 auto; text-align: center;">
+      <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <h2 style="font-family: var(--font-serif); font-size: clamp(1.75rem, 5vw, 2.75rem); color: var(--color-black); margin: 0;">
+            Start Planning Your Event
+          </h2>
+          <p style="font-size: 1.125rem; color: #999999; font-weight: 300; max-width: 42rem; margin: 0 auto; line-height: 1.6;">
+            Explore seasonal arrangements, event florals, and décor options while you plan.
+          </p>
+        </div>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://shop.verosboutiqueky.com/?category=event-florals" class="button button--primary" target="_blank" rel="noopener noreferrer">
+            Browse Event Décor & Florals
+          </a>
+          <a href="/book-an-appointment?service=event-planning" class="button button--outline">
+            Book Consultation
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -103,6 +114,12 @@ const metadata = {
         waltz timeline planning, full venue transformation, and gown styling. Our planning tiers accommodate 
         celebrations of all scopes, tailored to your vision and budget.
       </p>
+
+      <div style="max-width: 90ch; margin: var(--space-8) auto var(--space-12); padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 5%, transparent); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+        <p style="text-align: left; color: var(--color-charcoal); line-height: var(--lh-loose); font-size: var(--text-secondary);">
+          <strong>What to Expect:</strong> Expect a ceremony-coordinated XV party, not a generic party rental. Planning typically spans 6–18 months from concept to execution. We coordinate your court, design waltz choreography, source and style florals, guide gown selection, and manage full venue transformation. Your XV celebration becomes a polished, personal milestone reflecting your family's traditions and style.
+        </p>
+      </div>
 
       <!-- Quince Process subsection -->
       <div class="quince-process">
@@ -224,6 +241,12 @@ const metadata = {
         execution, we ensure your wedding flows seamlessly while your gown and decor work together in perfect 
         aesthetic harmony. Multiple planning tiers available, from coordination to full production.
       </p>
+
+      <div style="max-width: 90ch; margin: var(--space-8) auto var(--space-12); padding: var(--space-8); background-color: color-mix(in srgb, var(--color-gold) 5%, transparent); border-left: 4px solid var(--color-gold); border-radius: 4px;">
+        <p style="text-align: left; color: var(--color-charcoal); line-height: var(--lh-loose); font-size: var(--text-secondary);">
+          <strong>The Outcome:</strong> You'll get a cohesive aesthetic where your gown, florals, linens, and decor complement each other seamlessly. We manage vendor timelines, handle design decisions, and execute the day-of logistics so you can focus on celebration instead of stress. From month-of coordination to full planning, you'll experience reduced vendor chaos, better aesthetics, and seamless execution.
+        </p>
+      </div>
 
       <!-- Coordination services -->
       <div class="coordination-services">
@@ -625,6 +648,34 @@ const metadata = {
             to business events. Contact us for corporate event inquiries and a custom proposal.
           </p>
         </div>
+
+        <div class="faq-item">
+          <h3>What's included in a Quinceañera planning package?</h3>
+          <p>
+            XV planning includes theme design, court coordination, waltz choreography guidance, full venue transformation, and gown styling. Each package tier—Essential Management, Signature Series, and Royal Production—covers different scope, from vendor oversight to full concept-to-execution production.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How does gown selection affect your overall event design?</h3>
+          <p>
+            Your gown is the design anchor. We curate florals, linens, lighting, color palette, and bridal party styling around your dress to create editorial-quality aesthetic. Unlike separate florists or planners, we ensure every element complements your couture from concept to execution.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What's the difference between month-of coordination and full planning?</h3>
+          <p>
+            Month-of coordination (Essential Management) handles final logistics and day-of execution. Full planning (Signature Series, Royal Production) includes 6–12 months of vendor selection, design concept development, gown and floral guidance, and custom decor curation. Choose based on timeline and scope.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you work with our existing wedding or event vendors?</h3>
+          <p>
+            Yes. We coordinate seamlessly with your selected vendors. Bring your florist, venue, or caterer—we manage vendor communication, timing, and design alignment. If you need recommendations, we have trusted local partners ready to collaborate.
+          </p>
+        </div>
       </div>
 
       <div class="faq-cta" style="text-align: center;">
@@ -674,9 +725,9 @@ const metadata = {
   "@type": "LocalBusiness",
   "name": "Vero's Boutique Event Planning",
   "description": "Full-service wedding and Quinceañera planning, coordination, and design in Richmond, Kentucky.",
-  "image": "https://verosboutiqueky.com/media/events/hero-quince-poster.webp",
+  "image": "https://verosboutiqueky.com/images/veros-boutique-logo.png",
   "url": "https://verosboutiqueky.com/event-planning-quinceaneras-weddings-richmond-ky",
-  "telephone": "+1-859-624-XXXX",
+  "telephone": "+1-859-353-5119",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Richmond",
@@ -702,34 +753,99 @@ const metadata = {
       "name": "Madison County, KY"
     }
   ],
+  "sameAs": [
+    "https://www.facebook.com/verosboutiqueky",
+    "https://www.instagram.com/verosboutiqueky/",
+    "https://share.google/j45agBUoNggUBePvi"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Event Planning Consultation",
+    "telephone": "+1-859-353-5119"
+  },
   "knowsAbout": ["Wedding Planning", "Quinceañera Planning", "XV Party Production", "Event Coordination", "Venue Design", "Decor Production"]
 })} />
 
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Wedding & Quinceañera Planning",
-  "description": "Full-service event planning and coordination for weddings and Quinceañeras in Central Kentucky.",
+  "name": "Quinceañera Planning & Production",
+  "description": "Full-service XV party planning including theme design, court coordination, venue transformation, and styling. Bilingual services available in English and Spanish.",
   "provider": {
     "@type": "LocalBusiness",
     "name": "Vero's Boutique"
   },
-  "areaServed": "Richmond, Kentucky",
+  "areaServed": {
+    "@type": "City",
+    "name": "Central Kentucky"
+  },
+  "serviceType": "Event Planning",
   "offers": [
     {
       "@type": "Offer",
       "name": "Essential Management",
-      "description": "Day-of coordination and vendor oversight. Includes final timeline, vendor confirmations, ceremony management, real-time problem solving, and setup coordination."
+      "description": "Day-of coordination and vendor oversight. Includes final timeline, vendor confirmations, ceremony management, real-time problem solving, and setup coordination.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
     },
     {
       "@type": "Offer",
       "name": "Signature Series",
-      "description": "Partial planning with decor styling. Includes vendor recommendations, design concept, gown guidance, floral coordination, and day-of coordination."
+      "description": "Partial planning with decor styling. Includes vendor recommendations, design concept, gown guidance, floral coordination, and day-of coordination.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
     },
     {
       "@type": "Offer",
       "name": "Royal Production",
-      "description": "Full planning with custom decor and choreography. Complete event planning from concept, venue selection, vendor management, custom design, waltz guidance, gown styling, setup and day-of execution."
+      "description": "Full planning with custom decor and choreography. Complete event planning from concept, venue selection, vendor management, custom design, waltz guidance, gown styling, setup and day-of execution.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Wedding Planning & Coordination",
+  "description": "Full-service wedding coordination from day-one planning to month-of execution. Specializes in gown-to-decor aesthetic alignment for cohesive editorial-quality results.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vero's Boutique"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Central Kentucky"
+  },
+  "serviceType": "Event Planning",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Essential Management",
+      "description": "Day-of coordination and vendor oversight. Includes final timeline, vendor confirmations, ceremony management, real-time problem solving, and setup coordination.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
+    },
+    {
+      "@type": "Offer",
+      "name": "Signature Series",
+      "description": "Partial planning with decor styling. Includes vendor recommendations, design concept, gown guidance, floral coordination, and day-of coordination.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
+    },
+    {
+      "@type": "Offer",
+      "name": "Royal Production",
+      "description": "Full planning with custom decor and choreography. Complete event planning from concept, venue selection, vendor management, custom design, waltz guidance, gown styling, setup and day-of execution.",
+      "priceCurrency": "USD",
+      "availableChannel": ["Online Booking", "Phone Consultation", "In-Person"],
+      "areaServed": "Central Kentucky"
     }
   ]
 })} />
@@ -800,6 +916,38 @@ const metadata = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes, Vero's Boutique customizes planning services for corporate galas, milestone celebrations, formal fundraisers, and private events. We bring the same design expertise and vendor coordination to business events. Contact us for corporate event inquiries and a custom proposal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in a Quinceañera planning package?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "XV planning includes theme design, court coordination, waltz choreography guidance, full venue transformation, and gown styling. Each package tier—Essential Management, Signature Series, and Royal Production—covers different scope, from vendor oversight to full concept-to-execution production."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does gown selection affect your overall event design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your gown is the design anchor. We curate florals, linens, lighting, color palette, and bridal party styling around your dress to create editorial-quality aesthetic. Unlike separate florists or planners, we ensure every element complements your couture from concept to execution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between month-of coordination and full planning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Month-of coordination (Essential Management) handles final logistics and day-of execution. Full planning (Signature Series, Royal Production) includes 6–12 months of vendor selection, design concept development, gown and floral guidance, and custom decor curation. Choose based on timeline and scope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you work with our existing wedding or event vendors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We coordinate seamlessly with your selected vendors. Bring your florist, venue, or caterer—we manage vendor communication, timing, and design alignment. If you need recommendations, we have trusted local partners ready to collaborate."
       }
     }
   ]

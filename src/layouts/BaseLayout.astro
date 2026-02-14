@@ -7,11 +7,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  robots?: string;
 }
 
 const {
   title = "Vero's Boutique | Luxury Private Fittings",
   description = "A Richmond, Kentucky destination for bridal gowns, formal wear, and bespoke floral event design.",
+  robots,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -34,6 +36,7 @@ const currentPath = Astro.url.pathname;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://verosboutiqueky.com/images/hero.webp" />
+    {robots && <meta name="robots" content={robots} />}
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -426,10 +426,6 @@ const ctaButton = {
     color: var(--color-gold);
   }
 
-  .header.scrolled .header__brand-mobile .header__brand-text-sub {
-    color: var(--color-gold);
-  }
-
   /* ========== CTA BUTTON (DESKTOP) ========== */
   .header__cta {
     padding: 0.75rem 1.75rem;
@@ -801,40 +797,40 @@ const ctaButton = {
     function setupAccordions() {
       if (!mobileMenu) return;
       
-      // Main accordion trigger delegation
+      // Unified click delegation for accordion triggers and sublinks
       mobileMenu.addEventListener("click", (e) => {
-        const trigger = (e.target as HTMLElement).closest(".header__mobile-menu-link--expandable");
-        if (!trigger) return;
+        const target = (e.target as HTMLElement);
+        const trigger = target.closest(".header__mobile-menu-link--expandable");
+        const sublink = target.closest(".header__mobile-menu-sublink");
         
-        e.preventDefault();
-        const triggerLabel = trigger.getAttribute("data-accordion-trigger");
-        const content = mobileMenu.querySelector(`[data-accordion-content="${triggerLabel}"]`);
-        
-        if (content) {
-          const isOpen = content.classList.contains("open");
+        if (trigger) {
+          // Accordion trigger: toggle submenu
+          e.preventDefault();
+          const triggerLabel = trigger.getAttribute("data-accordion-trigger");
+          const content = mobileMenu.querySelector(`[data-accordion-content="${triggerLabel}"]`);
           
-          // Close all other accordions
-          mobileMenu.querySelectorAll(".header__mobile-menu-accordion.open").forEach((acc) => {
-            acc.classList.remove("open");
-          });
-          mobileMenu.querySelectorAll(".header__mobile-menu-link--expandable[aria-expanded='true']").forEach((btn) => {
-            btn.setAttribute("aria-expanded", "false");
-          });
-          
-          // Toggle current accordion
-          if (!isOpen) {
-            content.classList.add("open");
-            trigger.setAttribute("aria-expanded", "true");
+          if (content) {
+            const isOpen = content.classList.contains("open");
+            
+            // Close all other accordions
+            mobileMenu.querySelectorAll(".header__mobile-menu-accordion.open").forEach((acc) => {
+              acc.classList.remove("open");
+            });
+            mobileMenu.querySelectorAll(".header__mobile-menu-link--expandable[aria-expanded='true']").forEach((btn) => {
+              btn.setAttribute("aria-expanded", "false");
+            });
+            
+            // Toggle current accordion
+            if (!isOpen) {
+              content.classList.add("open");
+              trigger.setAttribute("aria-expanded", "true");
+            }
           }
+        } else if (sublink) {
+          // Sublink: close menu and navigate
+          e.preventDefault();
+          closeMenu();
         }
-      });
-      
-      // Sublink click delegation (prevents unwanted bubbling)
-      mobileMenu.addEventListener("click", (e) => {
-        const sublink = (e.target as HTMLElement).closest(".header__mobile-menu-sublink");
-        if (!sublink) return;
-        e.preventDefault();
-        closeMenu();
       });
     }
 

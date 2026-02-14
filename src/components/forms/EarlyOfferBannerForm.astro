@@ -259,6 +259,11 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAACWIZrFF9G
     display: flex;
   }
 
+  /* When mobile menu is open, constrain banner overflow to prevent layout thrash */
+  html[data-menu-open="true"] .early-offer-banner {
+    overflow-y: hidden;
+  }
+
   /* Responsive: Tablet and up */
   @media (min-width: 640px) {
     .early-offer-banner {

@@ -775,6 +775,13 @@ const ctaButton = {
       // Manage body scroll lock
       document.body.style.overflow = nextState === "open" ? "hidden" : "";
       
+      // Coordinate with banner/form overflow (prevent layout thrash)
+      if (nextState === "open") {
+        document.documentElement.dataset.menuOpen = "true";
+      } else {
+        delete document.documentElement.dataset.menuOpen;
+      }
+      
       // Focus management
       if (nextState === "closed") {
         hamburger.focus();

@@ -701,6 +701,10 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
   const facebookBtn = document.getElementById('review-facebook-btn');
 
   let currentRating = 0;
+  let redirectInProgress = false;
+
+  // Google Review URL from frontmatter
+  const GOOGLE_REVIEW_URL = 'https://g.page/r/CTrfz6CydVxVEBM/review';
 
   function updateStarDisplay(rating) {
     starButtons.forEach((btn) => {
@@ -711,6 +715,43 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
         btn.classList.remove('active');
       }
     });
+  }
+
+  // Show "Redirecting..." toast for immediate Google redirect
+  function showRedirectingToast() {
+    let toast = document.getElementById('redirecting-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'redirecting-toast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #10b981;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        z-index: 9999;
+        font-size: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.textContent = 'Redirecting to Google Reviews...';
+    toast.style.display = 'block';
+    return toast;
+  }
+
+  // Fire GA4 event for review redirect tracking
+  function fireReviewRedirectEvent(rating) {
+    if (window.gtag) {
+      window.gtag('event', 'review_redirect', {
+        rating: rating.toString(),
+        destination: 'google',
+      });
+    }
   }
 
   function showResponse(rating) {
@@ -738,9 +779,25 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
   // Click + keyboard handlers to stars
   starButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
+      if (redirectInProgress) return;
+
       const rating = parseInt(btn.getAttribute('data-rating') || '0', 10);
       updateStarDisplay(rating);
-      showResponse(rating);
+
+      // For 4-5★: Immediate redirect to Google
+      if (rating >= 4) {
+        redirectInProgress = true;
+        showRedirectingToast();
+        fireReviewRedirectEvent(rating);
+
+        // Wait 300ms for toast visibility + analytics, then redirect
+        setTimeout(() => {
+          window.location.href = GOOGLE_REVIEW_URL;
+        }, 300);
+      } else {
+        // For 1-3★: Show feedback form (existing behavior)
+        showResponse(rating);
+      }
     });
 
     btn.addEventListener('keydown', (e) => {
@@ -748,7 +805,22 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
         e.preventDefault();
         const rating = parseInt(btn.getAttribute('data-rating') || '0', 10);
         updateStarDisplay(rating);
-        showResponse(rating);
+
+        // For 4-5★: Immediate redirect to Google
+        if (rating >= 4) {
+          if (redirectInProgress) return;
+          redirectInProgress = true;
+          showRedirectingToast();
+          fireReviewRedirectEvent(rating);
+
+          // Wait 300ms for toast visibility + analytics, then redirect
+          setTimeout(() => {
+            window.location.href = GOOGLE_REVIEW_URL;
+          }, 300);
+        } else {
+          // For 1-3★: Show feedback form (existing behavior)
+          showResponse(rating);
+        }
       }
     });
   });
@@ -759,7 +831,8 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
   // Low-rating form submission (posts to /api/lead via form action)
   // The form's native POST with Turnstile will handle it
 
-  // High-rating review button handlers (submit + redirect)
+  // High-rating review button handlers are now obsolete (users are redirected immediately on star click)
+  // These remain for backwards compatibility but should not be reached
   async function submitReviewEvent(rating, source) {
     try {
       const formData = new FormData();

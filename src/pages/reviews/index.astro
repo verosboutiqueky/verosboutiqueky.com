@@ -717,7 +717,7 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
     });
   }
 
-  // Show "Redirecting..." toast for immediate Google redirect
+  // Show friendly "Thank you" toast with checkmark for immediate Google redirect
   function showRedirectingToast() {
     let toast = document.getElementById('redirecting-toast');
     if (!toast) {
@@ -728,19 +728,64 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
         bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
-        background: #10b981;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
+        padding: 1.25rem 1.75rem;
+        border-radius: 0.75rem;
         font-weight: 600;
         z-index: 9999;
-        font-size: 1rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        font-size: 1.125rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        max-width: 90%;
+        animation: slideUp 0.3s ease-out;
       `;
+      
+      // Add animation keyframes if not already present
+      if (!document.getElementById('toast-animations')) {
+        const style = document.createElement('style');
+        style.id = 'toast-animations';
+        style.textContent = `
+          @keyframes slideUp {
+            from {
+              opacity: 0;
+              transform: translateX(-50%) translateY(1rem);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0);
+            }
+          }
+          @keyframes pulse-check {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+          }
+          .toast-checkmark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
+            animation: pulse-check 2s ease-in-out infinite;
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
       document.body.appendChild(toast);
     }
-    toast.textContent = 'Redirecting to Google Reviews...';
-    toast.style.display = 'block';
+    
+    // Clear existing content and add checkmark + message
+    toast.innerHTML = `
+      <span class="toast-checkmark">✓</span>
+      <span>Thank you! Taking you to Google Reviews...</span>
+    `;
+    toast.style.display = 'flex';
     return toast;
   }
 

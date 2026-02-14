@@ -74,7 +74,7 @@
 }
 
 html {
-  /* scroll-behavior: smooth removed for Lighthouse performance (LCP impact) */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -135,6 +135,7 @@ h2 {
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 500;
   margin-bottom: var(--space-6);
+  scroll-margin-top: 80px;
 }
 
 h3 {

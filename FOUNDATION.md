@@ -136,7 +136,7 @@ Clean, centralized design system for consistent styling and easy future expansio
 ### CTA Destination Pages (13 pages)
 - All route to "OPENING FEBRUARY 2026" message page
 - Consistent styling: dark charcoal (#2B2B2B) text, font-weight 500
-- Pages: `/book-an-appointment`, `/visit-the-boutique`, `/about-veros-boutique`, `/contact`, `/gallery`, `/faq`, `/formal-gowns-richmond-ky`, `/wedding-dresses-richmond-ky`, `/quinceanera-dresses-richmond-ky`, `/event-planning-richmond-ky`, `/wedding-prom-florist-richmond-ky`, `/privacy-policy`, `/terms`
+- Pages: `/book-an-appointment`, `/visit-the-boutique`, `/about-veros-boutique`, `/contact`, `/gallery`, `/faq`, `/formal-gowns-richmond-ky`, `/wedding-dresses-richmond-ky`, `/quinceanera-dresses-richmond-ky`, `/event-planning-quinceaneras-weddings-richmond-ky`, `/wedding-prom-florist-richmond-ky`, `/privacy-policy`, `/terms`
 
 ---
 

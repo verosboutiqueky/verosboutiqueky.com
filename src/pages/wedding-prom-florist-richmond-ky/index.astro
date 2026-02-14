@@ -153,9 +153,18 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
       <p class="authority-block__excerpt">
         Vero's Boutique specializes in coordinated floral design for weddings, prom, and events 
         across Madison County. Unlike traditional florists, we match florals directly to your 
-        selected gown, creating cohesive aesthetic vision. Our Richmond studio offers bridal 
-        consultations, seasonal prom corsages, and custom event installations for discerning clients.
+        selected gown, creating cohesive aesthetic vision. Our Richmond studio offers <a href="#wedding-florals" class="authority-block__link">bridal consultations</a>, <a href="#prom-corsages" class="authority-block__link">seasonal prom corsages</a>, and <a href="#event-installations" class="authority-block__link">custom event installations</a> for discerning clients.
       </p>
+
+      <!-- CTA Buttons for Quick Navigation -->
+      <div class="authority-block__ctas">
+        <a href="#wedding-florals" class="button button--primary">
+          Book a Floral Consult
+        </a>
+        <a href="#packages" class="button button--secondary-champagne">
+          View Packages
+        </a>
+      </div>
 
       <!-- 3-column benefit cards -->
       <div class="benefits-grid">
@@ -178,7 +187,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
   <!-- ===================================================================
        WEDDING FLORALS SECTION
        =================================================================== -->
-  <section id="wedding-section" class="wedding-section">
+  <section id="wedding-florals" class="wedding-section">
     <div class="container">
       <h2>Wedding Bouquets Designed for Your Dress</h2>
       
@@ -249,7 +258,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
   <!-- ===================================================================
        PROM & FORMAL SECTION
        =================================================================== -->
-  <section class="prom-section">
+  <section id="prom-corsages" class="prom-section">
     <div class="container">
       <h2>Prom Corsages That Match Your Vision</h2>
       
@@ -321,7 +330,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
   <!-- ===================================================================
        EVENT INSTALLATIONS SECTION
        =================================================================== -->
-  <section class="events-section">
+  <section id="event-installations" class="events-section">
     <div class="container">
       <h2>Event Installations That Transform Spaces</h2>
 
@@ -547,7 +556,7 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
   <!-- ===================================================================
        FINAL CTA SECTION
        =================================================================== -->
-  <section class="final-cta-section">
+  <section id="book-consult" class="final-cta-section">
     <div class="container">
       <h2>Ready to Bring Your Vision to Life?</h2>
       <p>
@@ -794,6 +803,49 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
     margin: var(--space-6) auto var(--space-12);
     color: var(--color-charcoal);
     text-align: center;
+  }
+
+  /* Inline Navigation Links */
+  .authority-block__link {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-gold);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .authority-block__link:hover {
+    color: var(--color-gold);
+    border-bottom-color: var(--color-navy);
+  }
+
+  /* CTA Button Container */
+  .authority-block__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* Secondary Button with Champagne Accent */
+  .button--secondary-champagne {
+    background-color: var(--color-champagne);
+    color: var(--color-navy);
+    border: 1px solid var(--color-champagne);
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .button--secondary-champagne:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: white;
   }
 
   .benefits-grid {
@@ -1377,6 +1429,16 @@ const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
      =================================================================== */
 
   @media (max-width: 768px) {
+    .authority-block__ctas {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .authority-block__ctas .button {
+      width: 100%;
+      min-height: 44px;
+    }
+
     .pricing-inclusions {
       columns: 1;
     }

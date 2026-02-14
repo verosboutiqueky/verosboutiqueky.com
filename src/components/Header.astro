@@ -15,8 +15,27 @@ const navLeft = [
 ];
 
 const navRight = [
-  { label: "EVENTS", href: "/event-planning-richmond-ky" },
-  { label: "FLORAL", href: "/wedding-prom-florist-richmond-ky" },
+  { 
+    label: "EVENTS", 
+    href: "/event-planning-quinceaneras-weddings-richmond-ky",
+    dropdownItems: [
+      { label: "Quinceañera Planning", anchor: "#quince-production" },
+      { label: "Wedding Coordination", anchor: "#wedding-coordination" },
+      { label: "Packages & Pricing", anchor: "#packages-section" },
+      { label: "Frequently Asked Questions", anchor: "#faq" },
+    ]
+  },
+  { 
+    label: "FLORAL", 
+    href: "/wedding-prom-florist-richmond-ky",
+    dropdownItems: [
+      { label: "Wedding Florals", anchor: "#wedding-florals" },
+      { label: "Prom Corsages", anchor: "#prom-corsages" },
+      { label: "Event Installations", anchor: "#event-installations" },
+      { label: "Packages & Pricing", anchor: "#packages" },
+      { label: "Frequently Asked Questions", anchor: "#faq" },
+    ]
+  },
 ];
 
 const ctaButton = {
@@ -54,13 +73,25 @@ const ctaButton = {
     <div class="header__nav-right-wrapper">
       <ul class="header__nav-right">
         {navRight.map((link) => (
-          <li>
+          <li class="header__nav-item">
             <a
               href={link.href}
               class={`header__link ${currentPath === link.href ? "header__link--active" : ""}`}
             >
               {link.label}
             </a>
+            {link.dropdownItems && (
+              <div class="header__dropdown">
+                <a href={link.href} class="header__dropdown-link header__dropdown-link--full-page">
+                  View Full Page
+                </a>
+                {link.dropdownItems.map((item) => (
+                  <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -110,13 +141,27 @@ const ctaButton = {
         </li>
       ))}
       {navRight.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class={`header__mobile-menu-link ${currentPath === link.href ? "header__mobile-menu-link--active" : ""}`}
+        <li class="header__mobile-menu-item">
+          <button
+            class="header__mobile-menu-link header__mobile-menu-link--expandable"
+            data-accordion-trigger={link.label}
+            aria-expanded="false"
           >
             {link.label}
-          </a>
+            <span class="header__accordion-icon">▼</span>
+          </button>
+          {link.dropdownItems && (
+            <div class="header__mobile-menu-accordion" data-accordion-content={link.label}>
+              <a href={link.href} class="header__mobile-menu-sublink header__mobile-menu-sublink--full-page">
+                View Full Page
+              </a>
+              {link.dropdownItems.map((item) => (
+                <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </li>
       ))}
       <li>
@@ -240,6 +285,91 @@ const ctaButton = {
 
   .header__link--active {
     color: var(--color-gold);
+  }
+
+  /* ========== DROPDOWN NAV (DESKTOP) ========== */
+  .header__nav-item {
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .header__dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    background-color: white;
+    border: 1px solid var(--color-gold);
+    border-radius: 4px;
+    min-width: 240px;
+    padding: 0.75rem 0;
+    z-index: 110;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+  }
+
+  .header__nav-item:hover .header__dropdown,
+  .header__nav-item:focus-within .header__dropdown {
+    display: block;
+    animation: dropdownFadeIn 0.2s ease forwards;
+  }
+
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .header__dropdown-link {
+    display: block;
+    padding: 0.625rem 1rem;
+    color: var(--color-navy);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .header__dropdown-link:hover,
+  .header__dropdown-link:focus {
+    background-color: rgba(27, 58, 82, 0.05);
+    outline: none;
+  }
+
+  .header__dropdown-link:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: -2px;
+  }
+
+  .header__dropdown-link--full-page {
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-gold);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.625rem;
+    color: var(--color-navy);
+  }
+
+  .header.scrolled .header__dropdown {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-color: var(--color-gold);
+  }
+
+  .header.scrolled .header__dropdown-link {
+    color: white;
+  }
+
+  .header.scrolled .header__dropdown-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .header.scrolled .header__dropdown-link--full-page {
+    color: white;
+    border-bottom-color: var(--color-gold);
   }
 
   /* ========== BRAND ========== */
@@ -499,6 +629,80 @@ const ctaButton = {
     outline-offset: -2px;
   }
 
+  /* ========== MOBILE ACCORDION ========== */
+  .header__mobile-menu-link--expandable {
+    background: none;
+    border: none;
+    padding: 1.25rem 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+  }
+
+  .header__mobile-menu-link--expandable:hover {
+    opacity: 0.6;
+  }
+
+  .header__mobile-menu-link--expandable:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: -2px;
+  }
+
+  .header__accordion-icon {
+    font-size: 0.6rem;
+    transition: transform 0.3s ease;
+    margin-left: 0.75rem;
+  }
+
+  .header__mobile-menu-link--expandable[aria-expanded="true"] .header__accordion-icon {
+    transform: rotate(180deg);
+  }
+
+  .header__mobile-menu-accordion {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .header__mobile-menu-accordion.open {
+    max-height: 500px;
+  }
+
+  .header__mobile-menu-sublink {
+    display: block;
+    padding: 0.75rem 0 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .header__mobile-menu-sublink:hover {
+    opacity: 0.6;
+  }
+
+  .header__mobile-menu-sublink--full-page {
+    font-weight: 600;
+    color: white;
+    border-bottom: 1px solid var(--color-gold);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
   .header__mobile-menu-divider {
     height: 1px;
     background-color: rgba(255, 255, 255, 0.1);
@@ -583,6 +787,43 @@ const ctaButton = {
       hamburger?.focus();
     }
 
+    // Accordion toggle for mobile menu
+    function setupAccordions() {
+      const accordionTriggers = mobileMenu?.querySelectorAll(".header__mobile-menu-link--expandable");
+      
+      accordionTriggers?.forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          const triggerLabel = trigger.getAttribute("data-accordion-trigger");
+          const content = mobileMenu?.querySelector(`[data-accordion-content="${triggerLabel}"]`);
+          
+          if (content) {
+            const isOpen = content.classList.contains("open");
+            
+            // Close all other accordions
+            mobileMenu?.querySelectorAll(".header__mobile-menu-accordion.open").forEach((acc) => {
+              acc.classList.remove("open");
+            });
+            mobileMenu?.querySelectorAll(".header__mobile-menu-link--expandable[aria-expanded='true']").forEach((btn) => {
+              btn.setAttribute("aria-expanded", "false");
+            });
+            
+            // Toggle current accordion
+            if (!isOpen) {
+              content.classList.add("open");
+              trigger.setAttribute("aria-expanded", "true");
+            }
+          }
+        });
+      });
+      
+      // Close accordion when clicking sublinks
+      const sublinks = mobileMenu?.querySelectorAll(".header__mobile-menu-sublink");
+      sublinks?.forEach((sublink) => {
+        sublink.addEventListener("click", closeMenu);
+      });
+    }
+
     // Close menu on ESC
     function handleEsc(e: KeyboardEvent) {
       if (e.key === "Escape") {
@@ -605,6 +846,9 @@ const ctaButton = {
     });
     document.addEventListener("keydown", handleEsc);
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    
+    // Setup accordion toggles
+    setupAccordions();
 
     // Cleanup
     return () => {

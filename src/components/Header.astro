@@ -565,7 +565,6 @@ const ctaButton = {
 
   /* ========== MOBILE SLIDE MENU ========== */
   .header__mobile-menu {
-    display: none;
     position: fixed;
     top: 70px;
     left: 0;
@@ -576,11 +575,16 @@ const ctaButton = {
     overflow-y: auto;
     z-index: 101;
     padding: 2rem 1.5rem;
+    visibility: hidden;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: visibility 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
   }
 
   .header__mobile-menu--open {
-    display: block;
-    animation: slideIn 0.3s ease forwards;
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
   }
 
   @keyframes slideIn {
@@ -846,6 +850,23 @@ const ctaButton = {
     });
     document.addEventListener("keydown", handleEsc);
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    
+    // Click-outside handler for mobile menu overlay
+    document.addEventListener("click", (e: Event) => {
+      const target = e.target as HTMLElement;
+      
+      // Only process if menu is open
+      if (hamburger?.getAttribute("aria-expanded") !== "true") return;
+      
+      // Don't close if clicking the hamburger button itself
+      if (target === hamburger || hamburger?.contains(target)) return;
+      
+      // Don't close if clicking inside the mobile menu
+      if (target === mobileMenu || mobileMenu?.contains(target)) return;
+      
+      // Clicked outside menu/hamburger - close the menu
+      closeMenu();
+    });
     
     // Setup accordion toggles
     setupAccordions();

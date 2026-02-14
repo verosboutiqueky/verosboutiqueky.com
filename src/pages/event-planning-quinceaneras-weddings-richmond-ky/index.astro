@@ -1,0 +1,1637 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Import optimized WebP assets from src/assets
+import quinceDecor1 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/quince-decor-1.webp';
+import quinceDecor2 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/quince-decor-2.webp';
+import quinceDecor3 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/quince-decor-3.webp';
+import weddingVenue1 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/wedding-venue-1.webp';
+import weddingVenue2 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/wedding-venue-2.webp';
+import weddingVenue3 from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/wedding-venue-3.webp';
+import venueChenault from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/venue-chenault.webp';
+import quinceGrandEntrance from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/quinceañera-grand-entrance.webp';
+import venueCeremonySetup from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/venue-ceremony-setup.webp';
+import venueReceptionSetup from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/venue-reception-setup.webp';
+import venueTransformationDetails from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/venue-transformation-details.webp';
+import celebrationMoment from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/celebration-moment.webp';
+import curatedStylingDetails from '../../assets/event-planning-quinceaneras-weddings-richmond-ky/curated-styling-details.webp';
+
+const metadata = {
+  title: "Event Planning Richmond KY | Quince & Weddings",
+  description: "Full-service wedding and Quinceañera planning in Richmond, Kentucky. Coordination, decor design, gown styling, and venue transformation. Madison County event planners.",
+};
+---
+
+<BaseLayout title={metadata.title} description={metadata.description}>
+  <!-- ===================================================================
+       HERO SECTION
+       =================================================================== -->
+  <section class="hero-events">
+    <video
+      class="hero-events__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/media/events/hero-quince-poster.webp"
+      preload="metadata"
+    >
+      <source src="/media/events/hero-quince.webm" type="video/webm" />
+      <source src="/media/events/hero-quince.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="hero-events__overlay"></div>
+    
+    <div class="hero-events__content">
+      <h1 class="hero-events__h1">
+        We Don't Just Plan Events.<br />
+        <span class="hero-events__h1-sub">We Design Milestones.</span>
+      </h1>
+      
+      <p class="hero-events__subheading">
+        Full-service wedding and Quinceañera production in Richmond, KY — from couture gown to venue transformation.
+      </p>
+      
+      <div class="hero-events__ctas">
+        <a href="/book-an-appointment?service=event-planning" class="button button--primary">
+          Check Availability for Your 2026 Date
+        </a>
+        <a href="#packages-section" class="button button--outline">
+          View Planning Packages
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       IMMEDIATE LOCAL AUTHORITY BLOCK (Trust Booster)
+       =================================================================== -->
+  <section class="authority-block">
+    <div class="container">
+      <div class="authority-excerpt">
+        <p>
+          Vero's Boutique provides full-service <a href="#quince-production" style="color: inherit; text-decoration: underline; font-weight: 500;">wedding and Quinceañera planning</a> in Richmond, Kentucky. 
+          From <a href="#wedding-coordination" style="color: inherit; text-decoration: underline; font-weight: 500;">venue design and vendor coordination</a> to couture gown styling and <a href="#integrated-advantage" style="color: inherit; text-decoration: underline; font-weight: 500;">decor production</a>, we manage 
+          every detail so families can focus on the celebration instead of the logistics. Serving Madison County, 
+          Berea, and Lexington with local expertise and modern, secure booking—because beautiful events start 
+          with fast, stress-free planning.
+        </p>
+
+        <!-- Quick Navigation CTA Row -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-6); margin-top: var(--space-8);">
+          <a href="#quince-production" style="color: var(--color-navy); font-weight: 500; font-size: var(--text-secondary); text-decoration: none; border-bottom: 2px solid var(--color-gold); padding-bottom: 2px; transition: opacity var(--transition-fast);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Explore Quinceañera Planning</a>
+          <a href="#wedding-coordination" style="color: var(--color-navy); font-weight: 500; font-size: var(--text-secondary); text-decoration: none; border-bottom: 2px solid var(--color-gold); padding-bottom: 2px; transition: opacity var(--transition-fast);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View Wedding Services</a>
+          <a href="#packages-section" style="color: var(--color-navy); font-weight: 500; font-size: var(--text-secondary); text-decoration: none; border-bottom: 2px solid var(--color-gold); padding-bottom: 2px; transition: opacity var(--transition-fast);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">See Planning Packages</a>
+          <a href="#integrated-advantage" style="color: var(--color-navy); font-weight: 500; font-size: var(--text-secondary); text-decoration: none; border-bottom: 2px solid var(--color-gold); padding-bottom: 2px; transition: opacity var(--transition-fast);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Design Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       QUINCEAÑERA PRODUCTION (Primary Revenue Driver)
+       =================================================================== -->
+  <section id="quince-production" class="quince-section">
+    <div class="container">
+      <h2>Premier Quinceañera Planning & Production in Richmond, KY</h2>
+      
+      <p class="section-intro">
+        A Quinceañera is more than a party—it's a milestone. Vero's Boutique transforms your vision into 
+        a flawless, memorable celebration. From Mis XV coordination in Richmond, Kentucky to bilingual 
+        event planning across Central Kentucky, we handle every detail: theme design, court coordination, 
+        waltz timeline planning, full venue transformation, and gown styling. Our planning tiers accommodate 
+        celebrations of all scopes, tailored to your vision and budget.
+      </p>
+
+      <!-- Quince Process subsection -->
+      <div class="quince-process">
+        <h3>The XV Party Planning Process</h3>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-icon">🎨</div>
+            <h4>Theme Design</h4>
+            <p>Royal Ballroom, Modern Floral Luxe, Cultural Heritage—we design a cohesive theme across 
+            decor, florals, invitations, and styling that reflects your personality and family traditions.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon">👥</div>
+            <h4>Court Coordination</h4>
+            <p>Coordinate damas, chambelanes, and formal attire. We ensure everyone's styling aligns with 
+            your gown and the overall aesthetic while managing group logistics seamlessly.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon">⏰</div>
+            <h4>Waltz & Timeline Planning</h4>
+            <p>Choreography guidance, waltz timing, cue sheet development, and rehearsal coordination. 
+            We work with your selected dance instructor for a grand entrance you'll never forget.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-icon">✨</div>
+            <h4>Full Venue Transformation</h4>
+            <p>Decor installation, floral design, lighting, linens, and setup. We transform your venue 
+            from blank canvas to a reflection of your personal style and cultural celebration.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending themes -->
+      <div class="trending-themes">
+        <h3>Trending 2026 XV Themes</h3>
+        <div class="themes-grid">
+          <div class="theme-card">
+            <div class="theme-icon">👑</div>
+            <h4>Royal Ballroom</h4>
+            <p>Elegant golds, crystal chandeliers, dramatic florals, and timeless grandeur.</p>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🌸</div>
+            <h4>Modern Floral Luxe</h4>
+            <p>Botanical installations, blush and mauve tones, modern geometric elements.</p>
+          </div>
+          <div class="theme-card">
+            <div class="theme-icon">🎭</div>
+            <h4>Cultural Heritage Celebration</h4>
+            <p>Traditional elements blended with modern style—honoring your family's roots and values.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quince gallery -->
+      <div class="quince-gallery">
+        <h3>Real Quinceañera Transformations in Richmond, Kentucky</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src={quinceDecor1.src}
+              alt="Quinceañera venue decor Richmond Kentucky - Royal Ballroom theme"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Royal Ballroom Transformation</p>
+          </div>
+          <div class="gallery-item">
+            <img
+              src={quinceDecor2.src}
+              alt="Floral Quinceañera stage design in Richmond KY"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Floral Grand Entrance</p>
+          </div>
+          <div class="gallery-item">
+            <img
+              src={quinceDecor3.src}
+              alt="Modern Luxe Quinceañera centerpieces Richmond Kentucky"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Modern Luxe Details</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quince CTA -->
+      <div class="quince-cta">
+        <h3>Ready to Plan Your XV Party?</h3>
+        <p>Let's design a Quinceañera that reflects your personality and celebrates your milestone.</p>
+        <a href="/book-an-appointment?service=quince-planning" class="button button--primary">
+          Book Your XV Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       WEDDING COORDINATION SECTION
+       =================================================================== -->
+  <section id="wedding-coordination" class="wedding-coordination-section">
+    <div class="container">
+      <h2>Wedding Coordination & Design in Madison County</h2>
+      
+      <p class="section-intro">
+        Whether you're coordinating month-of details or need full planning from day one, Vero's Boutique 
+        simplifies the wedding planning journey. From vendor communication and design decisions to day-of 
+        execution, we ensure your wedding flows seamlessly while your gown and decor work together in perfect 
+        aesthetic harmony. Multiple planning tiers available, from coordination to full production.
+      </p>
+
+      <!-- Coordination services -->
+      <div class="coordination-services">
+        <h3>Wedding Planning Services</h3>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-icon">📋</div>
+            <h4>Month-of Coordination</h4>
+            <ul class="service-list">
+              <li>Final vendor confirmations</li>
+              <li>Timeline development</li>
+              <li>Day-of ceremony management</li>
+              <li>Vendor coordination</li>
+              <li>Budget reconciliation</li>
+            </ul>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🎨</div>
+            <h4>Decor & Design Styling</h4>
+            <ul class="service-list">
+              <li>Centerpiece curation</li>
+              <li>Floral coordination</li>
+              <li>Lighting & ambiance</li>
+              <li>Gown-to-decor alignment</li>
+              <li>Venue layout design</li>
+            </ul>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">👗</div>
+            <h4>Gown & Aesthetic Alignment</h4>
+            <ul class="service-list">
+              <li>Gown selection guidance</li>
+              <li>Color palette coordination</li>
+              <li>Bridal party styling</li>
+              <li>Floral design selection</li>
+              <li>Cohesive aesthetic creation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related links -->
+      <div class="coordination-links">
+        <p>Looking for bridal gowns or event florals? Explore our integrated services:</p>
+        <div class="links-grid">
+          <a href="/wedding-dresses-richmond-ky" class="link-card">
+            <span class="link-icon">👗</span>
+            <span class="link-text">Wedding Dresses & Bridal Gowns</span>
+          </a>
+          <a href="/wedding-prom-florist-richmond-ky" class="link-card">
+            <span class="link-icon">🌸</span>
+            <span class="link-text">Wedding Florals & Event Design</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Wedding gallery -->
+      <div class="wedding-gallery">
+        <h3>Wedding Transformations in Central Kentucky</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src={weddingVenue1.src}
+              alt="Wedding venue decor Madison County Kentucky - elegant ceremony setup with floral design"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Elegant Ceremony Setup</p>
+          </div>
+          <div class="gallery-item">
+            <img
+              src={weddingVenue2.src}
+              alt="Wedding reception design Richmond Kentucky - tables, lighting, and decor transformation"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Reception Transformation</p>
+          </div>
+          <div class="gallery-item">
+            <img
+              src={weddingVenue3.src}
+              alt="Wedding detail and styling Richmond Kentucky - florals, linens, centerpieces, and styling"
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
+              class="gallery-image"
+            />
+            <p class="gallery-label">Curated Details</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wedding CTA -->
+      <div class="wedding-cta">
+        <h3>Let's Plan Your Perfect Wedding Day</h3>
+        <a href="/book-an-appointment?service=wedding-coordination" class="button button--primary">
+          Schedule Wedding Consultation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       INTEGRATED ADVANTAGE (Differentiator)
+       =================================================================== -->
+  <section id="integrated-advantage" class="advantage-section">
+    <div class="container">
+      <h2>Where Couture Meets Production Design</h2>
+      
+      <p class="advantage-excerpt">
+        Most event planners and florists work separately. You pick a gown, then search for florals. 
+        You coordinate decor details, then realize they don't match your dress. We eliminate that gap. 
+        At Vero's Boutique, your selected gown becomes the design anchor. We build florals, linens, lighting, 
+        and styling around it, ensuring every element complements your couture—creating the cohesive, 
+        editorial-quality aesthetic that independent planners often can't deliver.
+      </p>
+
+      <div class="advantage-points">
+        <div class="advantage-point">
+          <h4>🎯 Gown-Centric Design</h4>
+          <p>Your dress drives the entire aesthetic, not the other way around.</p>
+        </div>
+        <div class="advantage-point">
+          <h4>✨ Unified Execution</h4>
+          <p>One expert team handles gown selection, florals, decor, and styling—no coordination gaps.</p>
+        </div>
+        <div class="advantage-point">
+          <h4>🏻 Editorial-Quality Results</h4>
+          <p>Every detail is curated with luxury boutique expertise, not generic templates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PRICING PACKAGES SECTION
+       =================================================================== -->
+  <section id="packages-section" class="pricing-section">
+    <div class="container">
+      <h2>Event Planning Packages</h2>
+      
+      <p class="pricing-intro">
+        Transparent planning based on scope and vision. Our flexible tiers adapt to your celebration's 
+        needs. Final investment varies with guest count, venue, seasonality, installation complexity, and travel. 
+        Request a custom proposal after consultation.
+      </p>
+
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>Essential Management</h3>
+          <p class="pricing-card__description">Day-of Coordination & Vendor Oversight</p>
+          <ul class="pricing-card__features">
+            <li>Final 30-day timeline & checklist</li>
+            <li>Vendor confirmations & contact sheet</li>
+            <li>Day-of ceremony & reception oversight</li>
+            <li>Real-time problem solving</li>
+            <li>Setup & breakdown coordination</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Signature Series</h3>
+          <p class="pricing-card__description">Partial Planning + Decor Styling</p>
+          <ul class="pricing-card__features">
+            <li>Vendor recommendations & confirmations</li>
+            <li>Design concept & color palette</li>
+            <li>Gown selection guidance</li>
+            <li>Floral design coordination</li>
+            <li>Decor & styling curation</li>
+            <li>Day-of coordination</li>
+          </ul>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Royal Production</h3>
+          <p class="pricing-card__description">Full Planning + Custom Decor & Choreography</p>
+          <ul class="pricing-card__features">
+            <li>Complete event planning from concept</li>
+            <li>Venue selection & contract negotiation</li>
+            <li>Full vendor management</li>
+            <li>Custom decor & floral design</li>
+            <li>Waltz/choreography guidance</li>
+            <li>Gown & bridal party styling</li>
+            <li>Setup & day-of execution</li>
+            <li>Post-event follow-up</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pricing-note">
+        <strong>What Affects Final Investment:</strong> Guest count, venue selection, decor complexity, 
+        seasonal availability, custom installations, and travel distance to venue. Contact us for a transparent 
+        consultation and custom proposal tailored to your celebration.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       GALLERY SECTION (Trust & Visual Proof)
+       =================================================================== -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2>Real Richmond & Madison County Events</h2>
+
+      <p class="section-intro">
+        From intimate Berea celebrations to elaborate Madison County events, these transformations 
+        showcase what full-service planning looks like.
+      </p>
+
+      <div class="portfolio-gallery">
+        <!-- LARGE PORTFOLIO ITEM 1: venue-chenault.webp -->
+        <div class="gallery-item-large">
+          <img
+            src={venueChenault.src}
+            alt="Chenault Vineyards outdoor wedding elegance in Richmond KY"
+            width={1600}
+            height={1200}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-large"
+          />
+          <p class="gallery-label-large">Event Venue: Outdoor Elegance</p>
+        </div>
+
+        <div class="gallery-item-small">
+          <img
+            src={venueCeremonySetup.src}
+            alt="Wedding ceremony setup Madison County Kentucky"
+            width={1000}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-small"
+          />
+          <p class="gallery-label-small">Venue Ceremony Setup</p>
+        </div>
+
+        <div class="gallery-item-small">
+          <img
+            src={venueReceptionSetup.src}
+            alt="Wedding reception setup Madison County Kentucky"
+            width={1000}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-small"
+          />
+          <p class="gallery-label-small">Venue Reception Setup</p>
+        </div>
+
+        <div class="gallery-item-small">
+          <img
+            src={venueTransformationDetails.src}
+            alt="Event venue decor transformation Richmond Kentucky - elegant detail design"
+            width={1000}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-small"
+          />
+          <p class="gallery-label-small">Venue Transformation Details</p>
+        </div>
+
+        <div class="gallery-item-small">
+          <img
+            src={celebrationMoment.src}
+            alt="Grand moment at event celebration"
+            width={1000}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-small"
+          />
+          <p class="gallery-label-small">Celebration Moment</p>
+        </div>
+
+        <div class="gallery-item-small">
+          <img
+            src={curatedStylingDetails.src}
+            alt="Event detail styling and design"
+            width={1000}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-small"
+          />
+          <p class="gallery-label-small">Curated Styling Details</p>
+        </div>
+
+        <div class="gallery-item-large gallery-item-last">
+          <img
+            src={quinceGrandEntrance.src}
+            alt="Quinceañera grand entrance celebration in Richmond Kentucky"
+            width={1600}
+            height={1200}
+            loading="lazy"
+            decoding="async"
+            class="gallery-image-large"
+          />
+          <p class="gallery-label-large">XV Grand Entrance: Unforgettable Moment</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FAQ SECTION (AEO Dominance)
+       =================================================================== -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions About Event Planning</h2>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How much does event planning cost?</h3>
+          <p>
+            Event planning investment varies widely based on scope, guest count, venue, decor complexity, 
+            installation requirements, and timeline. Rather than one-size pricing, Vero's Boutique customizes 
+            proposals to match your vision and budget. Our three planning tiers (Essential Management, Signature 
+            Series, and Royal Production) provide flexibility, from coordination-only to full concept-to-execution 
+            planning. Schedule a consultation so we can discuss your celebration and provide a transparent, 
+            custom quote tailored to your needs.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do I need a wedding planner for a small Richmond KY wedding?</h3>
+          <p>
+            Even small weddings benefit from professional coordination. A planner manages vendor timelines, 
+            design decisions, and day-of execution—freeing you to enjoy your celebration. Vero's Boutique 
+            offers flexible planning packages for intimate ceremonies. Couples report lower stress, better 
+            aesthetics, and seamless execution. Whether your wedding is 25 guests or 250, we have a planning 
+            package designed for you.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How far in advance should I book my event?</h3>
+          <p>
+            Quinceañeras should be booked 12–18 months in advance, especially for popular summer dates. 
+            Weddings benefit from 6–12 months lead time. However, we accommodate shorter timelines if 
+            available. Contact us ASAP to check availability for your 2026 date. Early booking secures 
+            preferred venues and allows thoughtful design planning.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer bilingual coordination?</h3>
+          <p>
+            Yes. Vero's Boutique welcomes bilingual Quinceañera planning and event coordination. 
+            From Mis XV traditions to family-centered celebrations, we understand cultural preferences 
+            and blend them seamlessly with modern event production. Consultations available in English 
+            and Spanish. Contact us to schedule your bilingual planning session.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I bundle my gown and planning services?</h3>
+          <p>
+            Absolutely. One of our key advantages is integrated service—gown selection, event planning, 
+            and floral design in one place. Bundle your wedding dress or Quinceañera gown with planning 
+            services for cohesive aesthetic alignment and simplified coordination. Ask about package 
+            options during your consultation.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you provide decor setup and teardown?</h3>
+          <p>
+            Yes. Full decor setup and teardown are included in our Royal Production and Signature Series 
+            packages. We manage all installations, from floral arrangements to linens and lighting. 
+            Essential Management coordinates your vendors but doesn't include hands-on setup. Discuss 
+            your specific needs during consultation.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What areas do you serve (Richmond, Berea, Lexington)?</h3>
+          <p>
+            Vero's Boutique serves Richmond, Berea, Lexington, and surrounding Central Kentucky communities 
+            in Madison County and beyond. We coordinate weddings and Quinceañeras within a 45-minute drive 
+            of Richmond. For destinations beyond this radius, we offer planning consultation with travel 
+            fees. Contact us with your venue location.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer corporate or gala event production?</h3>
+          <p>
+            Yes, Vero's Boutique customizes planning services for corporate galas, milestone celebrations, 
+            formal fundraisers, and private events. We bring the same design expertise and vendor coordination 
+            to business events. Contact us for corporate event inquiries and a custom proposal.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-cta">
+        <p>Have a question we didn't answer?</p>
+        <a href="/contact" class="button button--outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FINAL CTA SECTION
+       =================================================================== -->
+  <section class="final-cta-section">
+    <div class="container">
+      <h2>Ready to Design Your Milestone?</h2>
+      <p>
+        Whether you're planning a Quinceañera, wedding, or celebration, let's create something beautiful 
+        together. From concept to execution, we handle every detail so you can focus on the joy of your event.
+      </p>
+      <a href="/book-an-appointment?service=event-planning" class="button button--primary button--large">
+        Check Your Date Availability
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       GEO-EXPANSION LINE
+       =================================================================== -->
+  <section class="geo-section">
+    <div class="container">
+      <p class="geo-text">
+        <strong>Serving</strong> Richmond, Berea, Lexington, and surrounding Central Kentucky communities 
+        with full-service wedding and Quinceañera planning, coordination, and design.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- ===================================================================
+     STRUCTURED DATA / SCHEMA MARKUP
+     =================================================================== -->
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vero's Boutique Event Planning",
+  "description": "Full-service wedding and Quinceañera planning, coordination, and design in Richmond, Kentucky.",
+  "image": "https://verosboutiqueky.com/media/events/hero-quince-poster.webp",
+  "url": "https://verosboutiqueky.com/event-planning-quinceaneras-weddings-richmond-ky",
+  "telephone": "+1-859-624-XXXX",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Richmond",
+    "addressRegion": "Kentucky",
+    "postalCode": "40475",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Richmond, KY"
+    },
+    {
+      "@type": "City",
+      "name": "Berea, KY"
+    },
+    {
+      "@type": "City",
+      "name": "Lexington, KY"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Madison County, KY"
+    }
+  ],
+  "knowsAbout": ["Wedding Planning", "Quinceañera Planning", "XV Party Production", "Event Coordination", "Venue Design", "Decor Production"]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Wedding & Quinceañera Planning",
+  "description": "Full-service event planning and coordination for weddings and Quinceañeras in Central Kentucky.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vero's Boutique"
+  },
+  "areaServed": "Richmond, Kentucky",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Essential Management",
+      "description": "Day-of coordination and vendor oversight. Includes final timeline, vendor confirmations, ceremony management, real-time problem solving, and setup coordination."
+    },
+    {
+      "@type": "Offer",
+      "name": "Signature Series",
+      "description": "Partial planning with decor styling. Includes vendor recommendations, design concept, gown guidance, floral coordination, and day-of coordination."
+    },
+    {
+      "@type": "Offer",
+      "name": "Royal Production",
+      "description": "Full planning with custom decor and choreography. Complete event planning from concept, venue selection, vendor management, custom design, waltz guidance, gown styling, setup and day-of execution."
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does event planning cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Event planning investment varies widely based on scope, guest count, venue, decor complexity, installation requirements, and timeline. Rather than one-size pricing, Vero's Boutique customizes proposals to match your vision and budget. Our three planning tiers (Essential Management, Signature Series, and Royal Production) provide flexibility, from coordination-only to full concept-to-execution planning. Schedule a consultation so we can discuss your celebration and provide a transparent, custom quote tailored to your needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a wedding planner for a small Richmond KY wedding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Even small weddings benefit from professional coordination. A planner manages vendor timelines, design decisions, and day-of execution—freeing you to enjoy your celebration. Vero's Boutique offers flexible planning packages for intimate ceremonies. Couples report lower stress, better aesthetics, and seamless execution. Whether your wedding is 25 guests or 250, we have a planning package designed for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book my event?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quinceañeras should be booked 12–18 months in advance, especially for popular summer dates. Weddings benefit from 6–12 months lead time. However, we accommodate shorter timelines if available. Early booking secures preferred venues and allows thoughtful design planning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer bilingual coordination?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Vero's Boutique welcomes bilingual Quinceañera planning and event coordination. From Mis XV traditions to family-centered celebrations, we understand cultural preferences and blend them seamlessly with modern event production. Consultations available in English and Spanish."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I bundle my gown and planning services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. One of our key advantages is integrated service—gown selection, event planning, and floral design in one place. Bundle your wedding dress or Quinceañera gown with planning services for cohesive aesthetic alignment and simplified coordination. Ask about package options during your consultation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide decor setup and teardown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Full decor setup and teardown are included in our Royal Production and Signature Series packages. We manage all installations, from floral arrangements to linens and lighting. Essential Management coordinates your vendors but doesn't include hands-on setup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas do you serve (Richmond, Berea, Lexington)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vero's Boutique serves Richmond, Berea, Lexington, and surrounding Central Kentucky communities in Madison County and beyond. We coordinate weddings and Quinceañeras within a 45-minute drive of Richmond. For destinations beyond this radius, we offer planning consultation with travel fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer corporate or gala event production?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Vero's Boutique customizes planning services for corporate galas, milestone celebrations, formal fundraisers, and private events. We bring the same design expertise and vendor coordination to business events. Contact us for corporate event inquiries and a custom proposal."
+      }
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://verosboutiqueky.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Event Planning & Quinceañera Production",
+      "item": "https://verosboutiqueky.com/event-planning-quinceaneras-weddings-richmond-ky"
+    }
+  ]
+})} />
+
+<style>
+  /* ===================================================================
+     HERO SECTION STYLES
+     =================================================================== */
+  
+  .hero-events {
+    position: relative;
+    height: 24rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-ivory);
+    margin-bottom: var(--space-16);
+  }
+
+  .hero-events__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-events__video {
+      animation: none;
+    }
+  }
+
+  .hero-events__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13, 27, 42, 0.3), rgba(13, 27, 42, 0.5));
+    z-index: 1;
+  }
+
+  .hero-events__content {
+    position: relative;
+    z-index: 2;
+    max-width: 56rem;
+    padding: var(--space-8);
+    text-align: center;
+    color: white;
+  }
+
+  .hero-events__h1 {
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-events__h1-sub {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-events__subheading {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: var(--lh-loose);
+    max-width: 50rem;
+    margin: var(--space-4) auto var(--space-8);
+  }
+
+  .hero-events__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    justify-content: center;
+    margin-top: var(--space-8);
+  }
+
+  /* ===================================================================
+     AUTHORITY BLOCK
+     =================================================================== */
+
+  .authority-block {
+    padding: var(--space-8) var(--space-6);
+    background-color: color-mix(in srgb, var(--color-ivory) 50%, white);
+    margin-bottom: var(--space-16);
+    border-top: 1px solid var(--color-gold);
+    border-bottom: 1px solid var(--color-gold);
+  }
+
+  .authority-excerpt {
+    max-width: 90ch;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .authority-excerpt p {
+    font-size: var(--text-body);
+    line-height: var(--lh-loose);
+    color: var(--color-charcoal);
+  }
+
+  /* ===================================================================
+     QUINCEAÑERA SECTION
+     =================================================================== */
+
+  .quince-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: white;
+    margin-bottom: var(--space-16);
+  }
+
+  .quince-section h2 {
+    text-align: center;
+  }
+
+  .section-intro {
+    font-size: var(--text-body);
+    line-height: var(--lh-loose);
+    max-width: 90ch;
+    margin: var(--space-6) auto var(--space-12);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  /* Quince Process */
+  .quince-process {
+    margin: var(--space-8) 0;
+  }
+
+  .quince-process h3 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-navy);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .process-card {
+    padding: var(--space-8);
+    background-color: var(--color-ivory);
+    border-radius: 8px;
+    border-left: 4px solid var(--color-gold);
+    text-align: center;
+  }
+
+  .process-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .process-card h4 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+  }
+
+  .process-card p {
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+    line-height: var(--lh-loose);
+  }
+
+  /* Trending Themes */
+  .trending-themes {
+    margin: var(--space-12) 0;
+  }
+
+  .trending-themes h3 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-navy);
+  }
+
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .theme-card {
+    padding: var(--space-8);
+    background-color: white;
+    border: 2px solid var(--color-gold);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .theme-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .theme-card h4 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+  }
+
+  .theme-card p {
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+  }
+
+  /* Quince Gallery */
+  .quince-gallery {
+    margin: var(--space-12) 0;
+  }
+
+  .quince-gallery h3 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-navy);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f9f7f4;
+    transition: transform var(--transition-base);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    margin: 0;
+    padding: var(--space-6) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    letter-spacing: var(--ls-tight);
+  }
+
+  /* Quince CTA */
+  .quince-cta {
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+    background-color: color-mix(in srgb, var(--color-navy) 5%, white);
+    border: 1px solid var(--color-gold);
+    border-radius: 8px;
+    margin-top: var(--space-12);
+  }
+
+  .quince-cta h3 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+  }
+
+  .quince-cta p {
+    color: var(--color-gray-medium);
+    margin-bottom: var(--space-6);
+    font-size: var(--text-secondary);
+  }
+
+  /* ===================================================================
+     WEDDING COORDINATION SECTION
+     =================================================================== */
+
+  .wedding-coordination-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-ivory);
+    margin-bottom: var(--space-16);
+  }
+
+  .wedding-coordination-section h2 {
+    text-align: center;
+  }
+
+  /* Coordination services */
+  .coordination-services {
+    margin: var(--space-12) 0;
+  }
+
+  .coordination-services h3 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-navy);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .service-item {
+    padding: var(--space-8);
+    background-color: white;
+    border-radius: 8px;
+    border-top: 4px solid var(--color-gold);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .service-item h4 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-6);
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-list li {
+    padding: var(--space-2) 0;
+    padding-left: var(--space-6);
+    position: relative;
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+    line-height: var(--lh-relaxed);
+  }
+
+  .service-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold);
+    font-weight: bold;
+  }
+
+  /* Related links */
+  .coordination-links {
+    margin: var(--space-12) 0;
+    padding: var(--space-8);
+    background-color: color-mix(in srgb, var(--color-gold) 10%, transparent);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .coordination-links p {
+    color: var(--color-navy);
+    margin-bottom: var(--space-6);
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-6);
+    background-color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border: 1px solid var(--color-gold);
+  }
+
+  .link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .link-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .link-text {
+    color: var(--color-navy);
+    font-weight: 600;
+    font-size: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Wedding gallery */
+  .wedding-gallery {
+    margin: var(--space-12) 0;
+  }
+
+  .wedding-gallery h3 {
+    text-align: center;
+    margin-bottom: var(--space-8);
+    color: var(--color-navy);
+  }
+
+  /* Wedding CTA */
+  .wedding-cta {
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+    background-color: white;
+    border-radius: 8px;
+    margin-top: var(--space-12);
+  }
+
+  .wedding-cta h3 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-6);
+  }
+
+  /* ===================================================================
+     INTEGRATED ADVANTAGE SECTION
+     =================================================================== */
+
+  .advantage-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: white;
+    margin-bottom: var(--space-16);
+  }
+
+  .advantage-section h2 {
+    text-align: center;
+  }
+
+  .advantage-excerpt {
+    font-size: var(--text-body);
+    line-height: var(--lh-loose);
+    max-width: 90ch;
+    margin: var(--space-6) auto var(--space-12);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .advantage-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .advantage-point {
+    padding: var(--space-8);
+    background-color: var(--color-ivory);
+    border-left: 4px solid var(--color-gold);
+    border-radius: 4px;
+  }
+
+  .advantage-point h4 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+  }
+
+  .advantage-point p {
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+    line-height: var(--lh-loose);
+  }
+
+  /* ===================================================================
+     PRICING SECTION
+     =================================================================== */
+
+  .pricing-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-ivory);
+    margin-bottom: var(--space-16);
+  }
+
+  .pricing-section h2 {
+    text-align: center;
+  }
+
+  .pricing-intro {
+    max-width: 56ch;
+    margin: 0 auto var(--space-12);
+    font-size: 1.0625rem;
+    text-align: center;
+    color: var(--color-charcoal);
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin: var(--space-12) 0;
+  }
+
+  .pricing-card {
+    padding: var(--space-8);
+    border: 2px solid var(--color-gold);
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .pricing-card h3 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+  }
+
+  .pricing-card__price {
+    font-size: 1.5rem;
+    color: var(--color-gold);
+    font-weight: 600;
+    margin: var(--space-4) 0 var(--space-2);
+  }
+
+  .pricing-card__description {
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+    margin-bottom: var(--space-6);
+  }
+
+  .pricing-card__features {
+    list-style: none;
+    text-align: left;
+    padding: var(--space-6) 0;
+    margin: var(--space-6) 0;
+    border-top: 1px solid var(--color-gold);
+    border-bottom: 1px solid var(--color-gold);
+  }
+
+  .pricing-card__features li {
+    padding: var(--space-2) 0;
+    font-size: 0.95rem;
+    color: var(--color-gray-medium);
+    padding-left: var(--space-6);
+    position: relative;
+  }
+
+  .pricing-card__features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold);
+    font-weight: bold;
+  }
+
+  .pricing-note {
+    text-align: center;
+    max-width: 90ch;
+    margin: var(--space-8) auto 0;
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+  }
+
+  /* ===================================================================
+     GALLERY SECTION
+     =================================================================== */
+
+  .gallery-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: white;
+    margin-bottom: var(--space-16);
+  }
+
+  .gallery-section h2 {
+    text-align: center;
+  }
+
+  .portfolio-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin: var(--space-12) 0;
+    auto-rows: 300px;
+  }
+
+  @media (min-width: 640px) {
+    .portfolio-gallery {
+      grid-template-columns: repeat(2, 1fr);
+      auto-rows: 320px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-gallery {
+      grid-template-columns: repeat(4, 1fr);
+      auto-rows: 360px;
+    }
+  }
+
+  .gallery-item-large {
+    grid-column: span 1;
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-item-large {
+      grid-column: span 2;
+    }
+  }
+
+  .gallery-item-last {
+    grid-column: span 1;
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-item-last {
+      grid-column: span 2;
+    }
+  }
+
+  .gallery-item-large,
+  .gallery-item-small {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #f9f7f4;
+    transition: transform var(--transition-base);
+  }
+
+  .gallery-item-large:hover,
+  .gallery-item-small:hover {
+    transform: translateY(-4px);
+  }
+
+  .gallery-image-large,
+  .gallery-image-small {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .gallery-label-large,
+  .gallery-label-small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: var(--space-6) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* ===================================================================
+     FAQ SECTION
+     =================================================================== */
+
+  .faq-section {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-ivory);
+    margin-bottom: var(--space-16);
+  }
+
+  .faq-section h2 {
+    text-align: center;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    margin: var(--space-12) 0;
+  }
+
+  .faq-item {
+    padding: var(--space-8);
+    background-color: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-gold);
+  }
+
+  .faq-item h3 {
+    color: var(--color-navy);
+    margin-bottom: var(--space-4);
+    text-align: left;
+    font-size: 1.0625rem;
+  }
+
+  .faq-item p {
+    color: var(--color-charcoal);
+    line-height: var(--lh-loose);
+    font-size: var(--text-secondary);
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background-color: color-mix(in srgb, var(--color-gold) 10%, transparent);
+    border-radius: 8px;
+  }
+
+  .faq-cta p {
+    margin-bottom: var(--space-6);
+    color: var(--color-navy);
+  }
+
+  /* ===================================================================
+     FINAL CTA SECTION
+     =================================================================== */
+
+  .final-cta-section {
+    padding: var(--space-12) var(--space-6);
+    background: linear-gradient(135deg, #F0D9D1 0%, #FBF8F5 100%);
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .final-cta-section::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-gold);
+    margin: 0 auto var(--space-6);
+  }
+
+  .final-cta-section h2 {
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-6);
+  }
+
+  .final-cta-section p {
+    font-size: var(--text-body);
+    line-height: var(--lh-loose);
+    max-width: 90ch;
+    margin: 0 auto var(--space-8);
+    color: var(--color-charcoal);
+  }
+
+  .button--large {
+    padding: var(--space-4) var(--space-12);
+    font-size: 1.0625rem;
+  }
+
+  /* ===================================================================
+     GEO-EXPANSION SECTION
+     =================================================================== */
+
+  .geo-section {
+    padding: var(--space-4) var(--space-6);
+    background-color: var(--color-ivory);
+    text-align: center;
+    border-top: 1px solid var(--color-gold);
+  }
+
+  .geo-text {
+    font-size: var(--text-secondary);
+    color: var(--color-gray-medium);
+    margin: 0;
+  }
+
+  .geo-text strong {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+
+  /* ===================================================================
+     RESPONSIVE ADJUSTMENTS
+     =================================================================== */
+
+  @media (max-width: 768px) {
+    .hero-events {
+      height: 24rem;
+    }
+
+    .hero-events__ctas {
+      flex-direction: column;
+    }
+
+    .hero-events__ctas .button {
+      width: 100%;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-events {
+      height: 20rem;
+    }
+
+    .hero-events__h1 {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+    }
+
+    .hero-events__subheading {
+      font-size: 0.95rem;
+    }
+  }
+</style>

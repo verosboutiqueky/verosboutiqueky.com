@@ -136,11 +136,21 @@ const graphSchema = {
     <div class="appointment-header__container">
       <h1 class="appointment-header__title">Book an Appointment</h1>
       <p class="appointment-header__subtext">
-        Schedule a personalized fitting for bridal, prom, quinceañera, and formal gowns — or request an event décor, floral, and planning consultation in Richmond, Kentucky.
+        Schedule a <a href="#book-dress-fitting" class="appointment-header__link">personalized fitting</a> for bridal, prom, quinceañera, and formal gowns — or <a href="#book-event-consultation" class="appointment-header__link">request an event décor, floral, and planning consultation</a> in Richmond, Kentucky.
       </p>
       <p class="appointment-header__trust-line">
         Walk-ins are welcome when available, but appointments ensure dedicated time and the best experience.
       </p>
+
+      <!-- CTA Buttons for Quick Navigation -->
+      <div class="appointment-header__ctas">
+        <a href="#book-dress-fitting" class="button button--primary">
+          Book a Dress Fitting
+        </a>
+        <a href="#book-event-consultation" class="button button--secondary-champagne">
+          Request Event Consultation
+        </a>
+      </div>
     </div>
   </section>
 
@@ -149,7 +159,7 @@ const graphSchema = {
     <div class="appointment-panels__container">
       
       <!-- Panel A: Dress Fittings -->
-      <div class="appointment-panel">
+      <div class="appointment-panel" id="book-dress-fitting">
         <div class="appointment-panel__header">
           <h2 class="appointment-panel__title">Dress Fittings</h2>
           <p class="appointment-panel__services">Bridal • Prom • Quinceañera • Formal</p>
@@ -164,7 +174,7 @@ const graphSchema = {
       </div>
 
       <!-- Panel B: Event Décor, Floral & Planning -->
-      <div class="appointment-panel">
+      <div class="appointment-panel" id="book-event-consultation">
         <div class="appointment-panel__header">
           <h2 class="appointment-panel__title">Event Décor, Floral & Planning</h2>
           <p class="appointment-panel__services">Florals • Décor • Planning • Coordination</p>
@@ -246,6 +256,49 @@ const graphSchema = {
     max-width: 600px;
     margin: 0 auto;
     font-style: italic;
+  }
+
+  /* Inline Navigation Links */
+  .appointment-header__link {
+    color: var(--color-navy);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-gold);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .appointment-header__link:hover {
+    color: var(--color-gold);
+    border-bottom-color: var(--color-navy);
+  }
+
+  /* CTA Button Container */
+  .appointment-header__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* Secondary Button with Champagne Accent */
+  .button--secondary-champagne {
+    background-color: var(--color-champagne);
+    color: var(--color-navy);
+    border: 1px solid var(--color-champagne);
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .button--secondary-champagne:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: white;
   }
 
   /* Form Panels Section */
@@ -428,6 +481,19 @@ const graphSchema = {
       margin-bottom: 1rem;
     }
 
+    .appointment-header__ctas {
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .appointment-header__ctas .button {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      min-height: 44px;
+      font-size: 0.95rem;
+    }
+
     .appointment-panels {
       padding: 2rem 1.5rem;
     }
@@ -470,6 +536,17 @@ const graphSchema = {
 
     .appointment-header__title {
       margin-bottom: 1.5rem;
+    }
+
+    .appointment-header__ctas {
+      flex-direction: row;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .appointment-header__ctas .button {
+      flex: 1;
+      max-width: 300px;
     }
 
     .appointment-panels {

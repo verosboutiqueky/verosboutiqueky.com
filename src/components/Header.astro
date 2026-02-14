@@ -742,7 +742,7 @@ const ctaButton = {
     const header = document.getElementById("header");
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobile-menu");
-    const menuLinks = mobileMenu?.querySelectorAll(".header__mobile-menu-link, .header__mobile-menu-cta");
+    const menuLinks = mobileMenu?.querySelectorAll(".header__mobile-menu-link:not(.header__mobile-menu-link--expandable), .header__mobile-menu-cta");
 
     // Scroll detection
     function handleScroll() {

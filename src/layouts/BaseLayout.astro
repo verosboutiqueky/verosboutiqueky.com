@@ -77,6 +77,60 @@ const currentPath = Astro.url.pathname;
         window.loadTurnstile = loadTurnstile;
       })();
     </script>
+
+    <!-- Google Analytics 4 (GA4): Idle Load + 3s Fallback (Lighthouse Optimized) -->
+    <script is:inline>
+      (function () {
+        // Initialize dataLayer and consent defaults
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        // Set consent to 'denied' by default (future consent banner can update)
+        gtag('consent', 'default', {
+          'analytics_storage': 'denied',
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied'
+        });
+
+        // Track if GA4 has been loaded
+        let ga4Loaded = false;
+
+        function loadGA4() {
+          if (ga4Loaded) return;
+          ga4Loaded = true;
+
+          // Update consent to 'granted' once script loads
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+
+          // Configure GA4 with measurement ID
+          gtag('config', 'G-625TYW4PDE', {
+            'page_path': window.location.pathname,
+            'page_title': document.title
+          });
+
+          // Inject async gtag.js script
+          const s = document.createElement("script");
+          s.src = "https://www.googletagmanager.com/gtag/js?id=G-625TYW4PDE";
+          s.async = true;
+          document.head.appendChild(s);
+        }
+
+        // Primary: Load on idle callback (requestIdleCallback)
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => loadGA4(), { timeout: 3000 });
+        } else {
+          // Fallback: Load after 3 seconds if idle never fires
+          setTimeout(() => loadGA4(), 3000);
+        }
+
+        // Expose gtag globally for event tracking (e.g., reviews.astro)
+        window.gtag = gtag;
+      })();
+    </script>
   </head>
   <body>
     <Header currentPath={currentPath} />

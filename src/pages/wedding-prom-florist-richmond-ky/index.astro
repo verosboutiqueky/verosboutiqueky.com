@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import heroImage from '../../assets/hero/wedding-prom-florist-richmond-ky/wedding-prom-florist-richmond-ky.hero.webp';
 import valentinesDayImage from '../../assets/hero/wedding-prom-florist-richmond-ky/valentines-day.webp';
@@ -22,12 +22,21 @@ const metadata = {
   description: "Bridal florals coordinated with couture gowns. Prom corsages (Jan–May), same-day pickup, event installations. Serving Richmond, Berea, Lexington & Madison County.",
 };
 
+// Generate OG image for social sharing
+const og = await getImage({
+  src: heroImage,
+  width: 1200,
+  height: 630,
+  format: "webp",
+  fit: "cover",
+});
+
 // Determine if currently in prom season (Jan 1 - May 31)
 const isoMonth = new Date().getMonth() + 1;
 const isPromSeason = isoMonth >= 1 && isoMonth <= 5;
 ---
 
-<BaseLayout title={metadata.title} description={metadata.description}>
+<BaseLayout title={metadata.title} description={metadata.description} ogImage={og.src}>
   <!-- ===================================================================
        HERO SECTION
        =================================================================== -->

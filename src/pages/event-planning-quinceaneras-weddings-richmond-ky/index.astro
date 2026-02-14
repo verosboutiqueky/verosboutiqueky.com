@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 // Import optimized WebP assets from src/assets
@@ -21,9 +21,18 @@ const metadata = {
   title: "Event Planning Richmond KY | Quince & Weddings",
   description: "Full-service wedding and Quinceañera planning in Richmond, Kentucky. Coordination, decor design, gown styling, and venue transformation. Madison County event planners.",
 };
+
+// Generate OG image for social sharing
+const og = await getImage({
+  src: venueChenault,
+  width: 1200,
+  height: 630,
+  format: "webp",
+  fit: "cover",
+});
 ---
 
-<BaseLayout title={metadata.title} description={metadata.description}>
+<BaseLayout title={metadata.title} description={metadata.description} ogImage={og.src}>
   <!-- ===================================================================
        HERO SECTION
        =================================================================== -->

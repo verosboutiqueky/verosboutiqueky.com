@@ -128,7 +128,7 @@ const ctaButton = {
   </nav>
 
   <!-- Mobile Slide Menu -->
-  <div id="mobile-menu" class="header__mobile-menu" aria-hidden="true">
+  <div id="mobile-menu" class="header__mobile-menu" data-menu-state="closed" aria-hidden="true">
     <ul class="header__mobile-menu-list">
       {navLeft.map((link) => (
         <li>
@@ -578,13 +578,28 @@ const ctaButton = {
     visibility: hidden;
     transform: translateY(-100%);
     opacity: 0;
-    transition: visibility 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    /* Tier 2: Stagger visibility transition — instant close (0s at end), delayed on open (0.3s at start) */
+    transition: visibility 0s 0.3s, transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* Tier 3: Explicit state management via data attribute (backup to class-based approach) */
+  .header__mobile-menu[data-menu-state="open"] {
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
+    /* Tier 2: visibility changes immediately (no delay) when opening, allowing pointer-events to work during animation */
+    transition: visibility 0s, transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: auto;
   }
 
   .header__mobile-menu--open {
     visibility: visible;
     transform: translateY(0);
     opacity: 1;
+    /* Tier 2: visibility changes immediately (no delay) when opening, allowing pointer-events to work during animation */
+    transition: visibility 0s, transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: auto;
   }
 
   @keyframes slideIn {
@@ -759,56 +774,66 @@ const ctaButton = {
 
     // Mobile menu toggle
     function toggleMenu() {
-      const isOpen = hamburger?.getAttribute("aria-expanded") === "true";
-      hamburger?.setAttribute("aria-expanded", (!isOpen).toString());
-      hamburger?.classList.toggle("active");
+      if (!hamburger || !mobileMenu) return; // Guard: ensure elements exist
+      const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", (!isOpen).toString());
+      hamburger.classList.toggle("active");
       
-      if (mobileMenu) {
-        mobileMenu.setAttribute("aria-hidden", isOpen.toString());
-        // Phase 4: Use class toggle for animation control
-        mobileMenu.classList.toggle("header__mobile-menu--open");
-      }
+      mobileMenu.setAttribute("aria-hidden", isOpen.toString());
+      // Phase 4: Use class toggle for animation control
+      mobileMenu.classList.toggle("header__mobile-menu--open");
       
-      // Phase 3: Lock/unlock body scroll
+      // Tier 3: Explicit state via data attribute for robust state machine
+      const newState = isOpen ? "closed" : "open";
+      mobileMenu.setAttribute("data-menu-state", newState);
+      
+      // Tier 2: Ensure pointer-events are active when opening (backup to CSS for reliability)
       if (!isOpen) {
+        // Opening menu
         document.body.style.overflow = "hidden";
+        // Force pointer-events visible immediately
+        mobileMenu.style.pointerEvents = "auto";
       } else {
+        // Closing menu
         document.body.style.overflow = "";
+        mobileMenu.style.pointerEvents = "none";
       }
     }
 
     // Close menu on link click
     function closeMenu() {
-      hamburger?.setAttribute("aria-expanded", "false");
-      hamburger?.classList.remove("active");
-      if (mobileMenu) {
-        mobileMenu.setAttribute("aria-hidden", "true");
-        // Phase 4: Remove open class
-        mobileMenu.classList.remove("header__mobile-menu--open");
-      }
+      if (!hamburger || !mobileMenu) return; // Guard: ensure elements exist
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      // Phase 4: Remove open class
+      mobileMenu.classList.remove("header__mobile-menu--open");
+      // Tier 3: Sync state to data attribute
+      mobileMenu.setAttribute("data-menu-state", "closed");
       // Phase 3: Unlock body scroll
       document.body.style.overflow = "";
-      hamburger?.focus();
+      hamburger.focus();
     }
 
     // Accordion toggle for mobile menu
     function setupAccordions() {
-      const accordionTriggers = mobileMenu?.querySelectorAll(".header__mobile-menu-link--expandable");
+      if (!mobileMenu) return; // Guard: ensure menu element exists
+      const accordionTriggers = mobileMenu.querySelectorAll(".header__mobile-menu-link--expandable");
       
-      accordionTriggers?.forEach((trigger) => {
+      accordionTriggers.forEach((trigger) => {
         trigger.addEventListener("click", (e) => {
           e.preventDefault();
           const triggerLabel = trigger.getAttribute("data-accordion-trigger");
-          const content = mobileMenu?.querySelector(`[data-accordion-content="${triggerLabel}"]`);
+          const content = mobileMenu.querySelector(`[data-accordion-content="${triggerLabel}"]`);
           
           if (content) {
             const isOpen = content.classList.contains("open");
             
             // Close all other accordions
-            mobileMenu?.querySelectorAll(".header__mobile-menu-accordion.open").forEach((acc) => {
+            mobileMenu.querySelectorAll(".header__mobile-menu-accordion.open").forEach((acc) => {
               acc.classList.remove("open");
             });
-            mobileMenu?.querySelectorAll(".header__mobile-menu-link--expandable[aria-expanded='true']").forEach((btn) => {
+            mobileMenu.querySelectorAll(".header__mobile-menu-link--expandable[aria-expanded='true']").forEach((btn) => {
               btn.setAttribute("aria-expanded", "false");
             });
             
@@ -822,8 +847,8 @@ const ctaButton = {
       });
       
       // Close accordion when clicking sublinks
-      const sublinks = mobileMenu?.querySelectorAll(".header__mobile-menu-sublink");
-      sublinks?.forEach((sublink) => {
+      const sublinks = mobileMenu.querySelectorAll(".header__mobile-menu-sublink");
+      sublinks.forEach((sublink) => {
         sublink.addEventListener("click", closeMenu);
       });
     }
@@ -843,8 +868,11 @@ const ctaButton = {
     }
 
     // Event listeners
+    // Guard: Only attach if elements exist
+    if (!hamburger || !mobileMenu) return () => {}; // Exit early if essential elements missing
+    
     window.addEventListener("scroll", handleScroll);
-    hamburger?.addEventListener("click", toggleMenu);
+    hamburger.addEventListener("click", toggleMenu);
     menuLinks?.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
@@ -852,29 +880,37 @@ const ctaButton = {
     document.addEventListener("visibilitychange", handleVisibilityChange);
     
     // Click-outside handler for mobile menu overlay
-    document.addEventListener("click", (e: Event) => {
-      const target = e.target as HTMLElement;
-      
-      // Only process if menu is open
-      if (hamburger?.getAttribute("aria-expanded") !== "true") return;
-      
-      // Don't close if clicking the hamburger button itself
-      if (target === hamburger || hamburger?.contains(target)) return;
-      
-      // Don't close if clicking inside the mobile menu
-      if (target === mobileMenu || mobileMenu?.contains(target)) return;
-      
-      // Clicked outside menu/hamburger - close the menu
-      closeMenu();
-    });
+    // Guard: Flag to prevent duplicate listener attachment
+    if (!window.__burgerClickOutsideAttached) {
+      window.__burgerClickOutsideAttached = true;
+      document.addEventListener("click", (e: Event) => {
+        const target = e.target as HTMLElement;
+        
+        // Only process if menu is open
+        if (!hamburger || hamburger.getAttribute("aria-expanded") !== "true") return;
+        
+        // Don't close if clicking the hamburger button itself
+        if (target === hamburger || hamburger.contains(target)) return;
+        
+        // Don't close if clicking inside the mobile menu
+        if (!mobileMenu || target === mobileMenu || mobileMenu.contains(target)) return;
+        
+        // Clicked outside menu/hamburger - close the menu
+        closeMenu();
+      });
+    }
     
-    // Setup accordion toggles
-    setupAccordions();
+    // Tier 3: Setup accordion toggles after DOM hydration complete (requestAnimationFrame ensures this)
+    // This prevents race conditions where first tap fires before listeners are attached
+    requestAnimationFrame(() => {
+      setupAccordions();
+    });
 
     // Cleanup
     return () => {
+      if (!hamburger || !mobileMenu) return;
       window.removeEventListener("scroll", handleScroll);
-      hamburger?.removeEventListener("click", toggleMenu);
+      hamburger.removeEventListener("click", toggleMenu);
       menuLinks?.forEach((link) => {
         link.removeEventListener("click", closeMenu);
       });

@@ -147,3 +147,33 @@ const submitted = Astro.url.searchParams.get("submitted");
     }, 500);
   }
 </script>
+
+<!-- Organization Schema for SEO Authority -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Vero's Boutique",
+  "url": "https://verosboutiqueky.com",
+  "logo": "https://verosboutiqueky.com/images/veros-boutique-badge.webp",
+  "description": "Richmond's premier private boutique specializing in luxury bridal gowns, formal evening wear, and bespoke floral event design.",
+  "telephone": "+1-859-353-5119",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "100 Saint George St",
+    "addressLocality": "Richmond",
+    "addressRegion": "Kentucky",
+    "postalCode": "40475",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "telephone": "+1-859-353-5119",
+    "email": "hello@verosboutiqueky.com"
+  },
+  "sameAs": [
+    "https://www.facebook.com/verosboutiqueky",
+    "https://www.instagram.com/verosboutiqueky/"
+  ]
+})}>
+</script>

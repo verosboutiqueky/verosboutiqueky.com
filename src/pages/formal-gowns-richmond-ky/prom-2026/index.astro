@@ -1,0 +1,544 @@
+---
+/**
+ * Prom 2026 Collection Page - Authority Landing Page
+ * Dominates "prom dress richmond ky" and related keyword clusters
+ * AEO-optimized with Gemini SEO blueprint for Richmond, KY destination positioning
+ * Includes curated, limited-quantity positioning and Lexington cross-market appeal
+ * 
+ * Performance note: Shopify script loads only on click
+ */
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../lib/site';
+import promHero from '../../../assets/hero/prom-2026-hero.webp';
+
+const metadata = {
+  title: "Prom Dresses Richmond KY | Designer Gowns | Vero's Boutique",
+  description: "Best prom dresses in Richmond, Kentucky. Exclusive designer gowns with hand-selected inventory, microbeading, jewel tones, and corset-backs. Private fitting experience.",
+};
+
+const faqData = [
+  {
+    question: "Where is the best place to buy prom dresses in Richmond, KY?",
+    answer: "Vero's Boutique is Richmond's premier women's dress shop for prom. We specialize in hand-selected designer gowns you won't find in Lexington malls—featuring curated pieces with microbeading, jewel tones (emerald, royal purple), butter yellow, 3D florals, and corset-back silhouettes. Our boutique experience, limited inventory, and private fittings reduce the likelihood of duplicate looks compared to big-box retailers. Perfect for Lexington, Nicholasville, and Winchester shoppers seeking a boutique destination.",
+  },
+  {
+    question: "What are the 2026 prom dress trends?",
+    answer: "2026 prom trends feature microbeaded details for luxury texture, saturated jewel tones (emerald and royal purple dominate), butter yellow for sunshine elegance, 3D florals for dimensional drama, and corset-back dresses for modern silhouettes. Our hand-selected collection reflects these trends while honoring timeless elegance.",
+  },
+  {
+    question: "Does Vero's Boutique have dresses not available at Lexington retailers?",
+    answer: "Yes. We curate exclusive designer pieces specifically for our Richmond boutique location. Our limited-quantity approach means reduced inventory overlap with big-box Lexington shopping centers. Each dress is hand-selected, and our boutique scale encourages unique discoveries you won't see everywhere.",
+  },
+  {
+    question: "How do I book a prom fitting in Richmond?",
+    answer: "Call us to schedule a 90-minute private fitting appointment. We recommend booking 2–3 months before prom. If you're shopping online first, we offer online previews so you can see pieces before visiting in person. Alterations included to ensure perfect fit.",
+  },
+  {
+    question: "Do you serve shoppers from Lexington, Nicholasville, and Winchester?",
+    answer: "Absolutely. We're a women's dress shop destination in downtown Richmond for shoppers across Central Kentucky. Many Lexington, Nicholasville, and Winchester customers visit for our curated selection, private fitting experience, and destination boutique atmosphere. After your appointment, explore downtown Richmond's unique shops.",
+  },
+];
+
+// Generate FAQ JSON-LD schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+
+// Generate BreadcrumbList JSON-LD schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE.url
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Formal Gowns Richmond, KY",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Prom 2026 Dresses",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/prom-2026/`
+    }
+  ]
+};
+
+// LocalBusiness schema with areaServed for geo targeting
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vero's Boutique",
+  "image": `${SITE.url}/images/hero.webp`,
+  "description": "Women's dress shop in Richmond, Kentucky specializing in prom dresses, designer gowns, and formal wear. Destination boutique for Lexington shoppers.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "127 North Second Street",
+    "addressLocality": "Richmond",
+    "addressRegion": "KY",
+    "postalCode": "40475"
+  },
+  "telephone": "+1-859-623-0880",
+  "url": SITE.url,
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.7393",
+    "longitude": "-84.2733"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Richmond", "addressRegion": "KY" },
+    { "@type": "City", "name": "Lexington", "addressRegion": "KY" },
+    { "@type": "City", "name": "Nicholasville", "addressRegion": "KY" },
+    { "@type": "City", "name": "Winchester", "addressRegion": "KY" }
+  ]
+};
+---
+
+<BaseLayout title={metadata.title} description={metadata.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+  <main>
+    <!-- Hero Section with Prom 2026 Hero Image -->
+    <section style={`padding: var(--space-32) var(--space-6); background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('${promHero.src}') center/cover; min-height: 500px; display: flex; align-items: center; justify-content: center;`}>
+      <div style="max-width: 900px; margin: 0 auto; text-align: center; color: white;">
+        <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: var(--space-6); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+          Prom 2026 Dresses in Richmond, KY
+        </h1>
+        <p style="font-size: 1rem; line-height: 1.6; color: #f0f0f0; max-width: 65ch; margin: 0 auto var(--space-8); text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+          Discover hand-selected designer prom gowns at Vero's Boutique—a women's dress shop in downtown Richmond, Kentucky. Exclusive pieces with microbeading, jewel tones, corset-backs, and 3D florals. Private fitting experience. Destination boutique for Lexington shoppers.
+        </p>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
+          <a href="/book-an-appointment/" class="button button--primary">Book Private Fitting</a>
+          <a href="/formal-gowns-richmond-ky/" class="button button--outline">All Formal Gowns</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AEO Quick Answer Block -->
+    <article style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 3px solid var(--color-gold); border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-size: 1.125rem; font-weight: 600; color: var(--color-black); margin-bottom: var(--space-4);">
+          Where is the best place to buy prom dresses in Richmond, KY?
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.7; color: #333;">
+          Vero's Boutique is Richmond's premier women's dress shop for prom. We hand-select exclusive designer gowns with microbeading, jewel tones, butter yellow, 3D florals, and corset-back silhouettes—pieces you won't find in Lexington malls. Our curated, limited-quantity approach reduces the likelihood of duplicate looks. Every prom shopper receives a private fitting appointment and personalized styling. Lexington, Nicholasville, and Winchester customers regularly visit for our boutique experience and downtown Richmond destination atmosphere.
+        </p>
+      </div>
+    </article>
+
+    <!-- Shop Prom 2026 Collection Section (Shopify Embed) -->
+    <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: white;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          Shop Prom 2026 Collection
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto;">
+          Browse our exclusive prom collection online and preview pieces before booking a private in-person fitting at Vero's Boutique in downtown Richmond, Kentucky.
+        </p>
+
+        <!-- Skeleton Loader Grid (8 cards, responsive 2–4 columns) -->
+        <div id="skeleton-loader" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); margin: var(--space-8) 0; padding: 0 var(--space-4);">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} style="background-color: #f5f5f5; border-radius: 4px; overflow: hidden; min-height: 360px;">
+              <div style="background-color: #e8e8e8; height: 280px; width: 100%; animation: pulse 1.5s ease-in-out infinite;"></div>
+              <div style="padding: var(--space-4);">
+                <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; margin-bottom: var(--space-2); animation: pulse 1.5s ease-in-out infinite;"></div>
+                <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; width: 85%; animation: pulse 1.5s ease-in-out infinite;"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- View Collection Button -->
+        <div style="text-align: center; margin: var(--space-8) 0;">
+          <button id="shopify-load-btn" class="button button--primary">
+            View Collection
+          </button>
+        </div>
+
+        <!-- Shopify Mount Container (Hidden Until Loaded) -->
+        <div id="collection-component-prom-2026" style="margin-top: var(--space-8);"></div>
+      </div>
+
+      <style>
+        @keyframes pulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+      </style>
+    </section>
+
+    <!-- 2026 Prom Trends Report Section -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory); border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          2026 Prom Trends Dominating the Scene
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+          Our design team has curated the hottest trends for 2026 prom season in the Richmond area and beyond:
+        </p>
+        <ul style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0; padding-left: var(--space-6);">
+          <li style="margin-bottom: var(--space-4);"><strong>Microbeading &amp; Hand-Sewn Details:</strong> Luxury texture through intricate beading creates depth and photographs beautifully under prom lighting.</li>
+          <li style="margin-bottom: var(--space-4);"><strong>Saturated Jewel Tones:</strong> Deep emerald, royal purple, and sapphire are replacing pastels as the colors of power and elegance.</li>
+          <li style="margin-bottom: var(--space-4);"><strong>Butter Yellow:</strong> Sunshine-inspired yellows are having a renaissance for a fresh, joyful twist on formal wear.</li>
+          <li style="margin-bottom: var(--space-4);"><strong>3D Florals:</strong> Dimensional floral appliqués add romantic, editorial-level drama to silhouettes.</li>
+          <li><strong>Corset-Back Dresses:</strong> Modern corsetry and dramatic backs are the statement-making silhouette of 2026.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Curated, Limited-Quantity Section -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          Curated, Limited-Quantity Prom Dresses
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+          The best women's dress shops in Richmond, KY prioritize quality over volume. Vero's Boutique deliberately maintains limited inventory, hand-selecting each piece to reflect current trends, diverse body types, and personal style aesthetics. This curation-first approach means you're shopping from a thoughtfully edited collection—not endless racks of identical styles.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+          Because we stock fewer pieces than big-box retailers, the likelihood of encountering duplicate looks is naturally lower. Our boutique scale allows us to build direct relationships with designers and secure exclusive pieces unavailable to larger chain retailers. Every gown is selected for its construction quality, design originality, and potential to make you feel extraordinary.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+          When you book a private fitting at Vero's Boutique, you're not shopping from inventory constrained by corporate algorithms—you're discovering pieces hand-picked for our Richmond community by stylists who understand your aesthetic and your prom moment.
+        </p>
+      </div>
+    </section>
+
+    <!-- Finding Your Perfect Gown Section -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory); border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          Finding Your Perfect Prom Gown
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+          Choosing a prom dress is deeply personal. At Vero's Boutique, we believe you deserve a gown that makes you feel like yourself—elevated, confident, and gorgeous. Whether you're drawn to classic elegance, modern minimalism, or runway-inspired drama, our collection celebrates individuality.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+          <strong>Our Styling Process:</strong> Each client receives a private fitting appointment. We listen to your vision, assess your comfort level, and present options that match your body type, personal style, and budget. Alterations are included to ensure a flawless fit.
+        </p>
+      </div>
+    </section>
+
+    <!-- Make It a Richmond Day Section -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          Make It a Richmond Day: Places to Shop &amp; Explore
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+          Many prom shoppers from Lexington, Nicholasville, and Winchester make the short drive to Richmond for a special experience. After your 90-minute private fitting at Vero's Boutique, explore downtown Richmond's unique shops, grab lunch, or spend time with friends before heading home. It's a VIP day dedicated to finding <em>your</em> dress.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+          <strong>Pro tip:</strong> Schedule your appointment mid-week for a more relaxed experience, or call us to discuss timing that works for your prom prep timeline. Richmond isn't just where the best women's dress shops are located—it's a destination for celebration.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA – Schedule Consultation -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory); border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+          Ready for Your Close-Up?
+        </h2>
+        <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6); max-width: 60ch; margin-left: auto; margin-right: auto;">
+          Book a private 90-minute styling session at Vero's Boutique in Richmond, Kentucky. Our team will help you find the gown that makes you feel like the star of prom night.
+        </p>
+        <a href="/book-an-appointment/" class="button button--primary">Schedule Your Appointment</a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-12); color: var(--color-black);">
+          Prom Dress Frequently Asked Questions
+        </h2>
+        <div style="display: grid; gap: var(--space-8);">
+          {faqData.map((item, index) => (
+            <article style="border-bottom: 1px solid #ddd; padding-bottom: var(--space-8);">
+              <h3 style="font-family: var(--font-serif); font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-4); color: var(--color-black);">
+                {item.question}
+              </h3>
+              <p style="font-size: 1rem; line-height: 1.7; color: #555; margin-bottom: 0;">
+                {item.answer}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section style="padding: var(--space-12) var(--space-6); background-color: var(--color-ivory);">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <p style="font-size: 1rem; color: #555; margin-bottom: var(--space-6);">
+          See what our clients say about their prom gown experience. <a href="/reviews/" style="color: var(--color-black); text-decoration: underline; font-weight: 600;">Read our reviews</a>.
+        </p>
+        <p style="font-size: 0.9rem; color: #999;">
+          <a href="/formal-gowns-richmond-ky/" style="color: #666; text-decoration: none; margin-right: var(--space-4);">← Back to Formal Gowns</a> •
+          <a href="/contact/" style="color: #666; text-decoration: none; margin-left: var(--space-4);">Contact us</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shopify Buy Button: First-Interaction + Click-to-Load Script (Performance-Optimized) -->
+  <script is:inline>
+    (function() {
+      // Guard against double initialization
+      if (window.__shopifyProm2026Initialized) return;
+      
+      const btn = document.getElementById('shopify-load-btn');
+      const skeletonLoader = document.getElementById('skeleton-loader');
+      const mountDiv = document.getElementById('collection-component-prom-2026');
+      
+      if (!btn || !mountDiv) return;
+      
+      // Function to clean up first-interaction event listeners
+      const cleanup = function() {
+        document.removeEventListener('scroll', handleFirstInteraction, { passive: true });
+        document.removeEventListener('pointerdown', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction, { passive: true });
+        document.removeEventListener('keydown', handleFirstInteraction);
+      };
+      
+      // Function to initialize Shopify
+      const initShopify = function() {
+        // Clean up first-interaction listeners
+        cleanup();
+        
+        // Prevent multiple script loads
+        if (window.__shopifyBuyButtonScriptLoaded) return;
+        window.__shopifyBuyButtonScriptLoaded = true;
+        window.__shopifyProm2026Initialized = true;
+        
+        // Update button UI
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
+        
+        // Inject Shopify Buy Button script
+        const script = document.createElement('script');
+        script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        script.async = true;
+        
+        script.onload = function() {
+          // Initialize ShopifyBuy with dual fallbacks
+          if (typeof ShopifyBuy !== 'undefined') {
+            const client = ShopifyBuy.buildClient({
+              domain: 'drwakf-ge.myshopify.com',
+              storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b'
+            });
+            
+            ShopifyBuy.UI.onReady(client).then(function(ui) {
+              ui.createComponent('collection', {
+                id: '325786665159',
+                node: mountDiv,
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px",
+          "width": "calc(25% - 20px)"
+        },
+        "img": {
+          "height": "calc(100% - 15px)",
+          "position": "absolute",
+          "left": "0",
+          "right": "0",
+          "top": "0"
+        },
+        "imgWrapper": {
+          "padding-top": "calc(75% + 15px)",
+          "position": "relative",
+          "height": "0"
+        }
+      },
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Arial, sans-serif",
+        "background-color": "#f5f9f2",
+        ":hover": {
+          "background-color": "#dde0da"
+        },
+        ":focus": {
+          "background-color": "#dde0da"
+        }
+      },
+      "count": {
+        "font-size": "18px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025"
+        }
+      },
+      "iconPath": {
+        "fill": "#e6c025"
+      }
+    }
+  }
+}
+              });
+              
+              // Hide skeleton and show mount div
+              if (skeletonLoader) {
+                skeletonLoader.style.display = 'none';
+              }
+              btn.style.display = 'none';
+            });
+          }
+        };
+        
+        script.onerror = function() {
+          window.__shopifyBuyButtonScriptLoaded = false;
+          window.__shopifyProm2026Initialized = false;
+          btn.disabled = false;
+          btn.textContent = 'View Collection';
+          console.error('Failed to load Shopify Buy Button script.');
+        };
+        
+        document.head.appendChild(script);
+      };
+      
+      // First-interaction auto-load handler
+      const handleFirstInteraction = function() {
+        initShopify();
+      };
+      
+      // Button click handler
+      btn.addEventListener('click', function() {
+        initShopify();
+      });
+      
+      // Add event listeners for first interaction: scroll, pointer, touch, keyboard
+      document.addEventListener('scroll', handleFirstInteraction, { passive: true });
+      document.addEventListener('pointerdown', handleFirstInteraction);
+      document.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+      document.addEventListener('keydown', handleFirstInteraction);
+    })();
+  </script>
+</BaseLayout>

@@ -9,7 +9,15 @@ interface Props {
 const { currentPath = "/" } = Astro.props;
 
 const navLeft = [
-  { label: "FORMAL", href: "/formal-gowns-richmond-ky" },
+  { 
+    label: "FORMAL", 
+    href: "/formal-gowns-richmond-ky",
+    dropdownItems: [
+      { label: "Prom 2026", anchor: "prom-2026/" },
+      { label: "Gala & Evening", anchor: "gala-evening/" },
+      { label: "New Arrivals", anchor: "new-arrivals/" },
+    ]
+  },
   { label: "BRIDAL", href: "/wedding-dresses-richmond-ky" },
   { label: "QUIÑCE", href: "/quinceanera-dresses-richmond-ky" },
 ];
@@ -50,13 +58,25 @@ const ctaButton = {
     <!-- Left Navigation -->
     <ul class="header__nav-left">
       {navLeft.map((link) => (
-        <li>
+        <li class={link.dropdownItems ? "header__nav-item" : ""}>
           <a
             href={link.href}
             class={`header__link ${currentPath === link.href ? "header__link--active" : ""}`}
           >
             {link.label}
           </a>
+          {link.dropdownItems && (
+            <div class="header__dropdown">
+              <a href={link.href} class="header__dropdown-link header__dropdown-link--full-page">
+                View Full Page
+              </a>
+              {link.dropdownItems.map((item) => (
+                <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </li>
       ))}
     </ul>
@@ -132,13 +152,46 @@ const ctaButton = {
   <div id="mobile-menu" class="header__mobile-menu" data-menu-state="closed" aria-hidden="true">
     <ul class="header__mobile-menu-list">
       {navLeft.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class={`header__mobile-menu-link ${currentPath === link.href ? "header__mobile-menu-link--active" : ""}`}
-          >
-            {link.label}
-          </a>
+        <li class={link.dropdownItems ? "header__mobile-menu-item" : ""}>
+          <div class={link.dropdownItems ? "header__mobile-menu-link-wrapper" : undefined}>
+            <a
+              href={link.href}
+              class={`header__mobile-menu-link ${currentPath === link.href ? "header__mobile-menu-link--active" : ""}`}
+            >
+              {link.label}
+            </a>
+            {link.dropdownItems && (
+              <button
+                type="button"
+                id={`trigger-${link.label}`}
+                class="header__mobile-menu-dropdown-toggle"
+                data-accordion-trigger={link.label}
+                aria-expanded="false"
+                aria-controls={`accordion-${link.label}`}
+                aria-label={`Toggle ${link.label} dropdown`}
+              >
+                <span class="header__accordion-icon">▼</span>
+              </button>
+            )}
+          </div>
+          {link.dropdownItems && (
+            <div 
+              id={`accordion-${link.label}`}
+              class="header__mobile-menu-accordion" 
+              data-accordion-content={link.label}
+              role="region"
+              aria-labelledby={`trigger-${link.label}`}
+            >
+              <a href={link.href} class="header__mobile-menu-sublink header__mobile-menu-sublink--full-page">
+                View Full Page
+              </a>
+              {link.dropdownItems.map((item) => (
+                <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </li>
       ))}
       {navRight.map((link) => (

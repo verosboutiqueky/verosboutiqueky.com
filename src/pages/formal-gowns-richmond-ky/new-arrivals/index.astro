@@ -1,0 +1,315 @@
+---
+/**
+ * New Arrivals – Formal Gowns Collection Page - Authority Landing Page
+ * AEO-optimized for freshness signals and latest fashion intent
+ * Emphasizes weekly arrivals, online preview, and in-store fitting discovery
+ * 
+ * TODO: paste Shopify Buy Button code (collectionId TBD)
+ * Performance note: Shopify script loads only on click
+ */
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../lib/site';
+
+const metadata = {
+  title: "New Formal Gowns Richmond KY | Latest Arrivals | Online Preview + In-Store Fitting",
+  description: "Just landed: newest formal gown collections at Vero's Boutique in Richmond, Kentucky. Weekly arrivals with online preview and private in-store fitting. Contemporary and classic styles. Serving Lexington and surrounding areas.",
+};
+
+const faqData = [
+  {
+    question: "How often does Vero's Boutique add new formal gown inventory?",
+    answer: "We refresh our collection weekly with carefully curated new arrivals. Major collection drops happen before prom season (winter/early spring) and formal event season (fall). Every week, you'll find fresh pieces reflecting the latest runways and design trends. Follow our social channels or call us to be notified of specific arrivals.",
+  },
+  {
+    question: "Can I preview new arrivals online before scheduling a fitting?",
+    answer: "Yes. We offer online previews of our newest pieces on our website and social media. You can narrow your favorites before your private fitting appointment. This hybrid approach (online discovery + in-person fitting) is perfect for shoppers in Lexington, Nicholasville, and surrounding areas.",
+  },
+  {
+    question: "What makes a gown a 'new arrival' versus regular inventory?",
+    answer: "New arrivals are gowns that have recently entered our collection—fresh from designers within the past 1–2 weeks. These pieces often reflect the latest fashion trends, latest beading techniques, and newest color palettes. They're available while quantities last, making them special finds for clients seeking truly fresh, on-trend styles.",
+  },
+  {
+    question: "Are newly arrived gowns more expensive than older stock?",
+    answer: "No. Our pricing is based on designer, fabric quality, and construction—not how recently a piece arrived. We carry new arrivals across all price points. Whether you're looking for luxury designer statements or accessible elegance, our new collections have options.",
+  },
+  {
+    question: "How can I stay updated on new formal gown arrivals?",
+    answer: "Call us to join our mailing list for weekly arrival notifications. Follow our social media for visual previews. Or simply book a fitting appointment and ask our stylists about pieces that just landed. We love matching clients with new gowns perfectly suited to their taste and timeline.",
+  },
+];
+
+// Generate FAQ JSON-LD schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+
+// Generate BreadcrumbList JSON-LD schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE.url
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Formal Gowns Richmond, KY",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "New Arrivals",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/new-arrivals/`
+    }
+  ]
+};
+
+// LocalBusiness schema emphasizing freshness
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vero's Boutique",
+  "image": `${SITE.url}/images/hero.webp`,
+  "description": "Weekly new arrivals of formal gowns in Richmond, Kentucky. Fresh designer collections with online preview and private in-store fitting.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "127 North Second Street",
+    "addressLocality": "Richmond",
+    "addressRegion": "KY",
+    "postalCode": "40475"
+  },
+  "telephone": "+1-859-623-0880",
+  "url": SITE.url,
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.7393",
+    "longitude": "-84.2733"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Richmond", "addressRegion": "KY" },
+    { "@type": "City", "name": "Lexington", "addressRegion": "KY" },
+    { "@type": "City", "name": "Nicholasville", "addressRegion": "KY" }
+  ]
+};
+---
+
+<BaseLayout title={metadata.title} description={metadata.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+  <!-- Hero Section -->
+  <section style="padding: var(--space-32) var(--space-6); background-color: var(--color-ivory);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: var(--space-6); color: var(--color-black);">
+        New Arrivals – Formal Gowns
+      </h1>
+      <p style="font-size: 1rem; line-height: 1.6; color: #666; max-width: 65ch; margin-bottom: var(--space-8);">
+        Fresh designs and runway-inspired collections just landed at Vero's Boutique in Richmond, Kentucky. Weekly arrivals featuring microbeading, jewel tones, 3D florals, and contemporary silhouettes. Preview online; try on in our private Richmond studio.
+      </p>
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+        <a href="/book-an-appointment/" class="button button--primary">Book Private Fitting</a>
+        <a href="/formal-gowns-richmond-ky/" class="button button--outline">All Formal Gowns</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AEO Quick Answer Block -->
+  <section style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 3px solid var(--color-gold); border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 1.125rem; font-weight: 600; color: var(--color-black); margin-bottom: var(--space-4);">
+        Fresh Inventory Every Week
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+        Fashion is alive at Vero's Boutique. Our team continuously scouts emerging designers, curates trending silhouettes, and refines our collection to reflect what's hot on runways and what our Richmond, Lexington, and surrounding-area clients are requesting. New arrivals mean you're always discovering pieces fresh from the market—before they become mainstream.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+        Whether you're looking for the latest microbeaded details, saturated jewel tones, or avant-garde silhouettes, our new arrivals section is where style-forward shoppers find their edge. This approach is ideal for shoppers from Lexington, Nicholasville, and surrounding areas who want to discover fresh designs without committing to a trip without knowing what's available.
+      </p>
+    </div>
+  </section>
+
+  <!-- Latest Trends Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Latest Trends in Formal Fashion
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+        Fashion evolves, and so does our collection. Our newest arrivals reflect what's trending on runways and what our Richmond clients are requesting. Each piece is carefully selected to ensure it blends timeless elegance with contemporary style.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+        Whether you're drawn to classic silhouettes with modern fabrics, bold colors, unexpected cutouts, or statement embellishments, our new arrivals section showcases what's fresh and fabulous right now.
+      </p>
+    </div>
+  </section>
+
+  <!-- Just Landed Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Just Landed: This Season's Hottest Pieces
+      </h2>
+      <ul style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0; padding-left: var(--space-6);">
+        <li style="margin-bottom: var(--space-4);"><strong>Microbeaded Luxury:</strong> Hand-sewn microbeading elevates silhouettes with intricate detail and light-catching dimension.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>Jewel-Tone Satins:</strong> Rich emeralds, sapphires, and royal purples in silk charmeuse are dominating new arrivals.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>3D Floral Appliqués:</strong> Dimensional florals add editorial-level drama and romance to contemporary gowns.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>Corset-Back Silhouettes:</strong> Modern corsetry with dramatic backs is the statement-making cut of the season.</li>
+        <li><strong>Contemporary Minimalism:</strong> Sleek, unfussy designs in neutral palettes appeal to clients seeking timeless elegance over trend-chasing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Online Preview + In-Store Discovery Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        New Arrivals: Online Preview + In-Store Discovery
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+        Our hybrid shopping approach honors your time and curiosity. <strong>Preview new pieces online first</strong> via our website and social media to see what's fresh. Identify your favorites, then schedule a private fitting appointment at our downtown Richmond boutique to try them on in person.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+        This workflow is particularly valuable for shoppers from Lexington, Nicholasville, and surrounding areas—you avoid guesswork and arrive with a curated selection ready to fit and style. Every new arrival represents design excellence, guaranteed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Shop Collection Section (with Shopify placeholder & skeleton loader) -->
+  <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory); text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Shop New Formal Gowns
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto;">
+        Browse our newly arrived pieces or schedule a private appointment at Vero's Boutique in downtown Richmond to discover what just landed.
+      </p>
+
+      <!-- Skeleton Loader (Visible Before Shopify Loads) -->
+      <div id="skeleton-loader" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); margin: var(--space-8) 0;">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} style="background-color: #f0f0f0; border-radius: 4px; height: 320px; animation: pulse 1.5s ease-in-out infinite;">
+            <div style="background-color: #e0e0e0; height: 240px; border-radius: 4px 4px 0 0;"></div>
+            <div style="padding: var(--space-4);">
+              <div style="background-color: #e0e0e0; height: 10px; border-radius: 2px; margin-bottom: var(--space-2);"></div>
+              <div style="background-color: #e0e0e0; height: 10px; border-radius: 2px; width: 80%;"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button id="shopify-load-btn" class="button button--primary">
+        View Collection
+      </button>
+      <div id="shopify-container" style="margin-top: var(--space-8); min-height: 300px; display: none;">
+        <!-- TODO: paste Shopify Buy Button HTML embed here -->
+        <p style="color: #999;">Loading collection...</p>
+      </div>
+    </div>
+
+    <style>
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </section>
+
+  <!-- CTA – Schedule Fitting -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Discover Your Perfect Gown
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6); max-width: 60ch; margin-left: auto; margin-right: auto;">
+        Nothing compares to the experience of a private fitting appointment. View our latest arrivals in our Richmond showroom and let our stylists help you discover your perfect gown.
+      </p>
+      <a href="/book-an-appointment/" class="button button--primary">Schedule Your Fitting</a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-12); color: var(--color-black);">
+        New Arrivals Frequently Asked Questions
+      </h2>
+      <div style="display: grid; gap: var(--space-8);">
+        {faqData.map((item, index) => (
+          <article style="border-bottom: 1px solid #ddd; padding-bottom: var(--space-8);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-4); color: var(--color-black);">
+              {item.question}
+            </h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: #555; margin-bottom: 0;">
+              {item.answer}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <p style="font-size: 1rem; color: #555; margin-bottom: var(--space-6);">
+        Join our mailing list for weekly new arrival notifications. <a href="/contact/" style="color: var(--color-black); text-decoration: underline; font-weight: 600;">Get notified first</a>.
+      </p>
+      <p style="font-size: 0.9rem; color: #999;">
+        <a href="/formal-gowns-richmond-ky/" style="color: #666; text-decoration: none; margin-right: var(--space-4);">← Back to Formal Gowns</a> •
+        <a href="/contact/" style="color: #666; text-decoration: none; margin-left: var(--space-4);">Contact us</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Lazy-Load Shopify Script on Button Click (Lighthouse-Friendly) -->
+  <script is:inline>
+    (function() {
+      const btn = document.getElementById('shopify-load-btn');
+      const container = document.getElementById('shopify-container');
+      let loaded = false;
+
+      if (!btn || !container) return;
+
+      btn.addEventListener('click', function() {
+        if (loaded) return;
+        loaded = true;
+
+        // TODO: set collectionId/productSet
+        // Example: const collectionId = "YOUR_COLLECTION_ID";
+        
+        // Inject Shopify Buy Button script on first click
+        const script = document.createElement('script');
+        script.src = 'https://cdn.shopify.com/s/files/1/0704/6545/1731/t/2/assets/bf.js';
+        script.async = true;
+        script.onload = function() {
+          // Show container and render Shopify widget
+          container.style.display = 'block';
+          
+          // TODO: Initialize ShopifyBuy with your product/collection ID
+          // Example: ShopifyBuy.UI.onReady(client).createComponent('collection', {...});
+          
+          console.log('Shopify Buy Button script loaded. Ready to render collection.');
+        };
+        document.head.appendChild(script);
+        btn.textContent = 'Loading...';
+        btn.disabled = true;
+      });
+    })();
+  </script>
+</BaseLayout>

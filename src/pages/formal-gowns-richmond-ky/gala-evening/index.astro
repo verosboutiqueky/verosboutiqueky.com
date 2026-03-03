@@ -1,0 +1,506 @@
+---
+/**
+ * Gala & Evening Wear Collection Page - Authority Landing Page
+ * Targets black-tie, military ball, and Derby event intent in Richmond, KY region
+ * AEO-optimized with local military and formal event positioning
+ * 
+ * Performance note: Shopify script loads only on click
+ */
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE } from '../../../lib/site';
+import galaHero from '../../../assets/hero/gala-evening-hero.webp';
+
+const metadata = {
+  title: "Gala & Black-Tie Evening Gowns Richmond KY | Luxury Formal Wear",
+  description: "Elegant gala, black-tie, and evening gowns in Richmond, Kentucky. Serving Military Balls, Derby season, and formal fundraisers. Exclusive designer dresses with personal fitting. Serving Fort Knox region and Lexington area.",
+};
+
+const faqData = [
+  {
+    question: "What should I wear to a Military Ball or black-tie gala in Richmond?",
+    answer: "Military Balls, formal galas, and black-tie events demand floor-length elegance. We recommend formal gowns in classic black, navy, or jewel tones—emerald, sapphire, burgundy—with refined construction: silk charmeuse, beaded details, or strategic cutouts. Our collection serves officers and civilians from Fort Knox, Blue Grass Army Depot, and the broader Richmond and Lexington area. Each gown is tailored to fit flawlessly for your formal evening.",
+  },
+  {
+    question: "Does Vero's Boutique cater to Military Ball attendees from Fort Knox?",
+    answer: "Absolutely. We proudly serve active-duty personnel, spouses, and families from Fort Knox and Blue Grass Army Depot attending Military Balls and formal Defense events. Our private fitting appointments ensure your gown fits perfectly and reflects the honor of the occasion. We understand the importance of formal military dress codes and curate accordingly.",
+  },
+  {
+    question: "Are your gala gowns appropriate for Derby season and formal fundraisers?",
+    answer: "Yes. Vero's Boutique specializes in elevated formal wear perfect for Derby events, black-tie fundraisers, and galas. We stock gowns in both classic elegance and contemporary designs. Whether you need a timeless column gown, dramatic ball gown, or editorial-level cut, we have options for every aesthetic and formal occasion.",
+  },
+  {
+    question: "How much advance notice do I need for a formal gala gown?",
+    answer: "We recommend scheduling 4–6 weeks before your event. This allows time for alterations—hemming, waist adjustments, custom tailoring—so your gown feels like a second skin on the night of. If your event is sooner, contact us to discuss rush options or in-stock ready-to-wear pieces.",
+  },
+  {
+    question: "Can I order a gown for shipped trial-on before committing?",
+    answer: "Yes. For shoppers in Lexington, Nicholasville, and surrounding areas, we offer online previews and can arrange shipped try-on options before you visit in person. This allows you to narrow choices before your private fitting appointment at our downtown Richmond location.",
+  },
+];
+
+// Generate FAQ JSON-LD schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+
+// Generate BreadcrumbList JSON-LD schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE.url
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Formal Gowns Richmond, KY",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Gala & Evening Wear",
+      "item": `${SITE.url}/formal-gowns-richmond-ky/gala-evening/`
+    }
+  ]
+};
+
+// LocalBusiness schema with Fort Knox / military area service
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Vero's Boutique",
+  "image": `${SITE.url}/images/hero.webp`,
+  "description": "Luxury gala and black-tie evening wear in Richmond, Kentucky. Serving Military Balls, Derby events, and formal galas. Fort Knox area specialist.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "127 North Second Street",
+    "addressLocality": "Richmond",
+    "addressRegion": "KY",
+    "postalCode": "40475"
+  },
+  "telephone": "+1-859-623-0880",
+  "url": SITE.url,
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "37.7393",
+    "longitude": "-84.2733"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Richmond", "addressRegion": "KY" },
+    { "@type": "City", "name": "Fort Knox", "addressRegion": "KY" },
+    { "@type": "City", "name": "Lexington", "addressRegion": "KY" }
+  ]
+};
+---
+
+<BaseLayout title={metadata.title} description={metadata.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+  <!-- Hero Section with Gala Evening Hero Image -->
+  <section style={`padding: var(--space-32) var(--space-6); background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('${galaHero.src}') center/cover; min-height: 500px; display: flex; align-items: center; justify-content: center;`}>
+    <div style="max-width: 900px; margin: 0 auto; text-align: center; color: white;">
+      <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: var(--space-6); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+        Gala &amp; Black-Tie Evening Gowns
+      </h1>
+      <p style="font-size: 1rem; line-height: 1.6; color: #f0f0f0; max-width: 65ch; margin: 0 auto var(--space-8); text-shadow: 0 1px 3px rgba(0,0,0,0.3);">
+        Radiate elegance and grace at every formal occasion. Vero's Boutique in Richmond, Kentucky specializes in luxury evening wear for galas, Military Balls, Derby events, and black-tie fundraisers. Personalized fittings ensure you feel absolutely radiant.
+      </p>
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
+        <a href="/book-an-appointment/" class="button button--primary">Book Private Fitting</a>
+        <a href="/formal-gowns-richmond-ky/" class="button button--outline">All Formal Gowns</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AEO Quick Answer Block -->
+  <section style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 3px solid var(--color-gold); border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 1.125rem; font-weight: 600; color: var(--color-black); margin-bottom: var(--space-4);">
+        Black-Tie Elegance: Luxury Evening Wear Essentials
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+        A true gala gown demands impeccable tailoring, luxurious fabrics, and an unwavering sense of occasion. Whether you're attending a Military Ball, formal gala, or black-tie fundraiser, your gown should reflect refinement and confidence. The most memorable formal looks balance timeless elegance with personal expression, impeccable fit, and opulent details.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+        <strong>At Vero's Boutique:</strong> Your gown is a second skin, custom-fitted to your body and the specific formality of your event. We serve Military Ball attendees, Derby guests, corporate gala invitees, and formal fundraiser honorees—each with unique dress codes and expectations. Our stylists understand these distinctions and will guide you to the perfect choice.
+      </p>
+    </div>
+  </section>
+
+  <!-- Shop Gala & Evening Wear Section (Shopify Collection - Click-to-Load) -->
+  <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: white;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Shop Gala &amp; Evening Wear
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto;">
+        Browse our luxury evening gown collection or book a private in-person fitting at Vero's Boutique in downtown Richmond, Kentucky.
+      </p>
+
+      <!-- Skeleton Loader Grid (8 cards, responsive 2–4 columns) -->
+      <div id="skeleton-loader" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); margin: var(--space-8) 0; padding: 0 var(--space-4);">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} style="background-color: #f5f5f5; border-radius: 4px; overflow: hidden; min-height: 360px;">
+            <div style="background-color: #e8e8e8; height: 280px; width: 100%; animation: pulse 1.5s ease-in-out infinite;"></div>
+            <div style="padding: var(--space-4);">
+              <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; margin-bottom: var(--space-2); animation: pulse 1.5s ease-in-out infinite;"></div>
+              <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; width: 85%; animation: pulse 1.5s ease-in-out infinite;"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- View Collection Button -->
+      <div style="text-align: center; margin: var(--space-8) 0;">
+        <button id="shopify-load-btn" class="button button--primary">
+          View Collection
+        </button>
+      </div>
+
+      <!-- Shopify Mount Container (Hidden Until Loaded) -->
+      <div id="collection-component-gala-evening" style="margin-top: var(--space-8);"></div>
+    </div>
+
+    <style>
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </section>
+
+  <!-- Formal Evening Wear Styles Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Formal Evening Wear Styles &amp; Collections
+      </h2>
+      <ul style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: 0; padding-left: var(--space-6);">
+        <li style="margin-bottom: var(--space-4);"><strong>Classic Black-Tie:</strong> Timeless floor-length gowns in black, navy, or midnight blue with elegant simplicity, refined beading, or bespoke embellishment.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>Jewel-Tone Elegance:</strong> Deep emerald, sapphire, burgundy, and ruby create luxe, sophisticated statements for formal events.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>Architectural Silhouettes:</strong> Bold ball gowns, sleek columns, and sculptural forms that command presence and photograph beautifully.</li>
+        <li style="margin-bottom: var(--space-4);"><strong>Hand-Sewn Luxury:</strong> Silk charmeuse, embroidered tulle, beaded details, and custom tailoring elevate every gown to couture-level quality.</li>
+        <li><strong>Personalized Alterations:</strong> Custom hemming, custom color requests, and bespoke modifications ensure your gown is uniquely yours.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Formal Wear for Every Occasion Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Formal Wear for Every Occasion
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
+        Each formal occasion carries its own dress code and cultural expectation. A Military Ball demands dress uniform or formal gown elegance. Derby season calls for sophisticated, fashion-forward eveningwear. Corporate galas celebrate refined luxury. Black-tie charity events honor timeless formality.
+      </p>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555;">
+        Our stylists understand these distinctions intimately. During your private fitting appointment at Vero's Boutique, share your event details—whether it's a Fort Knox Military Ball, Derby gala, or formal fundraiser—and we'll ensure your gown matches the occasion perfectly in both formality and aesthetic.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA – Schedule Fitting -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: white; border-bottom: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        Schedule Your Private Fitting
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6); max-width: 60ch; margin-left: auto; margin-right: auto;">
+        Reserve your 90-minute private consultation at Vero's Boutique in downtown Richmond. We're honored to serve attendees of Military Balls, Derby events, galas, and all formal occasions.
+      </p>
+      <a href="/book-an-appointment/" class="button button--primary">Book Your Fitting</a>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory);">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-12); color: var(--color-black);">
+        Gala Gown Frequently Asked Questions
+      </h2>
+      <div style="display: grid; gap: var(--space-8);">
+        {faqData.map((item, index) => (
+          <article style="border-bottom: 1px solid #ddd; padding-bottom: var(--space-8);">
+            <h3 style="font-family: var(--font-serif); font-size: 1.125rem; font-weight: 600; margin-bottom: var(--space-4); color: var(--color-black);">
+              {item.question}
+            </h3>
+            <p style="font-size: 1rem; line-height: 1.7; color: #555; margin-bottom: 0;">
+              {item.answer}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 1px solid #e0e0e0;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <p style="font-size: 1rem; color: #555; margin-bottom: var(--space-6);">
+        Experience the Vero's Boutique difference. <a href="/reviews/" style="color: var(--color-black); text-decoration: underline; font-weight: 600;">Read our reviews</a>.
+      </p>
+      <p style="font-size: 0.9rem; color: #999;">
+        <a href="/formal-gowns-richmond-ky/" style="color: #666; text-decoration: none; margin-right: var(--space-4);">← Back to Formal Gowns</a> •
+        <a href="/contact/" style="color: #666; text-decoration: none; margin-left: var(--space-4);">Contact us</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Shopify Buy Button: First-Interaction + Click-to-Load Script (Performance-Optimized) -->
+  <script is:inline>
+    (function() {
+      // Guard against double initialization
+      if (window.__shopifyGalaEveningInitialized) return;
+      
+      const btn = document.getElementById('shopify-load-btn');
+      const skeletonLoader = document.getElementById('skeleton-loader');
+      const mountDiv = document.getElementById('collection-component-gala-evening');
+      
+      if (!btn || !mountDiv) return;
+      
+      // Function to clean up first-interaction event listeners
+      const cleanup = function() {
+        document.removeEventListener('scroll', handleFirstInteraction, { passive: true });
+        document.removeEventListener('pointerdown', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction, { passive: true });
+        document.removeEventListener('keydown', handleFirstInteraction);
+      };
+      
+      // Function to initialize Shopify
+      const initShopify = function() {
+        // Clean up first-interaction listeners
+        cleanup();
+        
+        // Prevent multiple script loads
+        if (window.__shopifyBuyButtonScriptLoaded) return;
+        window.__shopifyBuyButtonScriptLoaded = true;
+        window.__shopifyGalaEveningInitialized = true;
+        
+        // Update button UI
+        btn.disabled = true;
+        btn.textContent = 'Loading…';
+        
+        // Inject Shopify Buy Button script
+        const script = document.createElement('script');
+        script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        script.async = true;
+        
+        script.onload = function() {
+          // Initialize ShopifyBuy with dual fallbacks
+          if (typeof ShopifyBuy !== 'undefined') {
+            const client = ShopifyBuy.buildClient({
+              domain: 'drwakf-ge.myshopify.com',
+              storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b'
+            });
+            
+            ShopifyBuy.UI.onReady(client).then(function(ui) {
+              ui.createComponent('collection', {
+                id: '325787287751',
+                node: mountDiv,
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px",
+          "width": "calc(25% - 20px)"
+        },
+        "img": {
+          "height": "calc(100% - 15px)",
+          "position": "absolute",
+          "left": "0",
+          "right": "0",
+          "top": "0"
+        },
+        "imgWrapper": {
+          "padding-top": "calc(75% + 15px)",
+          "position": "relative",
+          "height": "0"
+        }
+      },
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Arial, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025",
+          "background-color": "#dde0da"
+        },
+        "background-color": "#f5f9f2",
+        ":focus": {
+          "background-color": "#dde0da"
+        },
+        "border-radius": "40px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Arial, sans-serif",
+        "background-color": "#f5f9f2",
+        ":hover": {
+          "background-color": "#dde0da"
+        },
+        ":focus": {
+          "background-color": "#dde0da"
+        }
+      },
+      "count": {
+        "font-size": "18px",
+        "color": "#e6c025",
+        ":hover": {
+          "color": "#e6c025"
+        }
+      },
+      "iconPath": {
+        "fill": "#e6c025"
+      }
+    }
+  }
+                }
+              });
+              
+              // Hide skeleton and show mount div
+              if (skeletonLoader) {
+                skeletonLoader.style.display = 'none';
+              }
+            });
+          }
+        };
+        
+        script.onerror = function() {
+          window.__shopifyBuyButtonScriptLoaded = false;
+          window.__shopifyGalaEveningInitialized = false;
+          btn.disabled = false;
+          btn.textContent = 'View Collection';
+          console.error('Failed to load Shopify Buy Button script.');
+        };
+        
+        document.head.appendChild(script);
+      };
+      
+      // First-interaction auto-load handler
+      const handleFirstInteraction = function() {
+        initShopify();
+      };
+      
+      // Button click handler
+      btn.addEventListener('click', function() {
+        initShopify();
+      });
+      
+      // Add event listeners for first interaction: scroll, pointer, touch, keyboard
+      document.addEventListener('scroll', handleFirstInteraction, { passive: true });
+      document.addEventListener('pointerdown', handleFirstInteraction);
+      document.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+      document.addEventListener('keydown', handleFirstInteraction);
+    })();
+  </script>
+</BaseLayout>

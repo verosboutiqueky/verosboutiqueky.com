@@ -117,7 +117,7 @@ const localBusinessSchema = {
 
   <main>
     <!-- Hero Section with Prom 2026 Hero Image -->
-    <section style={`padding: var(--space-32) var(--space-6); background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('${promHero.src}') center/cover; min-height: 500px; display: flex; align-items: center; justify-content: center;`}>
+    <section style={`padding: var(--space-32) var(--space-6); background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('${promHero.src}') center/cover; background-position: center center; min-height: 500px; display: flex; align-items: center; justify-content: center;`} class="hero-section">
       <div style="max-width: 900px; margin: 0 auto; text-align: center; color: white;">
         <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: var(--space-6); color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
           Prom 2026 Dresses in Richmond, KY
@@ -127,10 +127,18 @@ const localBusinessSchema = {
         </p>
         <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
           <a href="/book-an-appointment/" class="button button--primary">Book Private Fitting</a>
-          <a href="/formal-gowns-richmond-ky/" class="button button--outline">All Formal Gowns</a>
+          <a href="/formal-gowns-richmond-ky/" class="button button--outline" style="color: #e6c025;">All Formal Gowns</a>
         </div>
       </div>
     </section>
+
+    <style>
+      @media (max-width: 768px) {
+        .hero-section {
+          background-position: right center !important;
+        }
+      }
+    </style>
 
     <!-- AEO Quick Answer Block -->
     <article style="padding: var(--space-12) var(--space-6); background-color: white; border-top: 3px solid var(--color-gold); border-bottom: 1px solid #e0e0e0;">
@@ -147,7 +155,7 @@ const localBusinessSchema = {
     <!-- Shop Prom 2026 Collection Section (Shopify Embed) -->
     <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: white;">
       <div style="max-width: 900px; margin: 0 auto;">
-        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black); text-align: center;">
           Shop Prom 2026 Collection
         </h2>
         <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto;">
@@ -518,7 +526,6 @@ const localBusinessSchema = {
           window.__shopifyProm2026Initialized = false;
           btn.disabled = false;
           btn.textContent = 'View Collection';
-          console.error('Failed to load Shopify Buy Button script.');
         };
         
         document.head.appendChild(script);

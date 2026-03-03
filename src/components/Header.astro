@@ -58,7 +58,7 @@ const ctaButton = {
     <!-- Left Navigation -->
     <ul class="header__nav-left">
       {navLeft.map((link) => (
-        <li class={link.dropdownItems ? "header__nav-item" : ""}>
+        <li class="header__nav-item">
           <a
             href={link.href}
             class={`header__link ${currentPath === link.href ? "header__link--active" : ""}`}
@@ -67,9 +67,6 @@ const ctaButton = {
           </a>
           {link.dropdownItems && (
             <div class="header__dropdown">
-              <a href={link.href} class="header__dropdown-link header__dropdown-link--full-page">
-                View Full Page
-              </a>
               {link.dropdownItems.map((item) => (
                 <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
                   {item.label}
@@ -102,9 +99,6 @@ const ctaButton = {
             </a>
             {link.dropdownItems && (
               <div class="header__dropdown">
-                <a href={link.href} class="header__dropdown-link header__dropdown-link--full-page">
-                  View Full Page
-                </a>
                 {link.dropdownItems.map((item) => (
                   <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
                     {item.label}
@@ -182,9 +176,6 @@ const ctaButton = {
               role="region"
               aria-labelledby={`trigger-${link.label}`}
             >
-              <a href={link.href} class="header__mobile-menu-sublink header__mobile-menu-sublink--full-page">
-                View Full Page
-              </a>
               {link.dropdownItems.map((item) => (
                 <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
                   {item.label}
@@ -225,9 +216,6 @@ const ctaButton = {
               role="region"
               aria-labelledby={`trigger-${link.label}`}
             >
-              <a href={link.href} class="header__mobile-menu-sublink header__mobile-menu-sublink--full-page">
-                View Full Page
-              </a>
               {link.dropdownItems.map((item) => (
                 <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
                   {item.label}
@@ -419,14 +407,6 @@ const ctaButton = {
     outline-offset: -2px;
   }
 
-  .header__dropdown-link--full-page {
-    font-weight: 600;
-    border-bottom: 1px solid var(--color-gold);
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.625rem;
-    color: var(--color-navy);
-  }
-
   .header.scrolled .header__dropdown {
     background-color: rgba(0, 0, 0, 0.9);
     border-color: var(--color-gold);
@@ -438,11 +418,6 @@ const ctaButton = {
 
   .header.scrolled .header__dropdown-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .header.scrolled .header__dropdown-link--full-page {
-    color: white;
-    border-bottom-color: var(--color-gold);
   }
 
   /* ========== BRAND ========== */
@@ -801,14 +776,6 @@ const ctaButton = {
   .header__mobile-menu-sublink:focus {
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
-  }
-
-  .header__mobile-menu-sublink--full-page {
-    font-weight: 600;
-    color: white;
-    border-bottom: 1px solid var(--color-gold);
-    padding-bottom: 1rem;
-    margin-bottom: 0.5rem;
   }
 
   .header__mobile-menu-divider {

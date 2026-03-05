@@ -183,6 +183,61 @@ const localBusinessSchema = {
         0%, 100% { opacity: 0.6; }
         50% { opacity: 1; }
       }
+      /* MOBILE 2-COLUMN SHOPIFY OVERRIDE — iPhone 12 target (390px viewport) */
+      @media (max-width: 600px) {
+        /* Primary: target stable Shopify collection grid container */
+        #shopify-embed .shopify-buy__collection-products {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 10px !important;
+          margin-left: 0 !important;
+        }
+
+        /* Ensure product items fit properly in 2-column grid */
+        #shopify-embed .shopify-buy__product {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin-left: 0 !important;
+          margin-bottom: 20px !important;
+          min-width: 0; /* allow shrinking below content size */
+        }
+
+        /* Ensure images scale properly */
+        #shopify-embed .shopify-buy__image,
+        #shopify-embed .shopify-buy__product-image {
+          max-width: 100%;
+          height: auto;
+        }
+
+        /* Reduce button font-size on mobile for better fit */
+        #shopify-embed .shopify-buy__btn {
+          font-size: 14px !important;
+          padding-top: 12px !important;
+          padding-bottom: 12px !important;
+        }
+
+        /* Fallback: if Shopify uses a different products wrapper class */
+        #shopify-embed [class*="collection"][class*="products"],
+        #shopify-embed [class*="products-wrapper"] {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          gap: 10px !important;
+        }
+      }
+
+      /* Preserve desktop 4-column layout */
+      @media (min-width: 601px) {
+        #shopify-embed .shopify-buy__collection-products {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        #shopify-embed .shopify-buy__product {
+          width: calc(25% - 20px);
+          max-width: calc(25% - 20px);
+          margin-left: 20px;
+          margin-bottom: 50px;
+        }
+      }
     </style>
   </section>
 
@@ -320,6 +375,12 @@ const localBusinessSchema = {
   "product": {
     "styles": {
       "product": {
+        "@media (max-width: 600px)": {
+          "max-width": "calc(50% - 10px)",
+          "margin-left": "10px",
+          "margin-bottom": "40px",
+          "width": "calc(50% - 10px)"
+        },
         "@media (min-width: 601px)": {
           "max-width": "calc(25% - 20px)",
           "margin-left": "20px",
@@ -340,18 +401,18 @@ const localBusinessSchema = {
         }
       },
       "button": {
-        "font-family": "Arial, sans-serif",
+        "font-family": "Gill Sans, sans-serif",
         "font-size": "18px",
         "padding-top": "17px",
         "padding-bottom": "17px",
-        "color": "#e6c025",
+        "color": "#c5a059",
         ":hover": {
-          "color": "#e6c025",
-          "background-color": "#dde0da"
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
         },
-        "background-color": "#f5f9f2",
+        "background-color": "#333333",
         ":focus": {
-          "background-color": "#dde0da"
+          "background-color": "#2e2e2e"
         },
         "border-radius": "40px"
       },
@@ -361,8 +422,12 @@ const localBusinessSchema = {
         "padding-bottom": "17px"
       }
     },
+    "buttonDestination": "modal",
+    "contents": {
+      "options": false
+    },
     "text": {
-      "button": "Add to cart"
+      "button": "View product"
     }
   },
   "productSet": {
@@ -390,18 +455,18 @@ const localBusinessSchema = {
         }
       },
       "button": {
-        "font-family": "Arial, sans-serif",
+        "font-family": "Gill Sans, sans-serif",
         "font-size": "18px",
         "padding-top": "17px",
         "padding-bottom": "17px",
-        "color": "#e6c025",
+        "color": "#c5a059",
         ":hover": {
-          "color": "#e6c025",
-          "background-color": "#dde0da"
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
         },
-        "background-color": "#f5f9f2",
+        "background-color": "#333333",
         ":focus": {
-          "background-color": "#dde0da"
+          "background-color": "#2e2e2e"
         },
         "border-radius": "40px"
       },
@@ -419,18 +484,18 @@ const localBusinessSchema = {
   "cart": {
     "styles": {
       "button": {
-        "font-family": "Arial, sans-serif",
+        "font-family": "Gill Sans, sans-serif",
         "font-size": "18px",
         "padding-top": "17px",
         "padding-bottom": "17px",
-        "color": "#e6c025",
+        "color": "#c5a059",
         ":hover": {
-          "color": "#e6c025",
-          "background-color": "#dde0da"
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
         },
-        "background-color": "#f5f9f2",
+        "background-color": "#333333",
         ":focus": {
-          "background-color": "#dde0da"
+          "background-color": "#2e2e2e"
         },
         "border-radius": "40px"
       }
@@ -443,24 +508,24 @@ const localBusinessSchema = {
   "toggle": {
     "styles": {
       "toggle": {
-        "font-family": "Arial, sans-serif",
-        "background-color": "#f5f9f2",
+        "font-family": "Gill Sans, sans-serif",
+        "background-color": "#333333",
         ":hover": {
-          "background-color": "#dde0da"
+          "background-color": "#2e2e2e"
         },
         ":focus": {
-          "background-color": "#dde0da"
+          "background-color": "#2e2e2e"
         }
       },
       "count": {
         "font-size": "18px",
-        "color": "#e6c025",
+        "color": "#c5a059",
         ":hover": {
-          "color": "#e6c025"
+          "color": "#c5a059"
         }
       },
       "iconPath": {
-        "fill": "#e6c025"
+        "fill": "#c5a059"
       }
     }
   }

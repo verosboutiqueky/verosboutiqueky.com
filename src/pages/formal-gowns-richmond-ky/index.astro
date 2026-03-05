@@ -1,33 +1,1118 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GoogleReviewCard from '../../components/GoogleReviewCard.astro';
 
 const metadata = {
   title: "Formal Gowns Richmond KY | Evening Wear Vero's Boutique",
-  description: "Elegant formal evening gowns in Richmond, Kentucky. Discover luxury formal wear for galas, events, and special occasions at Vero's Boutique.",
+  description: "Elegant formal evening gowns, prom dresses, and gala wear at Vero's Boutique in Richmond, Kentucky. Book a private fitting appointment today.",
+  ogImage: "https://verosboutiqueky.com/images/formal-gowns-hero.webp",
+  ogImageAlt: "Woman in elegant orange sequin formal gown at Vero's Boutique",
 };
 ---
 
-<BaseLayout title={metadata.title} description={metadata.description} robots="noindex">
-  <!-- Women's Dress Shop In Richmond Section -->
-  <section style="padding: var(--space-16) var(--space-6); background-color: white;">
-    <div style="max-width: 900px; margin: 0 auto;">
-      <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
-        A Women's Dress Shop in Richmond, KY (With an Online Preview)
-      </h1>
-      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
-        Vero's Boutique is more than a women's dress shop—it's a destination. Located in downtown Richmond, Kentucky, we specialize in formal gowns and prom dresses curated specifically for our community. Whether you're from Richmond, Lexington, Nicholasville, or Winchester, our boutique offers what big-box retailers can't: hand-selected inventory, personalized service, and a shopping experience dedicated entirely to finding *your* dress.
-      </p>
-      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-6);">
-        Many women's dress shopping decisions start online. We get it. Preview our latest collections on our website and social media, then book a 90-minute private fitting appointment at our Richmond location. This hybrid approach—online discovery plus in-person service—is perfect for best women's dress shops in Richmond, KY that respect your time and budget.
-      </p>
-      <p style="font-size: 1rem; line-height: 1.8; color: #555; margin-bottom: var(--space-8);">
-        From Lexington shopping centers to downtown Richmond, the difference is clear: we're a boutique dedicated to helping you feel confident, beautiful, and uniquely yourself. Come experience the Vero's Boutique difference.
-      </p>
-      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
-        <a href="/formal-gowns-richmond-ky/prom-2026/" class="button button--primary">Shop Prom 2026</a>
-        <a href="/formal-gowns-richmond-ky/gala-evening/" class="button button--outline">Shop Gala &amp; Evening</a>
-        <a href="/formal-gowns-richmond-ky/new-arrivals/" class="button button--outline">New Arrivals</a>
+<BaseLayout title={metadata.title} description={metadata.description} robots="index, follow">
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: HERO (TEMP: Replace with professional photography) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__backdrop">
+      <img 
+        src="/images/formal-gowns-hero.webp" 
+        alt="Woman modeling elegant orange sequin formal gown - Vero's Boutique Richmond Kentucky"
+        width="1400"
+        height="840"
+        loading="eager"
+        decoding="async"
+        class="hero__background-image"
+      />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <div class="hero__text-block">
+        <h1 class="hero__headline">Find Your Perfect Formal Gown</h1>
+        <p class="hero__subheading">Stunning formal wear, expertly styled. Visit Vero's Boutique in Richmond for your private 90-minute fitting.</p>
+        <div class="hero__ctas">
+          <a href="#prom-2026" class="button button--primary">Explore Collections</a>
+          <a href="/book-an-appointment/" class="button button--secondary">Book a Fitting</a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: BOUTIQUE AUTHORITY INTRO -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="boutique-intro">
+    <div class="boutique-intro__container">
+      <h2 class="section-title section-title-lg boutique-intro__heading">A Boutique Built for You</h2>
+      <p class="boutique-intro__text">
+        Vero's Boutique is more than a dress shop—it's a destination. Located in downtown Richmond, Kentucky, we specialize in formal gowns hand-selected for our community. Whether you're from Richmond, Lexington, Nicholasville, or Winchester, we offer what big-box retailers can't: expert personal styling, a curated collection, and a shopping experience dedicated entirely to finding <em>your</em> perfect dress.
+      </p>
+      <p class="boutique-intro__text">
+        Many women start their dress search online. We get it. Preview our latest collections here, then book a 90-minute private fitting appointment at our Richmond location. This hybrid approach—online discovery plus in-person service—means you get the best of both worlds.
+      </p>
+      <a href="/book-an-appointment/" class="button button--primary">Book a 90-Minute Fitting</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: MINI TOC NAVIGATION (Anchor Links) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="mini-toc">
+    <div class="mini-toc__container">
+      <h3 class="mini-toc__heading">Shop Our Collections</h3>
+      <nav class="mini-toc__nav">
+        <a href="#prom-2026" class="mini-toc__link">Prom 2026</a>
+        <a href="#gala-evening" class="mini-toc__link">Gala & Evening</a>
+        <a href="#new-arrivals" class="mini-toc__link">New Arrivals</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: PROM 2026 COLLECTION -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="collection-section" id="prom-2026">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Prom 2026</h2>
+      <p class="section-subtitle collection-section__description">
+        Stand out on prom night with a gown designed to make you feel confident and stunning. Our prom collection features classic elegance, modern trends, and bold statement dresses—all hand-selected for the Richmond area.
+      </p>
+
+      <!-- Skeleton Loader (8 cards) -->
+      <div id="skeleton-loader-prom" class="skeleton-loader">
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+      </div>
+
+      <!-- Shopify Mount Point -->
+      <div id="collection-component-prom-2026" class="collection-mount"></div>
+
+      <!-- Static Links (SEO) -->
+      <div class="collection-links">
+        <a href="/formal-gowns-richmond-ky/prom-2026/">View Full Prom Collection</a>
+        <a href="/book-an-appointment/">Book a Fitting</a>
+        <a href="/reviews/">Read Customer Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5: CTA BLOCK #1 -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cta-block cta-block--light">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Find Your Perfect Prom Look</h2>
+      <div class="cta-block__grid">
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Expert Personal Styling</h3>
+          <p class="cta-block__item-text">Our stylists work one-on-one with you to find the silhouette and color that make you feel amazing.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Quality Over Quantity</h3>
+          <p class="cta-block__item-text">We hand-select every dress in our boutique with your needs in mind. No overwhelming crowds.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">90-Minute Private Fitting</h3>
+          <p class="cta-block__item-text">Come to our Richmond boutique for a personalized appointment designed just for you.</p>
+        </div>
+      </div>
+      <a href="/book-an-appointment/" class="button button--primary button--large">Book Your Prom Fitting</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 6: GALA & EVENING COLLECTION -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="collection-section" id="gala-evening">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Gala & Evening Wear</h2>
+      <p class="section-subtitle collection-section__description">
+        Elegant evening gowns for galas, formal events, and special occasions. Our curated selection includes timeless classics and contemporary designs perfect for making an entrance.
+      </p>
+
+      <!-- Skeleton Loader (8 cards) -->
+      <div id="skeleton-loader-gala" class="skeleton-loader">
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+      </div>
+
+      <!-- Shopify Mount Point -->
+      <div id="collection-component-gala-evening" class="collection-mount"></div>
+
+      <!-- Static Links (SEO) -->
+      <div class="collection-links">
+        <a href="/formal-gowns-richmond-ky/gala-evening/">View Full Gala & Evening Collection</a>
+        <a href="/book-an-appointment/">Book a Fitting</a>
+        <a href="/reviews/">Read Customer Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 7: CTA BLOCK #2 -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cta-block cta-block--dark">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Why Choose Vero's Boutique?</h2>
+      <div class="cta-block__grid">
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">🎯 Personalized Service</h3>
+          <p class="cta-block__item-text">No rushing through racks alone. Our stylists guide you to dresses that genuinely fit your body and personality.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">👑 Curated Selection</h3>
+          <p class="cta-block__item-text">Every dress in our boutique is hand-picked. You'll find quality and uniqueness you won't see elsewhere.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">🏪 Local, In-Person Experience</h3>
+          <p class="cta-block__item-text">Located in downtown Richmond, KY. Book a private 90-minute fitting and experience boutique service firsthand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 8: NEW ARRIVALS COLLECTION -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="collection-section" id="new-arrivals">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">New Arrivals</h2>
+      <p class="section-subtitle collection-section__description">
+        Fresh designs from our latest inventory. Check back regularly to discover new prom gowns, elegant evening wear, and the latest trends in formal fashion.
+      </p>
+
+      <!-- Skeleton Loader (8 cards) -->
+      <div id="skeleton-loader-arrivals" class="skeleton-loader">
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+      </div>
+
+      <!-- Shopify Mount Point -->
+      <div id="collection-component-1772746445320" class="collection-mount"></div>
+
+      <!-- Static Links (SEO) -->
+      <div class="collection-links">
+        <a href="/formal-gowns-richmond-ky/new-arrivals/">View Full New Arrivals</a>
+        <a href="/book-an-appointment/">Book a Fitting</a>
+        <a href="/reviews/">Read Customer Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 9: BOUTIQUE FITTING EXPERIENCE -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="fitting-experience">
+    <div class="fitting-experience__container">
+      <h2 class="section-title section-title-lg fitting-experience__title">The Vero's Boutique Fitting Experience</h2>
+      
+      <div class="fitting-experience__steps">
+        <div class="fitting-experience__step">
+          <div class="fitting-experience__number">1</div>
+          <h3 class="fitting-experience__step-title">Consultation</h3>
+          <p class="fitting-experience__step-text">Arrive for your 90-minute private appointment. We'll chat about your style, body shape, budget, and vision.</p>
+        </div>
+        <div class="fitting-experience__step">
+          <div class="fitting-experience__number">2</div>
+          <h3 class="fitting-experience__step-title">Try-On</h3>
+          <p class="fitting-experience__step-text">Explore our curated dresses in our private fitting room. No crowds—just you, our expert stylists, and stunning gowns.</p>
+        </div>
+        <div class="fitting-experience__step">
+          <div class="fitting-experience__number">3</div>
+          <h3 class="fitting-experience__step-title">Perfect Fit</h3>
+          <p class="fitting-experience__step-text">Found the one? We offer alterations and styling advice to ensure it looks perfect on your big day.</p>
+        </div>
+        <div class="fitting-experience__step">
+          <div class="fitting-experience__number">4</div>
+          <h3 class="fitting-experience__step-title">Walk Out Stunning</h3>
+          <p class="fitting-experience__step-text">Leave with confidence, knowing you have a dress that makes you feel like the best version of yourself.</p>
+        </div>
+      </div>
+
+      <a href="/book-an-appointment/" class="button button--primary button--large">Schedule Your Fitting Today</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 10: GOOGLE REVIEWS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-container">
+      <h2 class="section-title section-title-lg reviews-heading">Love from Our Customers</h2>
+      
+      <!-- Google Review Card (Reusable Component) -->
+      <GoogleReviewCard
+        reviewerName="Joe Espinoza"
+        rating={5}
+        timeAgo="16 hours ago"
+        photoCount={1}
+        reviewText={`Bought Valentine's Day floral arrangements from Vero's Boutique in Richmond, KY, and they were absolutely phenomenal. The designs were incredibly unique, elegant, and beautifully put together. Even included a wine from Chenault vineyard! Veronica has an amazing eye for detail and a design style that really stands out from typical flower shops.
+
+I've been buying holiday arrangements and custom floral designs from Veronica for several years, and she always impresses me. Every arrangement looks like it was crafted with real creativity and care. You can tell she truly loves what she does.
+
+If you're looking for custom floral arrangements, event florals, or special occasion flowers in Richmond, I highly recommend Vero's Boutique. The quality, creativity, and personal service are unmatched.`}
+      />
+      
+      <div class="reviews-actions">
+        <a href="/reviews/" class="button button--primary">Read More Reviews</a>
+        <a href="/reviews/" class="button button--secondary">Leave a Review</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 11: LOCATION & HOURS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="location-section">
+    <div class="location-container">
+      <h2 class="section-title section-title-lg location-heading">Visit Vero's Boutique</h2>
+      
+      <div class="location-grid">
+        <div class="location-card location-card--address">
+          <h3 class="location-card__title">Address</h3>
+          <address class="location-card__content">
+            <a href="https://maps.google.com/?q=100+Saint+George+St,+Richmond,+KY+40475" target="_blank" rel="noopener noreferrer" class="location-card__link">
+              100 Saint George St<br />
+              Richmond, KY 40475
+            </a>
+          </address>
+        </div>
+
+        <div class="location-card location-card--phone">
+          <h3 class="location-card__title">Phone</h3>
+          <div class="location-card__content">
+            <a href="tel:+18596616182" class="location-card__link">(859) 661-6182</a>
+          </div>
+        </div>
+
+        <div class="location-card location-card--hours">
+          <h3 class="location-card__title">Hours</h3>
+          <div class="location-card__content">
+            <p class="location-card__hours-row">Monday – Saturday</p>
+            <p class="location-card__hours-row">10:00 AM – 7:00 PM</p>
+            <p class="location-card__hours-note">Closed Sundays</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="location-description">
+        Conveniently located in downtown Richmond, Kentucky. We serve customers from Richmond, Lexington, Nicholasville, Winchester, and surrounding areas. Book your private 90-minute fitting appointment today—no rush, just expert service dedicated to finding your perfect dress.
+      </p>
+
+      <a href="https://maps.google.com/?q=100+Saint+George+St,+Richmond,+KY+40475" target="_blank" rel="noopener noreferrer" class="button button--outline">Get Directions</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 12: FOOTER CTA -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="footer-cta">
+    <div class="footer-cta__container">
+      <h2 class="footer-cta__title">Ready to Find Your Perfect Look?</h2>
+      <p class="footer-cta__text">Book a 90-minute private fitting appointment at our Richmond boutique. Expert styling, quality dresses, personal service.</p>
+      <a href="/book-an-appointment/" class="button button--primary button--large">Book Your Fitting Now</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- STYLES -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* BOUTIQUE INTRO */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .boutique-intro {
+      padding: var(--space-16) var(--space-6);
+      background-color: var(--color-ivory);
+    }
+
+    .boutique-intro__container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .boutique-intro__heading {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      margin-bottom: var(--space-8);
+    }
+
+    .boutique-intro__text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-gray-dark);
+      margin-bottom: var(--space-6);
+    }
+
+    .boutique-intro__text em {
+      font-style: italic;
+      color: var(--color-gold);
+    }
+
+    .boutique-intro__container .button {
+      display: block;
+      margin-top: var(--space-8);
+      text-align: center;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* MINI TOC NAVIGATION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .mini-toc {
+      padding: var(--space-8) var(--space-6);
+      background-color: var(--color-champagne);
+    }
+
+    .mini-toc__container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .mini-toc__heading {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-6);
+    }
+
+    .mini-toc__nav {
+      display: flex;
+      gap: var(--space-6);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .mini-toc__link {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-black);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 0.25rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .mini-toc__link:hover {
+      border-bottom-color: var(--color-gold);
+      color: var(--color-gold);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* COLLECTION SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .collection-section {
+      padding: var(--space-16) var(--space-6);
+      background-color: white;
+    }
+
+    .collection-section:nth-child(odd) {
+      background-color: var(--color-ivory);
+    }
+
+    .collection-section__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .collection-section__title {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: var(--space-6);
+    }
+
+    .collection-section__description {
+      max-width: 700px;
+    }
+
+    .collection-mount {
+      aspect-ratio: 16 / 9;
+      margin-bottom: var(--space-12);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* SKELETON LOADER */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .skeleton-loader {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    @media (max-width: 640px) {
+      .skeleton-loader {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+      }
+    }
+
+    .skeleton-card {
+      background: var(--color-gray-lighter);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .skeleton-img {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(90deg, var(--color-gray-lighter) 25%, var(--color-gray-light) 50%, var(--color-gray-lighter) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .skeleton-loader.hidden {
+      display: none;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* COLLECTION LINKS */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .collection-links {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-12);
+      padding-top: var(--space-12);
+      border-top: 1px solid var(--color-gray-lighter);
+    }
+
+    .collection-links a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-gold);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .collection-links a:hover {
+      color: var(--color-black);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* CTA BLOCK */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .cta-block {
+      padding: var(--space-16) var(--space-6);
+    }
+
+    .cta-block--light {
+      background-color: var(--color-champagne);
+    }
+
+    .cta-block--dark {
+      background-color: var(--color-charcoal);
+      color: white;
+    }
+
+    .cta-block__container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta-block__title {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      margin-bottom: var(--space-12);
+    }
+
+    .cta-block__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .cta-block__item {
+      padding: var(--space-6);
+    }
+
+    .cta-block__item-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: inherit;
+    }
+
+    .cta-block__item-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: inherit;
+      opacity: 0.9;
+    }
+
+    .cta-block--dark .cta-block__item-text {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* FITTING EXPERIENCE */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .fitting-experience {
+      padding: var(--space-16) var(--space-6);
+      background-color: var(--color-ivory);
+    }
+
+    .fitting-experience__container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .fitting-experience__title {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: var(--space-12);
+    }
+
+    .fitting-experience__steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .fitting-experience__step {
+      text-align: center;
+      padding: var(--space-6);
+    }
+
+    .fitting-experience__number {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--color-gold);
+      margin-bottom: var(--space-4);
+      line-height: 1;
+    }
+
+    .fitting-experience__step-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--color-black);
+    }
+
+    .fitting-experience__step-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-gray-dark);
+    }
+
+    .fitting-experience__container .button {
+      display: block;
+      margin-top: var(--space-12);
+      text-align: center;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* REVIEWS SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .reviews-section {
+      padding: var(--space-16) var(--space-6);
+      background-color: white;
+      scroll-margin-top: var(--header-height);
+    }
+
+    .reviews-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .reviews-heading {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: var(--space-12);
+    }
+
+    .reviews-actions {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-8);
+    }
+
+    @media (max-width: 640px) {
+      .reviews-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .reviews-actions .button {
+        width: 100%;
+      }
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* LOCATION SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .location-section {
+      padding: var(--space-16) var(--space-6);
+      background-color: var(--color-ivory);
+    }
+
+    .location-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .location-heading {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: var(--space-12);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .location-card {
+      background: white;
+      padding: var(--space-8);
+      border-radius: 8px;
+      border: 1px solid var(--color-gray-lighter);
+      text-align: center;
+    }
+
+    .location-card__title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: var(--color-black);
+    }
+
+    .location-card__content {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-gray-dark);
+      font-style: normal;
+    }
+
+    .location-card__link {
+      color: var(--color-gold);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .location-card__link:hover {
+      color: var(--color-black);
+      text-decoration: underline;
+    }
+
+    .location-card__hours-row {
+      margin: var(--space-2) 0;
+    }
+
+    .location-card__hours-note {
+      font-size: 0.85rem;
+      color: var(--color-gray-medium);
+      margin-top: var(--space-3);
+    }
+
+    .location-description {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-gray-dark);
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .location-container .button {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* FOOTER CTA */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .footer-cta {
+      padding: var(--space-16) var(--space-6);
+      background: linear-gradient(135deg, var(--color-charcoal) 0%, rgba(43, 43, 43, 0.95) 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .footer-cta__container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .footer-cta__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 500;
+      margin-bottom: var(--space-6);
+      color: white;
+    }
+
+    .footer-cta__text {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+      opacity: 0.9;
+    }
+
+    .footer-cta .button {
+      display: inline-block;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* RESPONSIVE */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .fitting-experience__steps {
+        gap: var(--space-6);
+      }
+
+      .cta-block__grid {
+        gap: var(--space-6);
+      }
+    }
+  </style>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SHOPIFY COLLECTIONS INITIALIZATION SCRIPT (Performance-Optimized) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <script is:inline>
+    (function() {
+      // Collection configuration
+      const collections = [
+        {
+          id: '325786665159',
+          name: 'Prom2026',
+          mountId: 'collection-component-prom-2026',
+          skeletonId: 'skeleton-loader-prom',
+          guard: '__shopifyProm2026Initialized'
+        },
+        {
+          id: '325787287751',
+          name: 'Gala',
+          mountId: 'collection-component-gala-evening',
+          skeletonId: 'skeleton-loader-gala',
+          guard: '__shopifyGalaInitialized'
+        },
+        {
+          id: '325786435783',
+          name: 'NewArrivals',
+          mountId: 'collection-component-1772746445320',
+          skeletonId: 'skeleton-loader-arrivals',
+          guard: '__shopifyNewArrivalsInitialized'
+        }
+      ];
+
+      // Shopify options object (shared across all collections)
+      const shopifyOptions = {
+        product: {
+          styles: {
+            product: {
+              "@media (max-width: 600px)": {
+                "max-width": "calc(50% - 10px)",
+                "margin-left": "10px",
+                "margin-bottom": "40px",
+                "width": "calc(50% - 10px)"
+              },
+              "@media (min-width: 601px)": {
+                "max-width": "calc(25% - 20px)",
+                "margin-left": "20px",
+                "margin-bottom": "50px",
+                "width": "calc(25% - 20px)"
+              },
+              "img": {
+                "height": "calc(100% - 15px)",
+                "position": "absolute",
+                "left": "0",
+                "right": "0",
+                "top": "0"
+              },
+              "imgWrapper": {
+                "padding-top": "calc(75% + 15px)",
+                "position": "relative",
+                "height": "0"
+              }
+            },
+            "button": {
+              "font-family": "Gill Sans, sans-serif",
+              "font-size": "18px",
+              "padding-top": "17px",
+              "padding-bottom": "17px",
+              "color": "#c5a059",
+              ":hover": {
+                "color": "#c5a059",
+                "background-color": "#2e2e2e"
+              },
+              "background-color": "#333333",
+              ":focus": {
+                "background-color": "#2e2e2e"
+              },
+              "border-radius": "40px"
+            },
+            "quantityInput": {
+              "font-size": "18px",
+              "padding-top": "17px",
+              "padding-bottom": "17px"
+            }
+          },
+          "buttonDestination": "modal",
+          "contents": {
+            "options": false
+          },
+          "text": {
+            "button": "View product"
+          }
+        },
+        "productSet": {
+          "styles": {
+            "products": {
+              "@media (min-width: 601px)": {
+                "margin-left": "-20px"
+              }
+            }
+          }
+        },
+        "modalProduct": {
+          "contents": {
+            "img": false,
+            "imgWithCarousel": true,
+            "button": false,
+            "buttonWithQuantity": true
+          },
+          "styles": {
+            "product": {
+              "@media (min-width: 601px)": {
+                "max-width": "100%",
+                "margin-left": "0px",
+                "margin-bottom": "0px"
+              }
+            },
+            "button": {
+              "font-family": "Gill Sans, sans-serif",
+              "font-size": "18px",
+              "padding-top": "17px",
+              "padding-bottom": "17px",
+              "color": "#c5a059",
+              ":hover": {
+                "color": "#c5a059",
+                "background-color": "#2e2e2e"
+              },
+              "background-color": "#333333",
+              ":focus": {
+                "background-color": "#2e2e2e"
+              },
+              "border-radius": "40px"
+            },
+            "quantityInput": {
+              "font-size": "18px",
+              "padding-top": "17px",
+              "padding-bottom": "17px"
+            }
+          },
+          "text": {
+            "button": "Add to cart"
+          }
+        }
+      };
+
+      // Initialize Shopify collections with IntersectionObserver + first-interaction
+      function initializeCollections() {
+        // Prevent duplicate SDK loads
+        if (window.__shopifyBuyButtonScriptLoaded) return;
+        window.__shopifyBuyButtonScriptLoaded = true;
+
+        // Load Shopify Buy Button SDK
+        const script = document.createElement('script');
+        script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        script.async = true;
+
+        script.onload = function() {
+          // Iterate through each collection
+          collections.forEach(function(collection) {
+            // Guard against duplicate initialization
+            if (window[collection.guard]) return;
+            window[collection.guard] = true;
+
+            const mountDiv = document.getElementById(collection.mountId);
+            const skeletonDiv = document.getElementById(collection.skeletonId);
+
+            if (!mountDiv) return;
+
+            // Initialize ShopifyBuy
+            if (typeof ShopifyBuy !== 'undefined') {
+              const client = ShopifyBuy.buildClient({
+                domain: 'drwakf-ge.myshopify.com',
+                storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b'
+              });
+
+              ShopifyBuy.UI.onReady(client).then(function(ui) {
+                ui.createComponent('collection', {
+                  id: collection.id,
+                  node: mountDiv,
+                  moneyFormat: '%24%7B%7Bamount%7D%7D',
+                  options: shopifyOptions
+                });
+
+                // Hide skeleton loader
+                if (skeletonDiv) {
+                  skeletonDiv.classList.add('hidden');
+                }
+              });
+            }
+          });
+        };
+
+        document.head.appendChild(script);
+      }
+
+      // First-interaction trigger: scroll, pointer, touch, keydown
+      function armFirstInteraction() {
+        const events = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
+        const handleFirstInteraction = function() {
+          events.forEach(function(event) {
+            document.removeEventListener(event, handleFirstInteraction, { passive: true });
+          });
+          initializeCollections();
+        };
+
+        events.forEach(function(event) {
+          document.addEventListener(event, handleFirstInteraction, { passive: true });
+        });
+      }
+
+      // Arm on page load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', armFirstInteraction);
+      } else {
+        armFirstInteraction();
+      }
+    })();
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- JSON-LD SCHEMAS (SEO) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Vero's Boutique",
+      "image": "https://verosboutiqueky.com/images/hero-evening.webp",
+      "description": "Elegant formal gowns, prom dresses, and evening wear in Richmond, Kentucky",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "100 Saint George St",
+        "addressLocality": "Richmond",
+        "addressRegion": "KY",
+        "postalCode": "40475",
+        "addressCountry": "US"
+      },
+      "telephone": "+1-859-661-6182",
+      "url": "https://verosboutiqueky.com",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Richmond",
+        "addressRegion": "KY"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.249",
+        "longitude": "-84.270"
+      }
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://verosboutiqueky.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Formal Gowns",
+          "item": "https://verosboutiqueky.com/formal-gowns-richmond-ky/"
+        }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Formal Gowns Collections",
+      "itemListElement": [
+        {
+          "@type": "Thing",
+          "position": 1,
+          "name": "Prom 2026",
+          "description": "Stand out on prom night with a hand-selected gown from our Prom 2026 collection",
+          "url": "https://verosboutiqueky.com/formal-gowns-richmond-ky/prom-2026/"
+        },
+        {
+          "@type": "Thing",
+          "position": 2,
+          "name": "Gala & Evening Wear",
+          "description": "Elegant evening gowns for galas, formal events, and special occasions",
+          "url": "https://verosboutiqueky.com/formal-gowns-richmond-ky/gala-evening/"
+        },
+        {
+          "@type": "Thing",
+          "position": 3,
+          "name": "New Arrivals",
+          "description": "Fresh designs and the latest trends in formal fashion",
+          "url": "https://verosboutiqueky.com/formal-gowns-richmond-ky/new-arrivals/"
+        }
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AggregateRating",
+      "name": "Vero's Boutique",
+      "ratingValue": "5",
+      "ratingCount": "1",
+      "bestRating": "5",
+      "worstRating": "1",
+      "description": "Customer reviews and ratings for Vero's Boutique formal gown shop in Richmond, Kentucky"
+    }
+  </script>
 </BaseLayout>

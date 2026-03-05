@@ -144,7 +144,8 @@ const ctaButton = {
 
   <!-- Mobile Slide Menu -->
   <div id="mobile-menu" class="header__mobile-menu" data-menu-state="closed" aria-hidden="true">
-    <ul class="header__mobile-menu-list">
+    <div class="header__mobile-menu-inner">
+      <ul class="header__mobile-menu-list">
       {navLeft.map((link) => (
         <li class={link.dropdownItems ? "header__mobile-menu-item" : ""}>
           <div class={link.dropdownItems ? "header__mobile-menu-link-wrapper" : undefined}>
@@ -240,6 +241,7 @@ const ctaButton = {
         </a>
       </li>
     </ul>
+    </div>
   </div>
 </header>
 
@@ -625,18 +627,19 @@ const ctaButton = {
     left: 0;
     right: 0;
     bottom: 0;
+    height: calc(100dvh - 70px);
     background-color: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
     z-index: 101;
     /* Prevent header's backdrop-filter from affecting menu rendering */
     mix-blend-mode: normal;
     isolation: isolate;
-    padding: 2rem 1.5rem;
     visibility: hidden;
     transform: translateY(-100%);
     opacity: 0;
-    /* Tier 2: Stagger visibility transition — instant close (0s at end), delayed on open (0.3s at start) */
+    /* Stagger visibility transition — instant close (0s at end), delayed on open (0.3s at start) */
     transition: visibility 0s 0.3s, transform 0.3s ease, opacity 0.3s ease;
     pointer-events: none;
   }
@@ -646,8 +649,19 @@ const ctaButton = {
     visibility: visible;
     transform: translateY(0);
     opacity: 1;
-    transition: visibility 0s, transform 0.3s ease, opacity 0.3s ease;
+    transition: visibility 0s 0.3s, transform 0.3s ease, opacity 0.3s ease;
     pointer-events: auto;
+  }
+
+  /* Inner scrolling container — flex child that fills remaining space */
+  .header__mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem 1.5rem;
   }
 
   @keyframes slideIn {
@@ -668,6 +682,7 @@ const ctaButton = {
     display: flex;
     flex-direction: column;
     gap: 0;
+    width: 100%;
   }
 
   .header__mobile-menu-link {
@@ -809,28 +824,45 @@ const ctaButton = {
 </style>
 
 <script>
-  function initHeader() {
-    // Phase 1: Guard against duplicate initialization
-    if (window.__headerInitialized) return;
-    window.__headerInitialized = true;
+  // Set CSS variable for viewport height (iOS-safe height calculation)
+  function setVh() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
 
-    const header = document.getElementById("header");
-    const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobile-menu");
+  function initHeader() {
+    // Set viewport height variable immediately (iOS fix)
+    setVh();
+
+    // Instance-scoped guard: check if THIS header element is already initialized
+    const headerEl = document.getElementById("header");
+    if (!headerEl) return;
+    if (headerEl.dataset.initialized === "true") return;
+    headerEl.dataset.initialized = "true";
+
+    // Scope all element queries to headerEl to prevent stale references
+    const hamburger = headerEl.querySelector("#hamburger") as HTMLButtonElement | null;
+    const mobileMenu = headerEl.querySelector("#mobile-menu") as HTMLElement | null;
     const menuLinks = mobileMenu?.querySelectorAll(".header__mobile-menu-link, .header__mobile-menu-sublink, .header__mobile-menu-cta");
 
     // Scroll detection
     function handleScroll() {
       if (window.scrollY > 20) {
-        header?.classList.add("scrolled");
+        headerEl.classList.add("scrolled");
       } else {
-        header?.classList.remove("scrolled");
+        headerEl.classList.remove("scrolled");
       }
     }
 
     // Single source of truth: Centralized state management function
     function setMenuState(nextState: "open" | "closed") {
       if (!hamburger || !mobileMenu) return;
+      
+      // Recalculate viewport height and force iOS reflow on menu open
+      if (nextState === "open") {
+        setVh();
+        void mobileMenu.offsetHeight;
+      }
       
       // Update data attribute (single source of truth)
       mobileMenu.setAttribute("data-menu-state", nextState);
@@ -919,7 +951,7 @@ const ctaButton = {
       }
     }
 
-    // DEFENSIVE: Cleanup scroll lock on page visibility/navigation
+    // Cleanup scroll lock on page visibility/navigation
     function handleVisibilityChange() {
       if (hamburger?.getAttribute("aria-expanded") === "true") {
         closeMenu();
@@ -931,6 +963,8 @@ const ctaButton = {
     if (!hamburger || !mobileMenu) return () => {}; // Exit early if essential elements missing
     
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", setVh);
+    window.addEventListener("orientationchange", setVh);
     hamburger.addEventListener("click", toggleMenu);
     menuLinks?.forEach((link) => {
       link.addEventListener("click", closeMenu);
@@ -939,25 +973,22 @@ const ctaButton = {
     document.addEventListener("visibilitychange", handleVisibilityChange);
     
     // Click-outside handler for mobile menu overlay
-    // Guard: Flag to prevent duplicate listener attachment
-    if (!window.__burgerClickOutsideAttached) {
-      window.__burgerClickOutsideAttached = true;
-      document.addEventListener("click", (e: Event) => {
-        const target = e.target as HTMLElement;
-        
-        // Only process if menu is open
-        if (!hamburger || hamburger.getAttribute("aria-expanded") !== "true") return;
-        
-        // Don't close if clicking the hamburger button itself
-        if (target === hamburger || hamburger.contains(target)) return;
-        
-        // Don't close if clicking inside the mobile menu
-        if (!mobileMenu || target === mobileMenu || mobileMenu.contains(target)) return;
-        
-        // Clicked outside menu/hamburger - close the menu
-        closeMenu();
-      });
-    }
+    // Captures current hamburger/mobileMenu refs in closure (safe per-instance)
+    document.addEventListener("click", (e: Event) => {
+      const target = e.target as HTMLElement;
+      
+      // Only process if menu is open
+      if (!hamburger || hamburger.getAttribute("aria-expanded") !== "true") return;
+      
+      // Don't close if clicking the hamburger button itself
+      if (target === hamburger || hamburger.contains(target)) return;
+      
+      // Don't close if clicking inside the mobile menu
+      if (!mobileMenu || target === mobileMenu || mobileMenu.contains(target)) return;
+      
+      // Clicked outside menu/hamburger - close the menu
+      closeMenu();
+    });
     
     // Setup accordion toggles synchronously (now safe with event delegation)
     setupAccordions();
@@ -966,6 +997,8 @@ const ctaButton = {
     return () => {
       if (!hamburger || !mobileMenu) return;
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", setVh);
+      window.removeEventListener("orientationchange", setVh);
       hamburger.removeEventListener("click", toggleMenu);
       menuLinks?.forEach((link) => {
         link.removeEventListener("click", closeMenu);

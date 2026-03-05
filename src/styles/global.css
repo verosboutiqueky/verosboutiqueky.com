@@ -557,6 +557,88 @@ a:focus-visible {
 }
 
 /* ============================================================================
+   SECTION TITLE UTILITIES
+   ============================================================================ */
+
+/* Base section title (reusable across all pages) */
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--color-black);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+/* Large section title (h2-sized) */
+.section-title-lg {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
+/* Medium section title (h3-sized) */
+.section-title-md {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+/* Small section title */
+.section-title-sm {
+  font-size: 1.25rem;
+}
+
+/* Section subtitle/description */
+.section-subtitle {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-gray-dark);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-8);
+}
+
+/* ============================================================================
+   IMAGE CONTAINER (Per ui-patterns.md Standard)
+   ============================================================================ */
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f9f7f4;
+  transition: transform var(--transition-base);
+}
+
+.image-container:hover {
+  transform: translateY(-4px);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* Portrait aspect ratio variant */
+.image-container.portrait img {
+  aspect-ratio: 5 / 6;
+}
+
+/* Caption overlay for image containers */
+.image-container .image-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  margin: 0;
+  padding: var(--space-6) var(--space-4);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+}
+
+/* ============================================================================
    HERO SECTION
    ============================================================================ */
 

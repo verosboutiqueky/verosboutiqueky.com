@@ -190,42 +190,52 @@ const localBusinessSchema = {
     </div>
   </section>
 
-  <!-- Shop Collection Section (with Shopify placeholder & skeleton loader) -->
-  <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory); text-align: center;">
+  <!-- Shop New Arrivals Collection Section (Shopify Embed) -->
+  <section id="shopify-embed" style="padding: var(--space-16) var(--space-6); background-color: var(--color-ivory);">
     <div style="max-width: 900px; margin: 0 auto;">
-      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black);">
+      <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; letter-spacing: -0.5px; margin-bottom: var(--space-6); color: var(--color-black); text-align: center;">
         Shop New Formal Gowns
       </h2>
-      <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 1rem; line-height: 1.6; color: #555; margin-bottom: var(--space-8); max-width: 60ch; margin-left: auto; margin-right: auto; text-align: center;">
         Browse our newly arrived pieces or schedule a private appointment at Vero's Boutique in downtown Richmond to discover what just landed.
       </p>
 
-      <!-- Skeleton Loader (Visible Before Shopify Loads) -->
-      <div id="skeleton-loader" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); margin: var(--space-8) 0;">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} style="background-color: #f0f0f0; border-radius: 4px; height: 320px; animation: pulse 1.5s ease-in-out infinite;">
-            <div style="background-color: #e0e0e0; height: 240px; border-radius: 4px 4px 0 0;"></div>
+      <!-- Skeleton Loader Grid (8 cards, responsive 2–4 columns) -->
+      <div id="skeleton-loader" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); margin: var(--space-8) 0; padding: 0 var(--space-4);">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} style="background-color: #f5f5f5; border-radius: 4px; overflow: hidden; min-height: 360px;">
+            <div style="background-color: #e8e8e8; height: 280px; width: 100%; animation: pulse 1.5s ease-in-out infinite;"></div>
             <div style="padding: var(--space-4);">
-              <div style="background-color: #e0e0e0; height: 10px; border-radius: 2px; margin-bottom: var(--space-2);"></div>
-              <div style="background-color: #e0e0e0; height: 10px; border-radius: 2px; width: 80%;"></div>
+              <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; margin-bottom: var(--space-2); animation: pulse 1.5s ease-in-out infinite;"></div>
+              <div style="background-color: #e8e8e8; height: 12px; border-radius: 2px; width: 85%; animation: pulse 1.5s ease-in-out infinite;"></div>
             </div>
           </div>
         ))}
       </div>
 
-      <button id="shopify-load-btn" class="button button--primary">
-        View Collection
-      </button>
-      <div id="shopify-container" style="margin-top: var(--space-8); min-height: 300px; display: none;">
-        <!-- TODO: paste Shopify Buy Button HTML embed here -->
-        <p style="color: #999;">Loading collection...</p>
+      <!-- View Collection Button -->
+      <div style="text-align: center; margin: var(--space-8) 0;">
+        <button id="shopify-load-btn" class="button button--primary">
+          View Collection
+        </button>
       </div>
+
+      <!-- Shopify Mount Container (Hidden Until Loaded) -->
+      <div id="collection-component-1772746445320" style="margin-top: var(--space-8);"></div>
     </div>
 
     <style>
       @keyframes pulse {
         0%, 100% { opacity: 0.6; }
         50% { opacity: 1; }
+      }
+      /* Shopify mobile 2-up grid fallback guard */
+      @media (max-width: 600px) {
+        #shopify-embed [style*="calc(25%"] {
+          width: calc(50% - 10px) !important;
+          max-width: calc(50% - 10px) !important;
+          margin-left: 10px !important;
+        }
       }
     </style>
   </section>
@@ -277,37 +287,253 @@ const localBusinessSchema = {
     </div>
   </section>
 
-  <!-- Lazy-Load Shopify Script on Button Click (Lighthouse-Friendly) -->
+  <!-- Shopify Buy Button: First-Interaction + Click-to-Load Script (Performance-Optimized) -->
   <script is:inline>
     (function() {
+      // Guard against double initialization
+      if (window.__shopifyNewArrivalsInitialized) return;
+      
       const btn = document.getElementById('shopify-load-btn');
-      const container = document.getElementById('shopify-container');
-      let loaded = false;
-
-      if (!btn || !container) return;
-
-      btn.addEventListener('click', function() {
-        if (loaded) return;
-        loaded = true;
-
-        // TODO: set collectionId/productSet
-        // Example: const collectionId = "YOUR_COLLECTION_ID";
+      const skeletonLoader = document.getElementById('skeleton-loader');
+      const mountDiv = document.getElementById('collection-component-1772746445320');
+      
+      if (!btn || !mountDiv) return;
+      
+      // Function to clean up first-interaction event listeners
+      const cleanup = function() {
+        document.removeEventListener('scroll', handleFirstInteraction, { passive: true });
+        document.removeEventListener('pointerdown', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction, { passive: true });
+        document.removeEventListener('keydown', handleFirstInteraction);
+      };
+      
+      // Function to initialize Shopify
+      const initShopify = function() {
+        // Clean up first-interaction listeners
+        cleanup();
         
-        // Inject Shopify Buy Button script on first click
-        const script = document.createElement('script');
-        script.src = 'https://cdn.shopify.com/s/files/1/0704/6545/1731/t/2/assets/bf.js';
-        script.async = true;
-        script.onload = function() {
-          // Show container and render Shopify widget
-          container.style.display = 'block';
-          
-          // TODO: Initialize ShopifyBuy with your product/collection ID
-          // Example: ShopifyBuy.UI.onReady(client).createComponent('collection', {...});
-        };
-        document.head.appendChild(script);
-        btn.textContent = 'Loading...';
+        // Prevent multiple script loads
+        if (window.__shopifyBuyButtonScriptLoaded) return;
+        window.__shopifyBuyButtonScriptLoaded = true;
+        window.__shopifyNewArrivalsInitialized = true;
+        
+        // Update button UI
         btn.disabled = true;
+        btn.textContent = 'Loading…';
+        
+        // Inject Shopify Buy Button script
+        const script = document.createElement('script');
+        script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        script.async = true;
+        
+        script.onload = function() {
+          // Initialize ShopifyBuy with dual fallbacks
+          if (typeof ShopifyBuy !== 'undefined') {
+            const client = ShopifyBuy.buildClient({
+              domain: 'drwakf-ge.myshopify.com',
+              storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b'
+            });
+            
+            ShopifyBuy.UI.onReady(client).then(function(ui) {
+              ui.createComponent('collection', {
+                id: '325786435783',
+                node: mountDiv,
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+  "product": {
+    "styles": {
+      "product": {
+        "@media (max-width: 600px)": {
+          "max-width": "calc(50% - 10px)",
+          "margin-left": "10px",
+          "margin-bottom": "40px",
+          "width": "calc(50% - 10px)"
+        },
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px",
+          "width": "calc(25% - 20px)"
+        },
+        "img": {
+          "height": "calc(100% - 15px)",
+          "position": "absolute",
+          "left": "0",
+          "right": "0",
+          "top": "0"
+        },
+        "imgWrapper": {
+          "padding-top": "calc(75% + 15px)",
+          "position": "relative",
+          "height": "0"
+        }
+      },
+      "button": {
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#c5a059",
+        ":hover": {
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
+        },
+        "background-color": "#333333",
+        ":focus": {
+          "background-color": "#2e2e2e"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "buttonDestination": "modal",
+    "contents": {
+      "options": false
+    },
+    "text": {
+      "button": "View product"
+    }
+  },
+  "productSet": {
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#c5a059",
+        ":hover": {
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
+        },
+        "background-color": "#333333",
+        ":focus": {
+          "background-color": "#2e2e2e"
+        },
+        "border-radius": "40px"
+      },
+      "quantityInput": {
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "option": {},
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "18px",
+        "padding-top": "17px",
+        "padding-bottom": "17px",
+        "color": "#c5a059",
+        ":hover": {
+          "color": "#c5a059",
+          "background-color": "#2e2e2e"
+        },
+        "background-color": "#333333",
+        ":focus": {
+          "background-color": "#2e2e2e"
+        },
+        "border-radius": "40px"
+      }
+    },
+    "text": {
+      "total": "Subtotal",
+      "button": "Checkout"
+    }
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Gill Sans, sans-serif",
+        "background-color": "#333333",
+        ":hover": {
+          "background-color": "#2e2e2e"
+        },
+        ":focus": {
+          "background-color": "#2e2e2e"
+        }
+      },
+      "count": {
+        "font-size": "18px",
+        "color": "#c5a059",
+        ":hover": {
+          "color": "#c5a059"
+        }
+      },
+      "iconPath": {
+        "fill": "#c5a059"
+      }
+    }
+  }
+}
+              });
+              
+              // Hide skeleton and show mount div
+              if (skeletonLoader) {
+                skeletonLoader.style.display = 'none';
+              }
+              btn.style.display = 'none';
+            });
+          }
+        };
+        
+        script.onerror = function() {
+          window.__shopifyBuyButtonScriptLoaded = false;
+          window.__shopifyNewArrivalsInitialized = false;
+          btn.disabled = false;
+          btn.textContent = 'View Collection';
+        };
+        
+        document.head.appendChild(script);
+      };
+      
+      // First-interaction auto-load handler
+      const handleFirstInteraction = function() {
+        initShopify();
+      };
+      
+      // Button click handler
+      btn.addEventListener('click', function() {
+        initShopify();
       });
+      
+      // Add event listeners for first interaction: scroll, pointer, touch, keyboard
+      document.addEventListener('scroll', handleFirstInteraction, { passive: true });
+      document.addEventListener('pointerdown', handleFirstInteraction);
+      document.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+      document.addEventListener('keydown', handleFirstInteraction);
     })();
   </script>
 </BaseLayout>

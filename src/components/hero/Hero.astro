@@ -2,13 +2,19 @@
 // Hero.astro - Full-width collage-style hero section
 // No React. Pure Astro + CSS.
 
+interface CTAObject {
+  text?: string;
+  textMobile?: string;
+  href?: string;
+}
+
 interface Props {
   title?: string;
   titleItalic?: string;
   subtitle?: string;
-  primaryCTA?: string;
+  primaryCTA?: string | CTAObject;
   primaryCTAUrl?: string;
-  secondaryCTA?: string;
+  secondaryCTA?: string | CTAObject;
   secondaryCTAUrl?: string;
   location?: string;
   heroImage?: string;
@@ -27,6 +33,48 @@ const {
   heroImage = "/images/hero.webp",
   categories = ["Bridal", "Formal", "Florals"],
 } = Astro.props;
+
+// Normalize CTA values - handle both string and object formats
+const getPrimaryCTAText = (): string => {
+  if (typeof primaryCTA === 'object' && primaryCTA.text) {
+    return primaryCTA.text;
+  }
+  return typeof primaryCTA === 'string' ? primaryCTA : "Book a Private Appointment";
+};
+
+const getPrimaryCTAUrl = (): string => {
+  if (typeof primaryCTA === 'object' && primaryCTA.href) {
+    return primaryCTA.href;
+  }
+  return primaryCTAUrl || "#appointment";
+};
+
+const getPrimaryCTAMobileText = (): string => {
+  if (typeof primaryCTA === 'object' && primaryCTA.textMobile) {
+    return primaryCTA.textMobile;
+  }
+  return getPrimaryCTAText();
+};
+
+const getSecondaryCTAText = (): string => {
+  if (typeof secondaryCTA === 'object' && secondaryCTA.text) {
+    return secondaryCTA.text;
+  }
+  return typeof secondaryCTA === 'string' ? secondaryCTA : "Visit the Boutique";
+};
+
+const getSecondaryCTAUrl = (): string => {
+  if (typeof secondaryCTA === 'object' && secondaryCTA.href) {
+    return secondaryCTA.href;
+  }
+  return secondaryCTAUrl || "#";
+};
+
+const primaryText = getPrimaryCTAText();
+const primaryUrl = getPrimaryCTAUrl();
+const primaryMobileText = getPrimaryCTAMobileText();
+const secondaryText = getSecondaryCTAText();
+const secondaryUrl = getSecondaryCTAUrl();
 ---
 
 <section class="hero">
@@ -69,11 +117,11 @@ const {
 
         <!-- Primary & Secondary CTAs -->
         <div class="hero__ctas">
-          <a href={primaryCTAUrl} class="button button--primary">
-            {primaryCTA}
+          <a href={primaryUrl} class="button button--primary">
+            {primaryText}
           </a>
-          <a href={secondaryCTAUrl} class="button button--outline">
-            {secondaryCTA}
+          <a href={secondaryUrl} class="button button--outline">
+            {secondaryText}
           </a>
         </div>
 
@@ -99,8 +147,8 @@ const {
 
   <!-- Mobile Sticky CTA -->
   <div class="hero__mobile-cta">
-    <a href={primaryCTAUrl} class="button button--primary">
-      Book Appointment
+    <a href={primaryUrl} class="button button--primary">
+      {primaryMobileText}
     </a>
   </div>
 </section>

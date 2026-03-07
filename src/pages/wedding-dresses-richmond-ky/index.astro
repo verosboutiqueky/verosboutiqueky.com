@@ -1,22 +1,986 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/hero/Hero.astro';
+import GoogleReviewCard from '../../components/GoogleReviewCard.astro';
 
 const metadata = {
-  title: "Wedding Dresses Richmond KY | Bridal Gowns Vero's Boutique",
-  description: "Curated wedding dresses in Richmond, Kentucky. Find your perfect bridal gown at Vero's Boutique with personalized fitting and styling consultations.",
+  title: "Wedding Dresses Richmond KY | Bridal Gowns & Fittings | Vero's Boutique",
+  description: "Curated bridal gowns and personalized fittings in Richmond, Kentucky. Expert bridal stylists. Book your private 90-minute appointment today.",
 };
 ---
 
-<BaseLayout title={metadata.title} description={metadata.description} robots="noindex">
-  <div style="padding-top: 0; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center;">
-    <div style="text-align: center; max-width: 600px; padding: 0 2rem;">
-      <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 1.5rem; color: var(--color-black);">
-        OPENING<br />
-        <span style="font-style: italic;">FEBRUARY 2026</span>
-      </h1>
-      <p style="font-size: 1.125rem; font-weight: 500; line-height: 1.6; color: #2B2B2B; max-width: 45ch; margin: 0 auto;">
-        We're crafting something extraordinary. Join us for the launch of Vero's Boutique.
+<BaseLayout title={metadata.title} description={metadata.description} robots="index, follow">
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: HERO -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <Hero
+    title="Find Your Perfect"
+    titleItalic="Bridal Gown"
+    subtitle="Expert bridal styling. Curated selection. Your dream dress awaits."
+    primaryCTA="Explore Bridal Collections"
+    primaryCTAUrl="#bridal-collections"
+    secondaryCTA="Book a Bridal Fitting"
+    secondaryCTAUrl="/book-an-appointment/?service=bridal-fitting"
+    location="Hand-Curated Wedding Dresses"
+    categories={["Bridal", "Formal", "Florals"]}
+  />
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: BRIDAL BOUTIQUE AUTHORITY -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="boutique-intro">
+    <div class="boutique-intro__container">
+      <h2 class="section-title section-title-lg boutique-intro__heading">A Bridal Partner, Not Just a Dress Shop</h2>
+      
+      <p class="boutique-intro__text">
+        Vero's Boutique is more than a place to find a dress—it's a bridal experience. Located in downtown Richmond, Kentucky, we specialize in wedding gowns hand-selected for brides who deserve personalized attention. Whether you're from Richmond, Lexington, Nicholasville, or Winchester, we offer what big-box retailers can't: expert bridal consultants, a curated collection, and a private, pressure-free environment where your vision becomes reality.
       </p>
+
+      <p class="boutique-intro__text">
+        Our stylists specialize in wedding dresses. We listen to your vision, understand your comfort level, and present options that flatter your body type and personality. More than that—we coordinate your gown selection with your entire wedding aesthetic, ensuring your dress, florals, venue, and ceremony details work together seamlessly.
+      </p>
+
+      <a href="/book-an-appointment/?service=bridal-fitting" class="button button--primary">Book Your 90-Minute Bridal Fitting</a>
     </div>
-  </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: BRIDAL GOWN COLLECTIONS (SHOPIFY) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="collection-section" id="bridal-collections">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Bridal Gowns & Wedding Dresses</h2>
+      <p class="section-subtitle collection-section__description">
+        Hand-curated wedding dresses for Richmond & Madison County brides. From classic elegance to modern drama—browse our collections.
+      </p>
+
+      <!-- Skeleton Loader (8 cards) -->
+      <div id="skeleton-loader-bridal-gowns" class="skeleton-loader">
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+      </div>
+
+      <!-- Shopify Mount Point -->
+      <div id="collection-component-bridal-gowns" class="collection-mount"></div>
+
+      <!-- Static Links (SEO) -->
+      <div class="collection-links">
+        <a href="/wedding-dresses-richmond-ky/">View Full Bridal Collection</a>
+        <a href="/book-an-appointment/?service=bridal-fitting">Book a Fitting</a>
+        <a href="/reviews/">Read Customer Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: CTA BLOCK #1 - BENEFITS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cta-block cta-block--light">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Why Choose Vero's Boutique for Your Bridal Gown?</h2>
+      <div class="cta-block__grid">
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Expert Bridal Consultants</h3>
+          <p class="cta-block__item-text">Our stylists specialize in wedding dresses. We listen to your vision, assess your comfort level, and present options that flatter your body type and personality. No rushing. No judgment. Just you, your gown, and expert guidance.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Curated Collections</h3>
+          <p class="cta-block__item-text">We hand-select every piece in our boutique. No overwhelming racks. Every dress reflects current trends, timeless elegance, and quality craftsmanship. You're shopping from a thoughtfully edited selection, not generic inventory.</p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Integrated Wedding Services</h3>
+          <p class="cta-block__item-text">Need wedding planning or ceremony florals? We coordinate your gown selection with venue design, floral aesthetics, and day-of coordination. Your wedding looks cohesive, not fragmented.</p>
+        </div>
+      </div>
+      <div class="button-row">
+        <a href="/book-an-appointment/?service=bridal-fitting" class="button button--primary button--large">Book a Fitting Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5: THE BRIDAL FITTING EXPERIENCE -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="bridal-experience">
+    <div class="bridal-experience__container">
+      <h2 class="section-title section-title-lg section-heading-centered">The Vero's Bridal Experience</h2>
+
+      <div class="experience-content">
+        <div class="experience-subsection">
+          <h3>What to Expect</h3>
+          <p>Schedule a 90-minute private appointment—one bride, expert engagement. You'll work directly with our experienced bridal stylists in our Richmond boutique, where we focus entirely on finding the dress that makes you feel like yourself.</p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>Preparation</h3>
+          <p>Bring photos or ideas of styles you love, plus any notes about your wedding vision. Wear nude undergarments and shoes with a similar heel height to what you'll wear on your wedding day. This helps us assess the true fit and look of each gown.</p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>The Process</h3>
+          <p>First, we'll chat about your vision, wedding date, and what you're looking for. Then we'll present hand-selected options from our curated collection. Try on dresses that match your style and comfort level. Our team provides honest styling feedback, helping you see how each gown makes you feel. Finally, we discuss alterations, timeline, and next steps.</p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>After Your Fitting</h3>
+          <p>Once you've chosen your gown, we'll guide you through alterations. Our expert team handles hemming, taking in/letting out, and custom adjustments. We provide comprehensive care instructions and preservation guidance to ensure your dress looks perfect on your wedding day and beyond.</p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>Frequently Asked Questions</h3>
+          <ul class="experience-faq">
+            <li><strong>Do you take walk-ins?</strong> Yes, when availability allows. We recommend booking ahead to guarantee your ideal time slot.</li>
+            <li><strong>Can I bring bridesmaids?</strong> Absolutely. We encourage bringing your trusted bridal party for a fun, supportive fitting experience.</li>
+            <li><strong>Do you offer alterations?</strong> Yes, our expert in-house team handles all alterations with care and precision.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 6: BRIDAL ACCESSORIES & CEREMONY TRADITIONS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="collection-section" id="accessories">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Complete Your Bridal Look — Accessories & Ceremony Traditions</h2>
+      <p class="section-subtitle collection-section__description">
+        A bridal gown is just the beginning. We have everything from veils and jewelry to ceremonial pieces—including the traditional wedding lasso (rosario de boda). Finish your look with pieces that honor your style and traditions.
+      </p>
+
+      <!-- What We Carry Section -->
+      <div class="accessories-detail-box accessories-detail-box--gold">
+        <h3>What We Carry</h3>
+        <ul>
+          <li>Veils, headpieces & hair accessories</li>
+          <li>Bridal jewelry (earrings, necklaces, bracelets, anklets)</li>
+          <li>Ring pillows (classic & custom options)</li>
+          <li>Wedding lasso / lazo de boda / rosario de boda (traditional ceremony piece)</li>
+          <li>Ceremony accessories (handkerchiefs, garters, finishing touches)</li>
+          <li>Undergarments & shaping for the perfect fit</li>
+        </ul>
+      </div>
+
+      <!-- The Tradition Behind It Section -->
+      <div class="accessories-detail-box accessories-detail-box--charcoal">
+        <h3>The Tradition Behind It</h3>
+        <p>
+          For many Latina and Latinx brides, the lasso (lazo de boda or rosario de boda) is a sacred part of the ceremony. It's placed around the couple during the vows as a symbol of unity and blessing. We source quality pieces that honor this tradition and can guide you in styling it to match your bridal aesthetic. Whether you're incorporating cultural traditions or seeking ceremony details that feel personal, we respect every bride's journey.
+        </p>
+      </div>
+
+      <!-- Skeleton Loader (4 cards) -->
+      <div id="skeleton-loader-accessories" class="skeleton-loader">
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+        <div class="skeleton-card"><div class="skeleton-img"></div></div>
+      </div>
+
+      <!-- Shopify Mount Point -->
+      <div id="collection-component-accessories" class="collection-mount"></div>
+
+      <!-- Static Links (SEO) -->
+      <div class="collection-links">
+        <a href="/wedding-dresses-richmond-ky/#accessories">View All Accessories</a>
+        <a href="/book-an-appointment/?service=bridal-fitting">Book an Accessory Consultation</a>
+        <a href="/reviews/">Read Bridal Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 7: INTEGRATED WEDDING SERVICES -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="integrated-services">
+    <div class="integrated-services__container">
+      <h2 class="section-title section-title-lg section-heading-centered">Plan Your Entire Wedding With Vero's</h2>
+      <p class="section-intro">
+        Your bridal gown doesn't stand alone. Once you've found your dress, our integrated services help you design every other detail—from florals to coordination to venue transformation.
+      </p>
+
+      <!-- Services Grid -->
+      <div class="links-grid">
+        <a href="/wedding-planning-richmond-ky/" class="link-card">
+          <span class="link-icon">🎨</span>
+          <span class="link-text">
+            <strong>Wedding Planning & Coordination</strong>
+            Month-of coordination to full planning. Design your wedding day with expert guidance on vendor coordination, gown alignment, and decor styling.
+          </span>
+        </a>
+        <a href="/wedding-prom-florist-richmond-ky/" class="link-card">
+          <span class="link-icon">🌸</span>
+          <span class="link-text">
+            <strong>Wedding Florals & Ceremony Design</strong>
+            Bridal bouquets & ceremony florals coordinated with your gown aesthetic. Same-day arrangements available.
+          </span>
+        </a>
+        <a href="/event-planning-richmond-ky/" class="link-card">
+          <span class="link-icon">💒</span>
+          <span class="link-text">
+            <strong>Ceremony & Venue Coordination</strong>
+            Full venue transformation, ceremony setup, and day-of logistics. Your vision brought to life.
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 8: CTA BLOCK #2 - BOOKING EMPHASIS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="cta-block cta-block--dark">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Ready to Find Your Dream Wedding Dress?</h2>
+      <p class="section-intro">
+        Book a private 90-minute fitting at our Richmond boutique. Our bridal stylists will help you discover the gown that makes you feel like yourself on your wedding day.
+      </p>
+      <div class="button-row">
+        <a href="/book-an-appointment/?service=bridal-fitting" class="button button--primary button--large">Book a Bridal Fitting</a>
+        <a href="#accessories" class="button button--outline button--large">Shop Wedding Accessories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 9: SOCIAL PROOF / REVIEWS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="reviews-section">
+    <div class="reviews-section__container">
+      <h2 class="section-title section-title-lg section-heading-small-margin">Trusted by Richmond Brides</h2>
+      <p class="section-intro">
+        See what brides in Richmond, Lexington, and Central Kentucky say about their Vero's Boutique experience.
+      </p>
+
+      <div class="reviews-grid">
+        <GoogleReviewCard
+          reviewerName="Sarah M."
+          rating={5}
+          timeAgo="2 weeks ago"
+          reviewText="The experience was incredible. Vero's team understood exactly what I was looking for and helped me find the dress I didn't even know I needed. From consultation to alterations, everything was handled with such care and expertise."
+        />
+        <GoogleReviewCard
+          reviewerName="Jessica L."
+          rating={5}
+          timeAgo="1 month ago"
+          reviewText="They made me feel so comfortable and never pressured me. The personal styling made all the difference. I found my dream dress! Can't recommend Vero's highly enough for any bride-to-be."
+        />
+        <GoogleReviewCard
+          reviewerName="Maria D."
+          rating={5}
+          timeAgo="6 weeks ago"
+          reviewText="From the fitting to alterations, every step was handled with care. This is not your typical bridal shop—it's an experience. The team truly understands what brides need and delivers on it."
+        />
+      </div>
+
+      <div class="centered-content">
+        <a href="/reviews/" class="button button--outline">See More Bridal Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shopify Buy Button Scripts -->
+  <script>
+    (function () {
+      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          ShopifyBuyInit();
+        } else {
+          loadScript();
+        }
+      } else {
+        loadScript();
+      }
+
+      function loadScript() {
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = scriptURL;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+        script.onload = ShopifyBuyInit;
+      }
+
+      function ShopifyBuyInit() {
+        var client = ShopifyBuy.buildClient({
+          domain: 'drwakf-ge.myshopify.com',
+          storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b',
+        });
+
+        ShopifyBuy.UI.onReady(client).then(function (ui) {
+          // Function to hide skeleton loaders when collection mounts
+          function hideSkeleton(mountPointId, skeletonId) {
+            var mountPoint = document.getElementById(mountPointId);
+            var skeleton = document.getElementById(skeletonId);
+            if (mountPoint && skeleton) {
+              var observer = new MutationObserver(function(mutations) {
+                if (mountPoint.children.length > 0) {
+                  skeleton.style.display = 'none';
+                  observer.disconnect();
+                }
+              });
+              observer.observe(mountPoint, { childList: true });
+            }
+          }
+
+          // Bridal Gowns Collection
+          ui.createComponent('collection', {
+            id: '327300710599',
+            node: document.getElementById('collection-component-bridal-gowns'),
+            moneyFormat: '%24%7B%7Bamount%7D%7D',
+            options: {
+              product: {
+                styles: {
+                  product: {
+                    '@media (min-width: 601px)': {
+                      'max-width': 'calc(25% - 20px)',
+                      'margin-left': '20px',
+                      'margin-bottom': '50px',
+                      'width': 'calc(25% - 20px)',
+                    },
+                    img: {
+                      height: 'calc(100% - 15px)',
+                      position: 'absolute',
+                      left: '0',
+                      right: '0',
+                      top: '0',
+                    },
+                    imgWrapper: {
+                      'padding-top': 'calc(75% + 15px)',
+                      position: 'relative',
+                      height: '0',
+                    },
+                  },
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                buttonDestination: 'modal',
+                contents: {
+                  options: false,
+                },
+                text: {
+                  button: 'View product',
+                },
+              },
+              productSet: {
+                styles: {
+                  products: {
+                    '@media (min-width: 601px)': {
+                      'margin-left': '-20px',
+                    },
+                  },
+                },
+              },
+              modalProduct: {
+                contents: {
+                  img: false,
+                  imgWithCarousel: true,
+                  button: false,
+                  buttonWithQuantity: true,
+                },
+                styles: {
+                  product: {
+                    '@media (min-width: 601px)': {
+                      'max-width': '100%',
+                      'margin-left': '0px',
+                      'margin-bottom': '0px',
+                    },
+                  },
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                text: {
+                  button: 'Add to cart',
+                },
+              },
+              cart: {
+                styles: {
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                text: {
+                  total: 'Subtotal',
+                  button: 'Checkout',
+                },
+              },
+            },
+          });
+          hideSkeleton('collection-component-bridal-gowns', 'skeleton-loader-bridal-gowns');
+
+          // Bridal Accessories Collection
+          ui.createComponent('collection', {
+            id: '325787189447',
+            node: document.getElementById('collection-component-accessories'),
+            moneyFormat: '%24%7B%7Bamount%7D%7D',
+            options: {
+              product: {
+                styles: {
+                  product: {
+                    '@media (min-width: 601px)': {
+                      'max-width': 'calc(25% - 20px)',
+                      'margin-left': '20px',
+                      'margin-bottom': '50px',
+                      'width': 'calc(25% - 20px)',
+                    },
+                    img: {
+                      height: 'calc(100% - 15px)',
+                      position: 'absolute',
+                      left: '0',
+                      right: '0',
+                      top: '0',
+                    },
+                    imgWrapper: {
+                      'padding-top': 'calc(75% + 15px)',
+                      position: 'relative',
+                      height: '0',
+                    },
+                  },
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                buttonDestination: 'modal',
+                contents: {
+                  options: false,
+                },
+                text: {
+                  button: 'View product',
+                },
+              },
+              productSet: {
+                styles: {
+                  products: {
+                    '@media (min-width: 601px)': {
+                      'margin-left': '-20px',
+                    },
+                  },
+                },
+              },
+              modalProduct: {
+                contents: {
+                  img: false,
+                  imgWithCarousel: true,
+                  button: false,
+                  buttonWithQuantity: true,
+                },
+                styles: {
+                  product: {
+                    '@media (min-width: 601px)': {
+                      'max-width': '100%',
+                      'margin-left': '0px',
+                      'margin-bottom': '0px',
+                    },
+                  },
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                text: {
+                  button: 'Add to cart',
+                },
+              },
+              cart: {
+                styles: {
+                  button: {
+                    'font-family': 'Gill Sans, sans-serif',
+                    'font-size': '14px',
+                    'padding-top': '15px',
+                    'padding-bottom': '15px',
+                    color: '#c5a059',
+                    ':hover': {
+                      color: '#c5a059',
+                      'background-color': '#494949',
+                    },
+                    'background-color': '#2b2b2b',
+                    ':focus': {
+                      'background-color': '#494949',
+                    },
+                    'border-radius': '40px',
+                  },
+                },
+                text: {
+                  total: 'Subtotal',
+                  button: 'Checkout',
+                },
+              },
+            },
+          });
+          hideSkeleton('collection-component-accessories', 'skeleton-loader-accessories');
+        });
+      }
+    })();
+  </script>
+
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* SECTION BASE STYLES - CONSISTENT PADDING */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .boutique-intro,
+    .collection-section,
+    .cta-block,
+    .integrated-services,
+    .bridal-experience,
+    .reviews-section {
+      padding: var(--space-12) var(--space-6);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* BOUTIQUE INTRO SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .boutique-intro__container {
+      max-width: 70ch;
+      margin: 0 auto;
+    }
+
+    .boutique-intro__heading {
+      margin-bottom: var(--space-6);
+    }
+
+    .boutique-intro__text {
+      margin-bottom: var(--space-6);
+      font-size: 1.0625rem;
+      line-height: var(--lh-loose);
+      color: var(--color-charcoal);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* BRIDAL EXPERIENCE SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .experience-content {
+      max-width: 70ch;
+      margin: 0 auto;
+    }
+
+    .experience-subsection {
+      margin-bottom: var(--space-8);
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-charcoal) 10%, transparent);
+    }
+
+    .experience-subsection:last-child {
+      border-bottom: none;
+    }
+
+    .experience-subsection h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--color-black);
+      margin-top: 0;
+    }
+
+    .experience-subsection p {
+      font-size: 1.0625rem;
+      line-height: var(--lh-loose);
+      color: var(--color-charcoal);
+      margin: 0;
+    }
+
+    .experience-faq {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .experience-faq li {
+      margin-bottom: var(--space-4);
+      font-size: 1.0625rem;
+      line-height: var(--lh-loose);
+      color: var(--color-charcoal);
+    }
+
+    .experience-faq li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* COLLECTION SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .collection-section__container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .collection-section__title {
+      margin-bottom: var(--space-2);
+    }
+
+    .section-subtitle {
+      max-width: 70ch;
+      margin: 0 auto var(--space-8);
+      font-size: 1.0625rem;
+      line-height: var(--lh-loose);
+      color: var(--color-charcoal);
+      text-align: center;
+    }
+
+    .skeleton-loader {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+
+    .skeleton-loader.visible {
+      display: grid;
+    }
+
+    .skeleton-card {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .skeleton-img {
+      background: color-mix(in srgb, var(--color-charcoal) 10%, transparent);
+      padding-bottom: 100%;
+      border-radius: 4px;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .collection-mount {
+      margin-bottom: var(--space-10);
+    }
+
+    .collection-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      margin-top: var(--space-10);
+    }
+
+    .collection-links a {
+      color: var(--color-gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-bottom: 2px solid var(--color-gold);
+      padding-bottom: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .collection-links a:hover {
+      color: var(--color-charcoal);
+      border-bottom-color: var(--color-charcoal);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* ACCESSORIES DETAIL BOXES */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .accessories-detail-box {
+      max-width: 70ch;
+      margin: var(--space-8) auto var(--space-10);
+      padding: var(--space-6);
+      border-radius: 4px;
+    }
+
+    .accessories-detail-box h3 {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: var(--space-4);
+      color: var(--color-black);
+      margin-top: 0;
+    }
+
+    .accessories-detail-box ul {
+      padding-left: var(--space-6);
+      color: var(--color-charcoal);
+      line-height: var(--lh-loose);
+      margin: 0;
+    }
+
+    .accessories-detail-box ul li {
+      margin-bottom: var(--space-2);
+    }
+
+    .accessories-detail-box p {
+      color: var(--color-charcoal);
+      line-height: var(--lh-loose);
+      margin: 0;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* CTA BLOCK */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .cta-block--light {
+      background: color-mix(in srgb, var(--color-gold) 3%, transparent);
+    }
+
+    .cta-block--dark {
+      background: color-mix(in srgb, var(--color-charcoal) 95%, transparent);
+      color: var(--color-ivory);
+    }
+
+    .cta-block__container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .bridal-experience__container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .integrated-services__container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .reviews-section__container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 60ch;
+      margin: var(--space-6) auto var(--space-10);
+      font-size: 1.125rem;
+      line-height: var(--lh-loose);
+    }
+
+    .cta-block__title {
+      text-align: center;
+      margin-bottom: var(--space-8);
+      color: inherit;
+      margin-top: 0;
+    }
+
+    .cta-block__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .cta-block__item {
+      padding: var(--space-6);
+    }
+
+    .cta-block__item-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: inherit;
+      margin-top: 0;
+    }
+
+    .cta-block__item-text {
+      font-size: 1rem;
+      line-height: var(--lh-loose);
+      color: inherit;
+      margin: 0;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* INTEGRATED SERVICES SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-6);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .links-grid a {
+      padding: var(--space-6);
+      border: 2px solid color-mix(in srgb, var(--color-charcoal) 10%, transparent);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--color-charcoal);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+
+    .links-grid a:hover {
+      border-color: var(--color-gold);
+      background: color-mix(in srgb, var(--color-gold) 3%, transparent);
+      transform: translateY(-4px);
+    }
+
+    .link-icon {
+      display: inline-block;
+      font-size: 2.5rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .link-text {
+      font-size: 1rem;
+      line-height: var(--lh-loose);
+    }
+
+    .link-text strong {
+      display: block;
+      margin-bottom: var(--space-2);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* ACCESSORIES DETAIL BOXES */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .accessories-detail-box {
+      padding: var(--space-6);
+      border-radius: 4px;
+      margin-bottom: var(--space-6);
+    }
+
+    .accessories-detail-box--gold {
+      background-color: color-mix(in srgb, var(--color-gold) 3%, transparent);
+    }
+
+    .accessories-detail-box--charcoal {
+      background-color: color-mix(in srgb, var(--color-charcoal) 3%, transparent);
+    }
+
+    .accessories-detail-box h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0 0 var(--space-4) 0;
+    }
+
+    .accessories-detail-box ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      list-style: inherit;
+    }
+
+    .accessories-detail-box li {
+      margin-bottom: var(--space-2);
+      font-size: 1rem;
+      line-height: var(--lh-loose);
+    }
+
+    .accessories-detail-box p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: var(--lh-loose);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* REVIEWS SECTION */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    .reviews-section {
+      background: color-mix(in srgb, var(--color-ivory) 95%, transparent);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6);
+      max-width: 1000px;
+      margin: 0 auto var(--space-10);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════ */
+    /* RESPONSIVE DESIGN */
+    /* ═════════════════════════════════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .skeleton-loader {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-4);
+      }
+
+      .cta-block__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collection-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .experience-subsection {
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-6);
+      }
+
+      .links-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </BaseLayout>

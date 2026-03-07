@@ -1,22 +1,1106 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/hero/Hero.astro';
+import GoogleReviewCard from '../../components/GoogleReviewCard.astro';
 
-const metadata = {
-  title: "Quinceañera Dresses Richmond KY | Vero's Boutique",
-  description: "Beautiful quinceañera gowns in Richmond, Kentucky. Personalized fittings and styling for your special quinceañera celebration at Vero's Boutique.",
-};
+const heroCategories = ['Quinceañera', 'Formal Events', 'Court Styling'];
 ---
 
-<BaseLayout title={metadata.title} description={metadata.description} robots="noindex">
-  <div style="padding-top: 0; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center;">
-    <div style="text-align: center; max-width: 600px; padding: 0 2rem;">
-      <h1 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 1.5rem; color: var(--color-black);">
-        OPENING<br />
-        <span style="font-style: italic;">FEBRUARY 2026</span>
-      </h1>
-      <p style="font-size: 1.125rem; font-weight: 500; line-height: 1.6; color: #2B2B2B; max-width: 45ch; margin: 0 auto;">
-        We're crafting something extraordinary. Join us for the launch of Vero's Boutique.
+<BaseLayout
+  title="Quinceañera Dresses & XV Gowns in Richmond, KY | Vero's Boutique"
+  description="Expert quinceañera dress selection, court coordination, and XV styling in Richmond, Kentucky. Bilingual consultations, family-centered fittings, and complete celebration planning."
+  canonicalURL="https://verosboutiqueky.com/quinceanera-dresses-richmond-ky/"
+  ogImage="/og-images/quinceanera-dresses.jpg"
+>
+  <!-- SECTION 1: HERO -->
+  <Hero
+    title="Find Your Perfect Quinceañera Gown"
+    subtitle="XV celebration dresses curated for authenticity, beauty, and cultural pride. Expert styling, family-centered fittings, and complete celebration support from Richmond's quinceañera specialists."
+    heroImage="/images/quinceanera-dresses-richmond-ky/hero-quinceanera-court-styling.webp"
+    imageAlt="Diverse quinceañera celebration with court styling and traditional dress"
+    categories={heroCategories}
+    primaryCTA={{ text: "Book Fitting", textMobile: "Book", href: "/book-an-appointment/?service=quince-fitting" }}
+    secondaryCTA={{ text: "Shop", href: "#quince-collections" }}
+  />
+
+  <!-- SECTION 2: BOUTIQUE AUTHORITY -->
+  <section class="boutique-intro">
+    <div class="boutique-intro__container">
+      <h2 class="section-title section-title-lg boutique-intro__heading">A Quinceañera Partner, Not Just a Dress Shop</h2>
+      
+      <p class="boutique-intro__text">
+        Your quinceañera is a milestone moment—a celebration of family, culture, and the beautiful young woman you're becoming. At Vero's, we understand the significance of XV. It's not about filling a closet; it's about honoring tradition while expressing your unique style. Our team of XV specialists has spent years perfecting the art of quinceañera styling—from gown selection to court coordination.
       </p>
+
+      <p class="boutique-intro__text">
+        We celebrate diverse cultural expressions of XV. Whether your celebration follows tradition or creates something entirely new, we're here to support your vision. Our bilingual team understands the importance of family involvement. We welcome mothers, grandmothers, and court members to fittings. We guide court aesthetic decisions. We listen to your cultural preferences, timeline needs, and dream vision.
+      </p>
+
+      <div class="button-row">
+        <a href="/book-an-appointment/" class="button button--primary">Schedule Your 90-Minute XV Fitting</a>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- SECTION 3: GOWN COLLECTIONS -->
+  <section id="quince-collections" class="collection-section">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Quinceañera Gowns & XV Dresses</h2>
+      <p class="section-subtitle collection-section__description">Hand-curated dresses for every XV vision—from classic tradition to bold contemporary styles. Diverse sizes, colors, and silhouettes that celebrate you.</p>
+      <div id='collection-component-1772828940032'></div>
+      <script type="text/javascript">
+        /*<![CDATA[*/
+        (function () {
+          var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+          if (window.ShopifyBuy) {
+            if (window.ShopifyBuy.UI) {
+              ShopifyBuyInit();
+            } else {
+              loadScript();
+            }
+          } else {
+            loadScript();
+          }
+          function loadScript() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = scriptURL;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+            script.onload = ShopifyBuyInit;
+          }
+          function ShopifyBuyInit() {
+            var client = ShopifyBuy.buildClient({
+              domain: 'drwakf-ge.myshopify.com',
+              storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b',
+            });
+            ShopifyBuy.UI.onReady(client).then(function (ui) {
+              ui.createComponent('collection', {
+                id: '325786730695',
+                node: document.getElementById('collection-component-1772828940032'),
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+          "product": {
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "calc(25% - 20px)",
+                  "margin-left": "20px",
+                  "margin-bottom": "50px",
+                  "width": "calc(25% - 20px)"
+                },
+                "img": {
+                  "height": "calc(100% - 15px)",
+                  "position": "absolute",
+                  "left": "0",
+                  "right": "0",
+                  "top": "0"
+                },
+                "imgWrapper": {
+                  "padding-top": "calc(75% + 15px)",
+                  "position": "relative",
+                  "height": "0"
+                }
+              },
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              },
+              "quantityInput": {
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px"
+              }
+            },
+            "buttonDestination": "modal",
+            "contents": {
+              "options": false
+            },
+            "text": {
+              "button": "View product"
+            }
+          },
+          "productSet": {
+            "styles": {
+              "products": {
+                "@media (min-width: 601px)": {
+                  "margin-left": "-20px"
+                }
+              }
+            }
+          },
+          "modalProduct": {
+            "contents": {
+              "img": false,
+              "imgWithCarousel": true,
+              "button": false,
+              "buttonWithQuantity": true
+            },
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "100%",
+                  "margin-left": "0px",
+                  "margin-bottom": "0px"
+                }
+              },
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              },
+              "quantityInput": {
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px"
+              }
+            },
+            "text": {
+              "button": "Add to cart"
+            }
+          },
+          "option": {},
+          "cart": {
+            "styles": {
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              }
+            },
+            "text": {
+              "total": "Subtotal",
+              "button": "Checkout"
+            }
+          },
+          "toggle": {
+            "styles": {
+              "toggle": {
+                "font-family": "Gill Sans, sans-serif",
+                "background-color": "#2b2b2b",
+                ":hover": {
+                  "background-color": "#494949"
+                },
+                ":focus": {
+                  "background-color": "#494949"
+                }
+              },
+              "count": {
+                "font-size": "14px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059"
+                }
+              },
+              "iconPath": {
+                "fill": "#c5a059"
+              }
+            }
+          }
+        },
+              });
+            });
+          }
+        })();
+        /*]]>*/
+      </script>
+      <div class="collection-links">
+        <a href="#quince-collections" class="link-subtle">← All Quinceañera Dresses</a>
+        <a href="/book-an-appointment/" class="link-subtle">Book Your Fitting →</a>
+        <a href="/reviews/" class="link-subtle">See Family Reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: BENEFITS CTA -->
+  <section class="cta-block cta-block--light">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Why Choose Vero's for Your Quinceañera?</h2>
+      <div class="cta-block__grid">
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">XV Milestone Specialists</h3>
+          <p class="cta-block__item-text">
+            We don't treat your XV like a prom dress purchase. Our team understands quinceañera traditions, celebrates cultural significance, and respects the family journey. Court coordination, cultural context, and personal attention are our standard.
+          </p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Curated Collections</h3>
+          <p class="cta-block__item-text">
+            Our quinceañera selection balances quality, cultural authenticity, and diverse styles. Whether you envision classic white lace, bold jewel tones, or contemporary designs, we've curated options that honor XV tradition while expressing your individuality.
+          </p>
+        </div>
+        <div class="cta-block__item">
+          <h3 class="cta-block__item-title">Complete XV Services</h3>
+          <p class="cta-block__item-text">
+            Beyond the dress, we support your entire celebration. From quinceañera planning and event florals to venue coordination, Vero's connects you with specialists who understand the full XV vision—not just the dress.
+          </p>
+        </div>
+      </div>
+      <div class="button-row">
+        <a href="/book-an-appointment/" class="button button--primary button--large">Book Your XV Fitting</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: FITTING EXPERIENCE -->
+  <section class="bridal-experience">
+    <div class="bridal-experience__container">
+      <h2 class="section-title section-title-lg section-heading-centered">The Vero's Quinceañera Fitting Experience</h2>
+
+      <div class="experience-content">
+        <div class="experience-subsection">
+          <h3>What to Expect</h3>
+          <p>
+            Plan for a 90-minute fitting where you're the expert on your own preferences. Our XV specialists will guide you through options, discuss fit and alterations, and involve your family in decision-making. You'll try multiple styles, get honest styling feedback, and leave with a clear vision—and often, a booking.
+          </p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>Bring Your Vision</h3>
+          <p>
+            Inspiration photos? Excellent. Court colors? Share them. Your XV date? We need that for timeline planning. Cultural or family preferences? We want to hear them. Whether you're prioritizing tradition, comfort, modern style, or a blend of everything, tell us upfront. This is your vision; we're here to validate it.
+          </p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>The Fitting Process</h3>
+          <p>
+            We'll try dresses that match your vision, assess fit and proportions, discuss alterations needs, and talk through court coordination if you're styling damas. Mothers, grandmothers, and court members are welcome—and encouraged. This is a shared experience; your family's perspective matters.
+          </p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>Alterations & Timeline</h3>
+          <p>
+            Once you've selected your dress, our expert alterations team ensures a perfect fit for your XV date. We handle hemming, taking in, letting out, strap adjustments, and any custom requests. We coordinate fittings around your timeline so you're celebration-ready from day one. Professional alterations are part of the Vero's experience—built into our process, not an afterthought.
+          </p>
+        </div>
+
+        <div class="experience-subsection">
+          <h3>Quinceañera FAQs</h3>
+          <p>
+            <strong>Can my family come to fittings?</strong> Yes, absolutely. Mothers, grandmothers, and court members are welcome and encouraged.<br>
+            <strong>How long does alterations take?</strong> Typical timeline: 6-12 weeks before your XV date, depending on complexity. We'll confirm your specific schedule at fitting.<br>
+            <strong>Do you help with court coordination?</strong> Yes. We guide damas dressing, aesthetic coherence, and complement to your gown. It's part of the XV experience.<br>
+            <strong>Do you offer bilingual consultations?</strong> Yes. Our team speaks English and Spanish fluently. Cultural context and bilingual comfort are priorities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: ACCESSORIES & TRADITIONS -->
+  <section id="quince-accessories" class="collection-section">
+    <div class="collection-section__container">
+      <h2 class="section-title section-title-lg collection-section__title">Quinceañera Accessories & Traditions</h2>
+      <p class="section-subtitle collection-section__description">
+        Coronas (tiaras), ramos (bouquets), jewelry, ceremony pieces, and court styling essentials. Every tradition matters. Every detail celebrates your XV.
+      </p>
+      <div id='collection-component-1772828681705'></div>
+      <script type="text/javascript">
+        /*<![CDATA[*/
+        (function () {
+          var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+          if (window.ShopifyBuy) {
+            if (window.ShopifyBuy.UI) {
+              ShopifyBuyInit();
+            } else {
+              loadScript();
+            }
+          } else {
+            loadScript();
+          }
+          function loadScript() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = scriptURL;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+            script.onload = ShopifyBuyInit;
+          }
+          function ShopifyBuyInit() {
+            var client = ShopifyBuy.buildClient({
+              domain: 'drwakf-ge.myshopify.com',
+              storefrontAccessToken: '33e0d25603bbe4b974757f1418d9818b',
+            });
+            ShopifyBuy.UI.onReady(client).then(function (ui) {
+              ui.createComponent('collection', {
+                id: '326427541703',
+                node: document.getElementById('collection-component-1772828681705'),
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+          "product": {
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "calc(25% - 20px)",
+                  "margin-left": "20px",
+                  "margin-bottom": "50px",
+                  "width": "calc(25% - 20px)"
+                },
+                "img": {
+                  "height": "calc(100% - 15px)",
+                  "position": "absolute",
+                  "left": "0",
+                  "right": "0",
+                  "top": "0"
+                },
+                "imgWrapper": {
+                  "padding-top": "calc(75% + 15px)",
+                  "position": "relative",
+                  "height": "0"
+                }
+              },
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              },
+              "quantityInput": {
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px"
+              }
+            },
+            "buttonDestination": "modal",
+            "contents": {
+              "options": false
+            },
+            "text": {
+              "button": "View product"
+            }
+          },
+          "productSet": {
+            "styles": {
+              "products": {
+                "@media (min-width: 601px)": {
+                  "margin-left": "-20px"
+                }
+              }
+            }
+          },
+          "modalProduct": {
+            "contents": {
+              "img": false,
+              "imgWithCarousel": true,
+              "button": false,
+              "buttonWithQuantity": true
+            },
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "100%",
+                  "margin-left": "0px",
+                  "margin-bottom": "0px"
+                }
+              },
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              },
+              "quantityInput": {
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px"
+              }
+            },
+            "text": {
+              "button": "Add to cart"
+            }
+          },
+          "option": {},
+          "cart": {
+            "styles": {
+              "button": {
+                "font-family": "Gill Sans, sans-serif",
+                "font-size": "14px",
+                "padding-top": "15px",
+                "padding-bottom": "15px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059",
+                  "background-color": "#494949"
+                },
+                "background-color": "#2b2b2b",
+                ":focus": {
+                  "background-color": "#494949"
+                },
+                "border-radius": "40px"
+              }
+            },
+            "text": {
+              "total": "Subtotal",
+              "button": "Checkout"
+            }
+          },
+          "toggle": {
+            "styles": {
+              "toggle": {
+                "font-family": "Gill Sans, sans-serif",
+                "background-color": "#2b2b2b",
+                ":hover": {
+                  "background-color": "#494949"
+                },
+                ":focus": {
+                  "background-color": "#494949"
+                }
+              },
+              "count": {
+                "font-size": "14px",
+                "color": "#c5a059",
+                ":hover": {
+                  "color": "#c5a059"
+                }
+              },
+              "iconPath": {
+                "fill": "#c5a059"
+              }
+            }
+          }
+        },
+              });
+            });
+          }
+        })();
+        /*]]>*/
+      </script>
+      <div class="collection-links">
+        <a href="#quince-accessories" class="link-subtle">← All Quinceañera Accessories</a>
+        <a href="/contact/" class="link-subtle">Consultation Request →</a>
+        <a href="/reviews/" class="link-subtle">See Family Reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: INTEGRATED SERVICES -->
+  <section class="integrated-services">
+    <div class="integrated-services__container">
+      <h2 class="section-title section-title-lg section-heading-centered">Complete Your XV Vision</h2>
+      <p class="section-intro">
+        Beyond the dress, Vero's supports your entire celebration. Explore our services for planning, florals, and event coordination—all designed for quinceañera families who want complete, integrated support.
+      </p>
+
+      <div class="links-grid">
+        <a href="/quinceanera-planning-richmond-ky/" class="link-card">
+          <span class="link-icon">🎨</span>
+          <span class="link-text">
+            <strong>Full XV Production</strong>
+            From vision to celebration day, our planning specialists guide your quinceañera from start to finish. Venue coordination, timeline management, family logistics, and cultural detail planning—we handle the full XV experience.
+          </span>
+        </a>
+
+        <a href="/wedding-prom-florist-richmond-ky/#event-installations" class="link-card">
+          <span class="link-icon">🌸</span>
+          <span class="link-text">
+            <strong>Event Florals & XV Design</strong>
+            Signature botanical designs for your XV celebration—from entrance installations to ceremony backdrops to centerpieces. We create cohesive, celebratory floral experiences that honor your vision and cultural aesthetics.
+          </span>
+        </a>
+
+        <a href="/event-planning-richmond-ky/" class="link-card">
+          <span class="link-icon">💒</span>
+          <span class="link-text">
+            <strong>Event Production & Venue Coordination</strong>
+            Complete event coordination for your XV celebration. Partnering with Richmond and statewide venues to manage logistics, timeline, aesthetic cohesion, and family comfort—end to end.
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FINAL CTA -->
+  <section class="cta-block cta-block--dark">
+    <div class="cta-block__container">
+      <h2 class="cta-block__title">Ready to Begin Your XV Journey?</h2>
+      <p class="section-intro">
+        Your quinceañera celebration is a milestone moment for you and your family. Vero's is here to make it authentic, beautiful, and completely aligned with your vision. Schedule your 90-minute XV fitting with our specialists—let's make this celebration unforgettable.
+      </p>
+      <div class="button-row">
+        <a href="/book-an-appointment/" class="button button--primary button--large">Book Your XV Fitting</a>
+        <a href="#quince-accessories" class="button button--outline button--large">Shop Accessories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: TESTIMONIALS -->
+  <section class="reviews-section">
+    <div class="reviews-section__container">
+      <h2 class="section-title section-title-lg section-heading-small-margin">Real Quinceañera Families Share Their Experience</h2>
+      <p class="section-intro">
+        Hear from XV families who celebrated with Vero's—mothers, quinceañeras, and court members sharing their experience.
+      </p>
+      <div class="reviews-grid">
+        <GoogleReviewCard
+          reviewerName="Rosa María García"
+          rating={5}
+          timeAgo="3 weeks ago"
+          reviewText="Mother of XV Celebrant. Vero's treated my daughter's XV with such respect and expertise. The team understood our cultural traditions, involved me in every decision, and helped us feel celebrated—not just like we were buying a dress. I'll recommend them forever to every mother planning a quinceañera."
+        />
+        <GoogleReviewCard
+          reviewerName="Sofia Reyes"
+          rating={5}
+          timeAgo="1 month ago"
+          reviewText="Quinceañera Celebrant. I was nervous about finding a dress that felt like me, but Vero's team made the fitting so fun and supportive. They didn't push me toward trends; they helped me find what made me feel beautiful and confident for my XV. I felt heard, and I loved the result."
+        />
+        <GoogleReviewCard
+          reviewerName="María Elena Ortiz"
+          rating={5}
+          timeAgo="6 weeks ago"
+          reviewText="Court Member (Dama). The attention to detail for court coordination was amazing. We felt like part of the celebration, not just afterthoughts. Vero's team helped us find dresses that complemented the XV beautifully while celebrating each of us individually. Professional, caring, and culturally mindful."
+        />
+      </div>
+      <div class="centered-content">
+        <a href="/reviews/" class="button button--outline">
+          See More Quinceañera Family Reviews
+        </a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .boutique-intro {
+    padding: var(--space-16) 0;
+    background: var(--color-ivory);
+  }
+
+  .intro-content {
+    max-width: 720px;
+    margin: 0 auto var(--space-12);
+  }
+
+  .intro-content h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-6);
+    line-height: 1.2;
+  }
+
+  .intro-content p {
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+  }
+
+  .intro-cta {
+    text-align: center;
+  }
+
+  .collection-section {
+    padding: var(--space-16) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-header p {
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .shopify-collection-mount {
+    margin: var(--space-12) 0;
+    min-height: 400px;
+  }
+
+  .skeleton-loader {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .skeleton--card {
+    aspect-ratio: 3 / 4;
+    border-radius: 4px;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .collection-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .link-subtle {
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .link-subtle:hover {
+    color: var(--color-gold);
+  }
+
+  .cta-block {
+    padding: var(--space-16) 0;
+  }
+
+  .cta-block--light {
+    background: var(--color-ivory);
+  }
+
+  .cta-block--dark {
+    background: var(--color-charcoal);
+    color: var(--color-ivory);
+  }
+
+  .cta-block h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-10);
+    text-align: center;
+  }
+
+  .cta-block--light h2 {
+    color: var(--color-charcoal);
+  }
+
+  .cta-block--dark h2 {
+    color: var(--color-ivory);
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .cta-item {
+    padding: var(--space-6);
+  }
+
+  .cta-item h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-block--light .cta-item h3 {
+    color: var(--color-charcoal);
+  }
+
+  .cta-block--light .cta-item p {
+    color: var(--color-charcoal);
+  }
+
+  .cta-block--dark .cta-item h3 {
+    color: var(--color-gold);
+  }
+
+  .cta-block--dark .cta-item p {
+    color: var(--color-ivory);
+  }
+
+  .cta-item p {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .bridal-experience {
+    padding: var(--space-16) 0;
+  }
+
+  .bridal-experience h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .intro-text {
+    font-size: var(--text-base);
+    color: var(--color-charcoal);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-10);
+    line-height: 1.6;
+  }
+
+  .experience-steps {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .experience-step {
+    padding: var(--space-6);
+    background: var(--color-ivory);
+    border-radius: 4px;
+  }
+
+  .experience-step h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-3);
+  }
+
+  .experience-step p {
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+    line-height: 1.7;
+  }
+
+  .experience-step strong {
+    color: var(--color-charcoal);
+    font-weight: 600;
+  }
+
+  .links-grid {
+    padding: var(--space-16) 0;
+    background: var(--color-ivory);
+  }
+
+  .links-grid h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-4);
+    text-align: center;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+    margin-top: var(--space-10);
+  }
+
+  .service-card {
+    display: block;
+    padding: var(--space-8);
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--color-gold);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-card p {
+    font-size: var(--text-sm);
+    color: var(--color-charcoal);
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+  }
+
+  .card-cta {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-gold);
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .service-card:hover .card-cta {
+    color: var(--color-charcoal);
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content p {
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-block;
+    padding: var(--space-3) var(--space-6);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .button--primary {
+    background: var(--color-gold);
+    color: var(--color-charcoal);
+  }
+
+  .button--primary:hover {
+    background: var(--color-charcoal);
+    color: var(--color-gold);
+  }
+
+  .button--secondary {
+    background: transparent;
+    color: var(--color-ivory);
+    border: 1px solid var(--color-ivory);
+  }
+
+  .button--secondary:hover {
+    background: var(--color-ivory);
+    color: var(--color-charcoal);
+  }
+
+  .cta-block--light .button--primary {
+    background: var(--color-gold);
+    color: var(--color-charcoal);
+  }
+
+  .testimonials-section {
+    padding: var(--space-16) 0;
+  }
+
+  .testimonials-section h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    color: var(--color-charcoal);
+    margin-bottom: var(--space-10);
+    text-align: center;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-10);
+  }
+
+  .testimonials-cta {
+    text-align: center;
+  }
+
+  .boutique-intro__container {
+    max-width: 70ch;
+    margin: 0 auto;
+  }
+
+  .boutique-intro__heading {
+    margin-bottom: var(--space-6);
+  }
+
+  .boutique-intro__text {
+    margin-bottom: var(--space-6);
+    font-size: 1.0625rem;
+    line-height: var(--lh-loose);
+    color: var(--color-charcoal);
+  }
+
+  .collection-section__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .collection-section__title {
+    margin-bottom: var(--space-2);
+  }
+
+  .section-subtitle {
+    max-width: 70ch;
+    margin: 0 auto var(--space-8);
+    font-size: 1.0625rem;
+    line-height: var(--lh-loose);
+    color: var(--color-charcoal);
+    text-align: center;
+  }
+
+  .cta-block__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .bridal-experience__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .experience-content {
+    max-width: 70ch;
+    margin: 0 auto;
+  }
+
+  .experience-subsection {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-charcoal) 10%, transparent);
+  }
+
+  .experience-subsection:last-child {
+    border-bottom: none;
+  }
+
+  .experience-subsection h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--color-black);
+    margin-top: 0;
+  }
+
+  .experience-subsection p {
+    font-size: 1.0625rem;
+    line-height: var(--lh-loose);
+    color: var(--color-charcoal);
+    margin: 0;
+  }
+
+  .experience-faq {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .experience-faq li {
+    margin-bottom: var(--space-4);
+    font-size: 1.0625rem;
+    line-height: var(--lh-loose);
+    color: var(--color-charcoal);
+  }
+
+  .experience-faq li:last-child {
+    margin-bottom: 0;
+  }
+
+  .integrated-services__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .reviews-section__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 60ch;
+    margin: var(--space-6) auto var(--space-10);
+    font-size: 1.125rem;
+    line-height: var(--lh-loose);
+  }
+
+  @media (max-width: 768px) {
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+    }
+
+    .collection-links {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .intro-content h1,
+    .bridal-experience h2,
+    .links-grid h2,
+    .cta-block h2,
+    .testimonials-section h2,
+    .section-header h2 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

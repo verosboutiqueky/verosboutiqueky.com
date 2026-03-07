@@ -16,32 +16,47 @@ const navLeft = [
       { label: "Prom 2026", anchor: "prom-2026/" },
       { label: "Gala & Evening", anchor: "gala-evening/" },
       { label: "New Arrivals", anchor: "new-arrivals/" },
+      { label: "FAQ", anchor: "/faq/" },
     ]
   },
-  { label: "BRIDAL", href: "/wedding-dresses-richmond-ky" },
-  { label: "QUIÑCE", href: "/quinceanera-dresses-richmond-ky" },
+  { 
+    label: "BRIDAL", 
+    href: "/wedding-dresses-richmond-ky",
+    dropdownItems: [
+      { label: "Wedding Dresses", anchor: "" },
+      { label: "Wedding Planning", anchor: "/wedding-planning-richmond-ky/" },
+      { label: "Wedding Florals", anchor: "/wedding-prom-florist-richmond-ky/#wedding-florals" },
+    ]
+  },
+  { 
+    label: "QUINCE", 
+    href: "/quinceanera-dresses-richmond-ky",
+    dropdownItems: [
+      { label: "Quinceañera Dresses", anchor: "" },
+      { label: "Quinceañera Planning", anchor: "/quinceanera-planning-richmond-ky/" },
+      { label: "Event Florals", anchor: "/wedding-prom-florist-richmond-ky/#event-installations" },
+    ]
+  },
 ];
 
 const navRight = [
   { 
     label: "EVENTS", 
-    href: "/event-planning-quinceaneras-weddings-richmond-ky",
+    href: "/event-planning-richmond-ky",
     dropdownItems: [
-      { label: "Quinceañera Planning", anchor: "#quince-production" },
-      { label: "Wedding Coordination", anchor: "#wedding-coordination" },
-      { label: "Packages & Pricing", anchor: "#packages-section" },
-      { label: "Frequently Asked Questions", anchor: "#faq" },
+      { label: "Wedding Planning", anchor: "/wedding-planning-richmond-ky/#packages-section" },
+      { label: "Quinceañera Planning", anchor: "/quinceanera-planning-richmond-ky/#packages-section" },
+      { label: "Packages & Pricing", anchor: "/event-planning-richmond-ky/#packages-section" },
     ]
   },
   { 
     label: "FLORAL", 
     href: "/wedding-prom-florist-richmond-ky",
     dropdownItems: [
-      { label: "Custom Arrangements", anchor: "#custom-arrangements" },
       { label: "Wedding Florals", anchor: "#wedding-florals" },
       { label: "Prom Corsages", anchor: "#prom-corsages" },
       { label: "Event Installations", anchor: "#event-installations" },
-      { label: "Frequently Asked Questions", anchor: "#faq" },
+      { label: "Custom Arrangements", anchor: "#custom-arrangements" },
     ]
   },
 ];
@@ -67,11 +82,14 @@ const ctaButton = {
           </a>
           {link.dropdownItems && (
             <div class="header__dropdown">
-              {link.dropdownItems.map((item) => (
-                <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
-                  {item.label}
-                </a>
-              ))}
+              {link.dropdownItems.map((item) => {
+                const href = item.anchor.startsWith('/') ? item.anchor : `${link.href}/${item.anchor}`;
+                return (
+                  <a href={href} class="header__dropdown-link">
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           )}
         </li>
@@ -99,11 +117,14 @@ const ctaButton = {
             </a>
             {link.dropdownItems && (
               <div class="header__dropdown">
-                {link.dropdownItems.map((item) => (
-                  <a href={`${link.href}/${item.anchor}`} class="header__dropdown-link">
-                    {item.label}
-                  </a>
-                ))}
+                {link.dropdownItems.map((item) => {
+                  const href = item.anchor.startsWith('/') ? item.anchor : `${link.href}/${item.anchor}`;
+                  return (
+                    <a href={href} class="header__dropdown-link">
+                      {item.label}
+                    </a>
+                  );
+                })}
               </div>
             )}
           </li>
@@ -177,11 +198,14 @@ const ctaButton = {
               role="region"
               aria-labelledby={`trigger-${link.label}`}
             >
-              {link.dropdownItems.map((item) => (
-                <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
-                  {item.label}
-                </a>
-              ))}
+              {link.dropdownItems.map((item) => {
+                const href = item.anchor.startsWith('/') ? item.anchor : `${link.href}/${item.anchor}`;
+                return (
+                  <a href={href} class="header__mobile-menu-sublink">
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           )}
         </li>
@@ -217,11 +241,14 @@ const ctaButton = {
               role="region"
               aria-labelledby={`trigger-${link.label}`}
             >
-              {link.dropdownItems.map((item) => (
-                <a href={`${link.href}/${item.anchor}`} class="header__mobile-menu-sublink">
-                  {item.label}
-                </a>
-              ))}
+              {link.dropdownItems.map((item) => {
+                const href = item.anchor.startsWith('/') ? item.anchor : `${link.href}/${item.anchor}`;
+                return (
+                  <a href={href} class="header__mobile-menu-sublink">
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           )}
         </li>
@@ -284,8 +311,6 @@ const ctaButton = {
     align-items: center;
     grid-template-columns: 1fr auto 1fr;
     padding: 1.5rem 2rem;
-    max-width: 1380px;
-    margin: 0 auto;
     gap: 2rem;
     width: 100%;
   }
@@ -298,6 +323,8 @@ const ctaButton = {
 
   @media (min-width: 1280px) {
     .header__desktop-nav {
+      max-width: 1380px;
+      margin: 0 auto;
       padding: 1.5rem 3rem;
       gap: 2.5rem;
     }

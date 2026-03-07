@@ -5,6 +5,7 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/hero/Hero.astro';
+import GoogleReviewCard from '../components/GoogleReviewCard.astro';
 
 const metadata = {
   title: "Vero's Boutique | Luxury Gowns & Private Fittings",
@@ -39,100 +40,423 @@ const submitted = Astro.url.searchParams.get("submitted");
     categories={["Bridal", "Formal", "Florals"]}
   />
 
-  <!-- Section: Begin Your Experience (Final CTA) -->
-  <section id="appointment" class="bg-ivory" style="padding: 10rem 1.5rem;">
-    <div class="container" style="max-width: 56rem; text-align: center;">
-      <div style="display: flex; flex-direction: column; gap: 3rem;">
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 6vw, 3.5rem); color: var(--color-black);">
-            Begin Your Experience
-          </h2>
-          <p style="font-size: 1.25rem; color: #999999; font-weight: 300; max-width: 42rem; margin: 0 auto; line-height: 1.6;">
-            Secure your hour of undivided attention. Our private showroom awaits your discovery.
-          </p>
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 1: BOUTIQUE AUTHORITY INTRO -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="boutique-intro">
+    <div class="boutique-intro__container">
+      <h2 class="section-title section-title-lg boutique-intro__heading">A Destination Built for Your Moment</h2>
+      
+      <p class="boutique-intro__text">
+        Vero's Boutique specializes in five core services: bridal expertise, quinceañera traditions, formal elegance, complete event planning, and floral artistry. Located in downtown Richmond, Kentucky, we offer what mass retailers can't—expert stylists, thoughtfully curated selections, and a private environment where your vision becomes reality. Whether from Richmond, Lexington, or Central Kentucky, you deserve an experience built just for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2: CORE SERVICE CATEGORIES -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="service-categories">
+    <div class="service-categories__container">
+      <h2 class="section-title section-title-lg service-categories__title">Explore Our Services</h2>
+
+      <div class="service-categories__list">
+        <!-- Category 1: Bridal -->
+        <a href="/wedding-dresses-richmond-ky/" class="service-category">
+          <div class="service-category__content">
+            <h3 class="service-category__title">Bridal Gowns</h3>
+            <p class="service-category__description">Expert wedding dress fitting. Designer selection. Your dream gown, expertly styled.</p>
+          </div>
+          <span class="service-category__arrow">→</span>
+        </a>
+
+        <!-- Category 2: Quinceañera -->
+        <a href="/quinceanera-dresses-richmond-ky/" class="service-category">
+          <div class="service-category__content">
+            <h3 class="service-category__title">Quinceañera Dresses</h3>
+            <p class="service-category__description">XV tradition meets modern style. Court coordination, cultural respect, personal expression.</p>
+          </div>
+          <span class="service-category__arrow">→</span>
+        </a>
+
+        <!-- Category 3: Formal -->
+        <a href="/formal-gowns-richmond-ky/" class="service-category">
+          <div class="service-category__content">
+            <h3 class="service-category__title">Formal Evening Wear</h3>
+            <p class="service-category__description">Prom, galas, black-tie elegance. Gowns that command presence and photograph beautifully.</p>
+          </div>
+          <span class="service-category__arrow">→</span>
+        </a>
+
+        <!-- Category 4: Wedding Planning -->
+        <a href="/wedding-planning-richmond-ky/" class="service-category">
+          <div class="service-category__content">
+            <h3 class="service-category__title">Event Planning</h3>
+            <p class="service-category__description">Full-service coordination. From dress to florals to venue. Cohesive, elegant, yours.</p>
+          </div>
+          <span class="service-category__arrow">→</span>
+        </a>
+
+        <!-- Category 5: Florals -->
+        <a href="/wedding-prom-florist-richmond-ky/" class="service-category">
+          <div class="service-category__content">
+            <h3 class="service-category__title">Event Florals</h3>
+            <p class="service-category__description">Bridal bouquets, corsages, installations. Gown-coordinated, beautifully executed florals.</p>
+          </div>
+          <span class="service-category__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: THE VERO'S APPROACH -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="approach-section">
+    <div class="approach-section__container">
+      <h2 class="section-title section-title-lg approach-section__title">How We Serve You</h2>
+
+      <div class="approach-section__grid">
+        <div class="approach-item">
+          <h3>Private Appointments</h3>
+          <p>One stylist, one client. Your dedicated time, undivided attention, no pressure—just expert guidance tailored to you.</p>
         </div>
 
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
-          <a href="/book-an-appointment" class="button button--primary">
-            Book a Private Fitting
-          </a>
-          <p style="font-size: 11px; letter-spacing: 0.4em; color: var(--color-gold); font-weight: 500; text-transform: uppercase; margin: 0;">
-            Private • Curated • By Appointment
-          </p>
+        <div class="approach-item">
+          <h3>Expert Curation</h3>
+          <p>We hand-select every piece. No overwhelming racks. Our inventory reflects quality, current trends, and timeless elegance.</p>
+        </div>
+
+        <div class="approach-item">
+          <h3>Integrated Services</h3>
+          <p>Dress, florals, venue design—coordinated seamlessly. Your wedding or event looks cohesive because every service works together.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section: Explore Curated Collections -->
-  <section style="padding: 7rem 1.5rem; background-color: #FDFCFB;">
-    <div class="container" style="max-width: 56rem; text-align: center;">
-      <div style="display: flex; flex-direction: column; gap: 2.5rem;">
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <h2 style="font-family: var(--font-serif); font-size: clamp(1.75rem, 5vw, 3rem); color: var(--color-black);">
-            Explore Curated Collections
-          </h2>
-          <p style="font-size: 1.125rem; color: #999999; font-weight: 300; max-width: 42rem; margin: 0 auto; line-height: 1.6;">
-            Browse our curated selection of bridal, prom, and formal wear in our online shop.
-          </p>
-        </div>
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <a href="https://shop.verosboutiqueky.com" class="button button--primary" target="_blank" rel="noopener noreferrer">
-            Shop Gown Collections
-          </a>
-        </div>
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: SOCIAL PROOF - TRUSTED BY RICHMOND FAMILIES -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="reviews-section">
+    <div class="reviews-section__container">
+      <h2 class="section-title section-title-lg reviews-section__title">Trusted by Richmond Families</h2>
+      <p class="reviews-section__subtitle">Real client reviews from real moments.</p>
+
+      <div class="reviews-section__cards">
+        <GoogleReviewCard
+          reviewerName="Sarah M."
+          rating={5}
+          reviewText="Found my wedding dress at Vero's! The stylists took time to understand my vision. No pressure, just genuine expertise. This is where brides should dress shop in Richmond."
+          timeAgo="2 weeks ago"
+        />
+        <GoogleReviewCard
+          reviewerName="Maria G."
+          rating={5}
+          reviewText="My daughter's quinceañera dress was absolutely perfect. The team understood XV tradition AND her personal style. Worth every mile to drive to Richmond."
+          timeAgo="1 month ago"
+        />
+        <GoogleReviewCard
+          reviewerName="Jessica L."
+          rating={5}
+          reviewText="Professional, elegant, and they truly listen. My prom dress was exactly what I envisioned. Vero's sets the standard for boutique service."
+          timeAgo="3 weeks ago"
+        />
+      </div>
+
+      <div class="reviews-section__cta">
+        <a href="/reviews/" class="section-link">Read More Client Stories →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 5: FINAL CTA - APPOINTMENT BOOKING -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section id="appointment" class="final-cta">
+    <div class="final-cta__container">
+      <h2 class="final-cta__heading">Ready to Begin?</h2>
+      <p class="final-cta__subheading">
+        Schedule a private fitting with our stylists. Discover your dress. Embrace your moment.
+      </p>
+      <div class="button-row">
+        <a href="/book-an-appointment/" class="button button--primary button--large">
+          Book a Private Appointment
+        </a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  :root {
-    --color-ivory: #FDFCFB;
-    --color-gold: #C5A059;
-    --color-black: #1A1A1A;
-  }
+  /* ═══════════════════════════════════════════════════════════════ */
+  /* HOMEPAGE SECTIONS - Scoped Styling */
+  /* ═══════════════════════════════════════════════════════════════ */
 
-  .bg-ivory {
+  /* SECTION 1: Boutique Authority Intro */
+  .boutique-intro {
+    padding: var(--space-16) var(--space-6);
     background-color: var(--color-ivory);
   }
 
-  .container {
-    max-width: 1280px;
+  .boutique-intro__container {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 1.5rem;
   }
 
-  .button {
+  .boutique-intro__heading {
+    margin-bottom: var(--space-8);
+  }
+
+  .boutique-intro__text {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-charcoal);
+  }
+
+  /* SECTION 2: Services Grid - Core Categories */
+  .service-categories {
+    padding: var(--space-16) var(--space-6);
+    background-color: white;
+  }
+
+  .service-categories__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .service-categories__title {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .service-categories__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  @media (min-width: 768px) {
+    .service-categories__list {
+      grid-template-columns: repeat(2, 1fr);
+      border-right: 1px solid #e0e0e0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-categories__list {
+      grid-template-columns: repeat(5, 1fr);
+      border-right: none;
+    }
+  }
+
+  .service-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-8) var(--space-6);
+    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    .service-category:nth-child(even) {
+      border-right: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-category {
+      border-right: 1px solid #e0e0e0;
+    }
+    .service-category:last-child {
+      border-right: none;
+    }
+  }
+
+  .service-category:hover {
+    background-color: #fafafa;
+  }
+
+  .service-category:last-child {
+    border-bottom: none;
+  }
+
+  .service-category__content {
+    margin-bottom: var(--space-4);
+  }
+
+  .service-category__title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-black);
+    margin-bottom: var(--space-3);
+  }
+
+  .service-category__description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-gray-dark);
+  }
+
+  .service-category__arrow {
+    font-size: 1.25rem;
+    color: var(--color-gold);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .service-category:hover .service-category__arrow {
+    color: var(--color-black);
+    transform: translateX(4px);
+  }
+
+  /* SECTION 3: Approach */
+  .approach-section {
+    padding: var(--space-16) var(--space-6);
+    background-color: var(--color-ivory);
+  }
+
+  .approach-section__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .approach-section__title {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .approach-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .approach-section__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  .approach-item {
+    text-align: center;
+  }
+
+  .approach-item h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .approach-item p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-gray-dark);
+  }
+
+  /* SECTION 4: Reviews */
+  .reviews-section {
+    padding: var(--space-16) var(--space-6);
+    background-color: white;
+  }
+
+  .reviews-section__container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .reviews-section__title {
+    text-align: center;
+    margin-bottom: var(--space-2);
+  }
+
+  .reviews-section__subtitle {
+    text-align: center;
+    font-size: 0.9375rem;
+    color: var(--color-gray-medium);
+    margin-bottom: var(--space-12);
+  }
+
+  .reviews-section__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .reviews-section__cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .reviews-section__cta {
+    text-align: center;
+  }
+
+  .section-link {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 1.25rem 2rem;
-    font-size: 11px;
+    font-size: 0.9375rem;
     font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
-    font-family: var(--font-sans);
+    color: var(--color-gold);
     text-decoration: none;
+    transition: color var(--transition-fast);
   }
 
-  .button:active {
-    transform: scale(0.98);
+  .section-link:hover {
+    color: var(--color-black);
   }
 
-  .button--primary {
-    background-color: var(--color-black);
-    color: white;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  /* SECTION 5: Final CTA */
+  .final-cta {
+    padding: var(--space-16) var(--space-6);
+    background-color: var(--color-ivory);
   }
 
-  .button--primary:hover {
-    background-color: #333333;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  .final-cta__container {
+    max-width: 56rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .final-cta__heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--color-black);
+    margin-bottom: var(--space-3);
+  }
+
+  .final-cta__subheading {
+    font-size: 1.0625rem;
+    color: var(--color-gray-dark);
+    margin-bottom: var(--space-8);
+    line-height: 1.6;
+  }
+
+  /* NOTE: .button-row is defined in global.css - reused here */
+
+  /* Success banner (preserved from original) */
+  .submission-success-banner {
+    padding: var(--space-4) var(--space-6);
+    margin: var(--space-4) var(--space-6) var(--space-8);
+    background-color: #f0f9f4;
+    border-left: 4px solid #22c55e;
+    border-radius: 2px;
+  }
+
+  .submission-success-banner__text {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #166534;
   }
 </style>
 

@@ -154,29 +154,42 @@ export const onRequestPost = async (context: any) => {
 
     // ---- Auto-reply for early_offer ----
     if (formType === "early_offer") {
-      const replySubject = "Your Exclusive Early Offer - Vero's Boutique";
+      const replySubject = "YOUR 10% PROM SEASON DISCOUNT IS HERE";
       const replyText = `Hi${firstName ? ` ${firstName}` : ""}!
 
-Thanks for joining our Early Offer list — here's your reward for Grand Opening:
+YOUR 10% PROM SEASON DISCOUNT IS HERE 👗
 
-✅ Spend $50+ → get $5 back (Use code VERO5)
-✅ Spend $100+ → get $10 back (Use code VERO10)
+Thanks for joining our Early Offer list.
+
+✨ 10% OFF all Prom & School Formalwear
+Use code: PROM26
+
+Prom season is here and the best styles go fast — appointments are recommended for the best selection.
 
 How to redeem:
-1) Use code VERO5 or VERO10 at checkout
-2) Offer applies to qualifying purchase totals (before tax)
-3) One offer per customer during the promotion window
+1) Shop in-store or online
+2) Use code PROM26 at checkout
+3) Discount applies to prom and school formalwear purchases
 
-We can't wait to see you,
+Visit us:
 VERO'S BOUTIQUE LLC
-100 Saint George St. Richmond, KY 40475
-Navigation: https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475
+100 Saint George St.
+Richmond, KY 40475
 
----
+Navigation:
+https://maps.google.com/?q=100+Saint+George+St+Richmond+KY+40475
 
-Fine Print: This offer is valid based on your consent to receive promotional emails from Vero's Boutique. Offer expires 04/05/2026. Cannot be combined with other offers. See terms of service for details.
+Browse prom styles online:
+https://verosboutiqueky.com/prom-dresses-richmond-ky/
 
-If you don't want early offer emails, reply 'unsubscribe'.`;
+We can't wait to help you find your perfect prom dress.
+
+— VERO'S BOUTIQUE
+
+Fine Print:
+Offer valid for 10% off prom and school formalwear purchases using code PROM26. Offer expires 04/05/2026. Cannot be combined with other promotions.
+
+If you no longer wish to receive promotional emails, reply "unsubscribe".`;
 
       const autoReply = await sendWithResendSafe({
         apiKey: env.RESEND_API_KEY as string,

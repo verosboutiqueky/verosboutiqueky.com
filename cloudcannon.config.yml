@@ -1,0 +1,21 @@
+paths:
+  static: public
+  uploads: public/uploads
+timezone: America/New_York
+markdown:
+  engine: commonmark
+  options:
+    gfm: true
+collections_config:
+  source:
+    path: ''
+    icon: package_2
+  pages:
+    path: src/pages
+    icon: wysiwyg
+  src:
+    path: src
+    icon: abc
+  styles:
+    path: src/styles
+    icon: style

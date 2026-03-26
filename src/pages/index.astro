@@ -12,6 +12,42 @@ const metadata = {
   description: "Richmond's premier private boutique specializing in curated bridal gowns, formal evening wear, and bespoke floral event design.",
 };
 
+// Hero content — structured so CloudCannon data-prop bindings in Hero.astro are data-backed
+const heroData = {
+  title: "Elegance,",
+  titleItalic: "Redefined.",
+  subtitle: "Private appointment boutique offering curated wedding & quinceañera dresses, prom gowns, and formal evening wear for clients throughout Richmond, Lexington, and Central Kentucky — along with bespoke event planning and floral design.",
+  primaryCTA: "Book a Private Appointment",
+  primaryCTAUrl: "#appointment",
+  secondaryCTA: "Visit the Boutique",
+  secondaryCTAUrl: "/visit-the-boutique",
+  location: "A Richmond KY Destination Boutique",
+  heroImage: "/images/hero.webp",
+  categories: ["Bridal", "Formal", "Florals"],
+};
+
+// Reviews array — structured so CloudCannon array/text editable bindings in GoogleReviewCard.astro are data-backed
+const reviews = [
+  {
+    reviewerName: "Sarah M.",
+    rating: 5,
+    reviewText: "Found my wedding dress at Vero's! The stylists took time to understand my vision. No pressure, just genuine expertise. This is where brides should dress shop in Richmond.",
+    timeAgo: "2 weeks ago",
+  },
+  {
+    reviewerName: "Maria G.",
+    rating: 5,
+    reviewText: "My daughter's quinceañera dress was absolutely perfect. The team understood XV tradition AND her personal style. Worth every mile to drive to Richmond.",
+    timeAgo: "1 month ago",
+  },
+  {
+    reviewerName: "Jessica L.",
+    rating: 5,
+    reviewText: "Professional, elegant, and they truly listen. My prom dress was exactly what I envisioned. Vero's sets the standard for boutique service.",
+    timeAgo: "3 weeks ago",
+  },
+];
+
 // Check for form submission success
 const submitted = Astro.url.searchParams.get("submitted");
 ---
@@ -28,17 +64,7 @@ const submitted = Astro.url.searchParams.get("submitted");
   )}
 
   <!-- Hero Section -->
-  <Hero
-    title="Elegance,"
-    titleItalic="Redefined."
-    subtitle="Private appointment boutique offering curated wedding & quinceañera dresses, prom gowns, and formal evening wear for clients throughout Richmond, Lexington, and Central Kentucky — along with bespoke event planning and floral design."
-    primaryCTA="Book a Private Appointment"
-    primaryCTAUrl="#appointment"
-    secondaryCTA="Visit the Boutique"
-    secondaryCTAUrl="/visit-the-boutique"
-    location="A Richmond KY Destination Boutique"
-    categories={["Bridal", "Formal", "Florals"]}
-  />
+  <Hero {...heroData} />
 
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
   <!-- SECTION 1: BOUTIQUE AUTHORITY INTRO -->
@@ -143,25 +169,17 @@ const submitted = Astro.url.searchParams.get("submitted");
       <h2 class="section-title section-title-lg reviews-section__title">Trusted by Richmond Families</h2>
       <p class="reviews-section__subtitle">Real client reviews from real moments.</p>
 
-      <div class="reviews-section__cards">
-        <GoogleReviewCard
-          reviewerName="Sarah M."
-          rating={5}
-          reviewText="Found my wedding dress at Vero's! The stylists took time to understand my vision. No pressure, just genuine expertise. This is where brides should dress shop in Richmond."
-          timeAgo="2 weeks ago"
-        />
-        <GoogleReviewCard
-          reviewerName="Maria G."
-          rating={5}
-          reviewText="My daughter's quinceañera dress was absolutely perfect. The team understood XV tradition AND her personal style. Worth every mile to drive to Richmond."
-          timeAgo="1 month ago"
-        />
-        <GoogleReviewCard
-          reviewerName="Jessica L."
-          rating={5}
-          reviewText="Professional, elegant, and they truly listen. My prom dress was exactly what I envisioned. Vero's sets the standard for boutique service."
-          timeAgo="3 weeks ago"
-        />
+      <div class="reviews-section__cards" data-editable="array" data-prop="reviews">
+        {reviews.map((review) => (
+          <div data-editable="array-item">
+            <GoogleReviewCard
+              reviewerName={review.reviewerName}
+              rating={review.rating}
+              reviewText={review.reviewText}
+              timeAgo={review.timeAgo}
+            />
+          </div>
+        ))}
       </div>
 
       <div class="reviews-section__cta">

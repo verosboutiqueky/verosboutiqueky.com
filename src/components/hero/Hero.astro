@@ -80,8 +80,10 @@ const secondaryUrl = getSecondaryCTAUrl();
 <section class="hero">
   <!-- Single Background Image (Cropped: 1024x847, art-directed composition) -->
   <div class="hero__backdrop">
-    <img 
-      src={heroImage} 
+    <img
+      src={heroImage}
+      data-editable="image"
+      data-prop-src="heroImage"
       alt="Bridal Couture Editorial"
       width="1024"
       height="847"
@@ -101,26 +103,26 @@ const secondaryUrl = getSecondaryCTAUrl();
       <div class="space-y-12">
         <!-- Accent line + location tag -->
         <div class="accent-line">
-          <span class="accent-line-text">{location}</span>
+          <span class="accent-line-text" data-editable="text" data-prop="location">{location}</span>
         </div>
 
         <!-- Headline -->
         <h1 class="hero__headline">
-          {title}<br />
-          <span class="hero__headline-italic">{titleItalic}</span>
+          <span data-editable="text" data-prop="title">{title}</span><br />
+          <span class="hero__headline-italic" data-editable="text" data-prop="titleItalic">{titleItalic}</span>
         </h1>
 
         <!-- Subheading -->
-        <p class="hero__subheading">
+        <p class="hero__subheading" data-editable="text" data-prop="subtitle">
           {subtitle}
         </p>
 
         <!-- Primary & Secondary CTAs -->
         <div class="hero__ctas">
-          <a href={primaryUrl} class="button button--primary">
+          <a href={primaryUrl} class="button button--primary" data-editable="text" data-prop="primaryCTA">
             {primaryText}
           </a>
-          <a href={secondaryUrl} class="button button--outline">
+          <a href={secondaryUrl} class="button button--outline" data-editable="text" data-prop="secondaryCTA">
             {secondaryText}
           </a>
         </div>
@@ -147,7 +149,7 @@ const secondaryUrl = getSecondaryCTAUrl();
 
   <!-- Mobile Sticky CTA -->
   <div class="hero__mobile-cta">
-    <a href={primaryUrl} class="button button--primary">
+    <a href={primaryUrl} class="button button--primary" data-editable="text" data-prop="primaryCTA">
       {primaryMobileText}
     </a>
   </div>

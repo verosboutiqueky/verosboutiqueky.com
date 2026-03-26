@@ -46,11 +46,11 @@ const renderStars = (count: number): string => {
     
     <div class="google-review-card__meta">
       <div class="google-review-card__name-row">
-        <h3 class="google-review-card__name">{reviewerName}</h3>
+        <h3 class="google-review-card__name" data-editable="text" data-prop="reviewerName">{reviewerName}</h3>
       </div>
       <div class="google-review-card__rating-row">
         <span class="google-review-card__stars">{renderStars(rating)}</span>
-        <span class="google-review-card__time">{timeAgo}</span>
+        <span class="google-review-card__time" data-editable="text" data-prop="timeAgo">{timeAgo}</span>
       </div>
       {photoCount && photoCount > 0 && (
         <div class="google-review-card__photo-count">
@@ -61,7 +61,7 @@ const renderStars = (count: number): string => {
   </div>
 
   <!-- Review Text -->
-  <p class="google-review-card__text">
+  <p class="google-review-card__text" data-editable="text" data-prop="reviewText">
     {reviewText}
   </p>
 

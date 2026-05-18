@@ -1,0 +1,574 @@
+---
+/**
+ * OfferPopup.astro
+ * 
+ * 2-step offer popup MVP:
+ * Step 1: Category selection (DRESSES or FLORALS)
+ * Step 2: Lead capture form to submit to HighLevel
+ * 
+ * Features:
+ * - Appears after 6 seconds
+ * - Uses sessionStorage to prevent repeated displays
+ * - ESC key closes popup
+ * - Overlay click closes popup
+ * - X button closes popup
+ * - Mobile responsive
+ * - Stores selected interest for form submission
+ * 
+ * HighLevel API: https://api.noza.app/widget/form/xDaj5RXz1h3Qhjpe7qb1
+ */
+---
+
+<div id="offer-popup-wrapper">
+  <!-- Modal Overlay -->
+  <div id="offer-popup-overlay" class="offer-popup-overlay"></div>
+
+  <!-- Modal Content -->
+  <div id="offer-popup-modal" class="offer-popup-modal" role="alertdialog" aria-labelledby="offer-popup-headline">
+    <!-- Close Button -->
+    <button
+      id="offer-popup-close"
+      class="offer-popup-close"
+      type="button"
+      aria-label="Close offer popup"
+      title="Close"
+    >
+      ✕
+    </button>
+
+    <!-- STEP 1: Category Selection -->
+    <div id="offer-popup-step1" class="offer-popup-step offer-popup-step--active">
+      <div class="offer-popup-content">
+        <h2 id="offer-popup-headline" class="offer-popup-headline">You've Got 10% OFF</h2>
+        
+        <p class="offer-popup-question">What are you shopping for today?</p>
+
+        <div class="offer-popup-buttons">
+          <button
+            id="btn-dresses"
+            type="button"
+            class="offer-popup-button offer-popup-button--primary"
+            data-interest="DRESSES"
+          >
+            DRESSES
+          </button>
+          <button
+            id="btn-florals"
+            type="button"
+            class="offer-popup-button offer-popup-button--primary"
+            data-interest="FLORALS"
+          >
+            FLORALS
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: Form -->
+    <div id="offer-popup-step2" class="offer-popup-step">
+      <div class="offer-popup-content">
+        <h2 class="offer-popup-headline">Claim Your 10% OFF</h2>
+        
+        <p class="offer-popup-subtext">Get exclusive offers sent to you</p>
+
+        <form id="offer-popup-form" class="offer-popup-form">
+          <div class="form-group">
+            <label for="offer-name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="offer-name"
+              name="name"
+              class="form-input"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="offer-phone" class="form-label">Phone</label>
+            <input
+              type="tel"
+              id="offer-phone"
+              name="phone"
+              class="form-input"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="offer-email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="offer-email"
+              name="email"
+              class="form-input"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Hidden fields -->
+          <input type="hidden" id="offer-interest" name="interest" value="" />
+          <input type="hidden" name="offer" value="LOVEVEROS10" />
+
+          <button
+            type="submit"
+            class="offer-popup-button offer-popup-button--primary offer-popup-button--submit"
+          >
+            Claim My 10% OFF
+          </button>
+
+          <p class="offer-popup-form-note">
+            We'll send your code to your email instantly.
+          </p>
+        </form>
+
+        <div id="offer-popup-message" class="offer-popup-message offer-popup-message--hidden"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #offer-popup-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  #offer-popup-wrapper.offer-popup-visible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .offer-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Modal */
+  .offer-popup-modal {
+    position: relative;
+    z-index: 10000;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: var(--space-8);
+    animation: slideIn 0.4s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Close Button */
+  .offer-popup-close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--color-gray-400, #999);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    z-index: 10001;
+  }
+
+  .offer-popup-close:hover {
+    color: var(--color-black);
+  }
+
+  /* Step Container */
+  .offer-popup-step {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .offer-popup-step--active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Content */
+  .offer-popup-content {
+    text-align: center;
+  }
+
+  .offer-popup-headline {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-black);
+    margin: 0 0 var(--space-4) 0;
+    line-height: 1.2;
+  }
+
+  .offer-popup-question {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 16px;
+    color: var(--color-gray-600, #555);
+    margin: 0 0 var(--space-8) 0;
+    font-weight: 500;
+  }
+
+  .offer-popup-subtext {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--color-gray-500, #777);
+    margin: 0 0 var(--space-6) 0;
+  }
+
+  /* Buttons */
+  .offer-popup-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .offer-popup-button {
+    padding: var(--space-4) var(--space-6);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .offer-popup-button--primary {
+    background: var(--color-black);
+    color: white;
+    border: 2px solid var(--color-black);
+  }
+
+  .offer-popup-button--primary:hover {
+    background: var(--color-gold, #D4AF37);
+    color: var(--color-black);
+    border-color: var(--color-gold, #D4AF37);
+  }
+
+  .offer-popup-button--primary:active {
+    transform: scale(0.98);
+  }
+
+  .offer-popup-button--submit {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: var(--space-4);
+  }
+
+  /* Form */
+  .offer-popup-form {
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-label {
+    display: block;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-gray-300, #e0e0e0);
+    border-radius: 4px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    color: var(--color-black);
+    background: var(--color-ivory, #f9f7f4);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-black);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-input::placeholder {
+    color: var(--color-gray-400, #999);
+  }
+
+  .offer-popup-form-note {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 12px;
+    color: var(--color-gray-500, #777);
+    margin: var(--space-4) 0 0 0;
+    text-align: center;
+  }
+
+  /* Message */
+  .offer-popup-message {
+    padding: var(--space-4);
+    border-radius: 6px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    margin-top: var(--space-4);
+    text-align: center;
+  }
+
+  .offer-popup-message--hidden {
+    display: none;
+  }
+
+  .offer-popup-message--success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+  }
+
+  .offer-popup-message--error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 600px) {
+    .offer-popup-modal {
+      width: 95%;
+      padding: var(--space-6);
+      border-radius: 16px;
+    }
+
+    .offer-popup-headline {
+      font-size: 24px;
+    }
+
+    .offer-popup-buttons {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+  }
+</style>
+
+<script is:inline>
+  (function() {
+    const POPUP_SEEN_KEY = 'veros_offer_popup_seen';
+    const POPUP_DELAY = 6000; // 6 seconds
+    const STEP1_DELAY = 300; // Delay before showing step 1
+    
+    let popupShown = false;
+    let selectedInterest = null;
+
+    function showPopup() {
+      if (popupShown) return;
+      if (sessionStorage.getItem(POPUP_SEEN_KEY)) return;
+      
+      popupShown = true;
+      const wrapper = document.getElementById('offer-popup-wrapper');
+      if (wrapper) {
+        // Use inline styles to ensure visibility works despite Astro scoping
+        wrapper.style.opacity = '1';
+        wrapper.style.visibility = 'visible';
+        wrapper.style.pointerEvents = 'auto';
+      }
+    }
+
+    function hidePopup() {
+      const wrapper = document.getElementById('offer-popup-wrapper');
+      if (wrapper) {
+        // Use inline styles to ensure visibility works
+        wrapper.style.opacity = '0';
+        wrapper.style.visibility = 'hidden';
+        wrapper.style.pointerEvents = 'none';
+      }
+    }
+
+    function goToStep2(interest) {
+      selectedInterest = interest;
+      const step1 = document.getElementById('offer-popup-step1');
+      const step2 = document.getElementById('offer-popup-step2');
+      const interestField = document.getElementById('offer-interest');
+      
+      if (step1) step1.classList.remove('offer-popup-step--active');
+      if (step2) step2.classList.add('offer-popup-step--active');
+      if (interestField) interestField.value = interest;
+    }
+
+    function setupEventListeners() {
+      // Close button
+      const closeBtn = document.getElementById('offer-popup-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', hidePopup);
+      }
+
+      // Overlay click
+      const overlay = document.getElementById('offer-popup-overlay');
+      if (overlay) {
+        overlay.addEventListener('click', hidePopup);
+      }
+
+      // ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupShown) {
+          const wrapper = document.getElementById('offer-popup-wrapper');
+          if (wrapper && wrapper.style.visibility === 'visible') {
+            hidePopup();
+          }
+        }
+      });
+
+      // Category selection buttons
+      const dressesBnt = document.getElementById('btn-dresses');
+      const floral = document.getElementById('btn-florals');
+      
+      if (dressesBnt) {
+        dressesBnt.addEventListener('click', () => goToStep2('DRESSES'));
+      }
+      if (floral) {
+        floral.addEventListener('click', () => goToStep2('FLORALS'));
+      }
+
+      // Form submission
+      const form = document.getElementById('offer-popup-form');
+      if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+      }
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const formData = new FormData(form);
+      const messageDiv = document.getElementById('offer-popup-message');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        // Attempt POST to HighLevel webhook
+        const payload = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          interest: formData.get('interest'),
+          offer: formData.get('offer'),
+          source: 'Vero Website Popup',
+          pageUrl: window.location.href,
+          submittedAt: new Date().toISOString()
+        };
+
+        const response = await fetch('https://services.leadconnectorhq.com/hooks/UreSZbriEfpQQ2KrZfQz/webhook-trigger/878ce63a-fcee-4046-8925-bb5cbce44f9d', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          // Success - show message and redirect
+          if (messageDiv) {
+            messageDiv.textContent = 'Code sent to your email!';
+            messageDiv.className = 'offer-popup-message offer-popup-message--success';
+          }
+          
+          sessionStorage.setItem(POPUP_SEEN_KEY, 'true');
+          
+          // Redirect after 1.5 seconds
+          setTimeout(() => {
+            window.location.href = 'https://shop.verosboutiqueky.com/discount/LOVEVEROS10';
+          }, 1500);
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        // Fallback: Show redirect button and mark as seen anyway
+        if (messageDiv) {
+          messageDiv.innerHTML = 'Code: <strong>LOVEVEROS10</strong> – Click below to shop';
+          messageDiv.className = 'offer-popup-message offer-popup-message--success';
+          
+          const redirectBtn = document.createElement('button');
+          redirectBtn.type = 'button';
+          redirectBtn.className = 'offer-popup-button offer-popup-button--primary';
+          redirectBtn.style.marginTop = 'var(--space-4)';
+          redirectBtn.textContent = 'Continue to Shop';
+          redirectBtn.addEventListener('click', () => {
+            sessionStorage.setItem(POPUP_SEEN_KEY, 'true');
+            window.location.href = 'https://shop.verosboutiqueky.com/discount/LOVEVEROS10';
+          });
+          messageDiv.appendChild(redirectBtn);
+        }
+        
+        sessionStorage.setItem(POPUP_SEEN_KEY, 'true');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupEventListeners);
+    } else {
+      setupEventListeners();
+    }
+
+    // Show popup after delay
+    setTimeout(showPopup, POPUP_DELAY);
+  })();
+</script>

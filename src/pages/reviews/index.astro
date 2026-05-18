@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReviewWidget from '../../components/ReviewWidget.astro';
 const BUSINESS_NAME = "VERO'S BOUTIQUE KY";
 const title = `Share Your Feedback & Leave a Review - ${BUSINESS_NAME}`;
 const description =
@@ -250,6 +251,9 @@ const FACEBOOK_REVIEW_URL = 'https://www.facebook.com/verosboutiqueky/reviews';
       </div>
     </div>
   </section>
+
+  <!-- REAL REVIEWS WIDGET -->
+  <ReviewWidget title="See What Our Clients Say" showHeading={true} lazyLoad={false} />
 </BaseLayout>
 
 <style>

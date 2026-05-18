@@ -1,7 +1,9 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import EarlyOfferBannerForm from '../components/forms/EarlyOfferBannerForm.astro';
+import OfferPopup from '../components/OfferPopup.astro';
+// RETIRED: EarlyOfferBannerForm - replaced with OfferPopup
+// import EarlyOfferBannerForm from '../components/forms/EarlyOfferBannerForm.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -143,8 +145,9 @@ const finalOgImage = ogImage
     </script>
   </head>
   <body>
+    <OfferPopup />
     <Header currentPath={currentPath} />
-    <EarlyOfferBannerForm />
+    {/* RETIRED: EarlyOfferBannerForm */}
     <main>
       <slot />
     </main>

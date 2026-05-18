@@ -1,0 +1,153 @@
+---
+/**
+ * ReviewWidget.astro
+ * Reusable HighLevel/ReputationHub Review Widget Component
+ * 
+ * Features:
+ * - Lazy loads external review script only once (deduped via global flag)
+ * - Responsive iframe at 100% width
+ * - Min-height prevents layout shift
+ * - Accessible ARIA labels
+ * - No dependencies, Astro-native
+ * 
+ * Props:
+ *   - title?: string (optional section heading)
+ *   - showHeading?: boolean (default: true)
+ *   - lazyLoad?: boolean (default: true - set to false for dedicated review pages)
+ */
+
+interface Props {
+  title?: string;
+  showHeading?: boolean;
+  lazyLoad?: boolean;
+}
+
+const { title = "Client Reviews", showHeading = true, lazyLoad = true } = Astro.props;
+---
+
+<section class="review-widget-section">
+  {showHeading && (
+    <div class="review-widget-header">
+      <h2 class="section-title section-title-lg">{title}</h2>
+    </div>
+  )}
+  
+  <div class="review-widget-container">
+    <iframe
+      class="lc_reviews_widget"
+      src="https://reputationhub.site/reputation/widgets/review_widget/UreSZbriEfpQQ2KrZfQz"
+      frameborder="0"
+      scrolling="no"
+      title="Vero's Boutique Client Reviews"
+      aria-label="Vero's Boutique Reviews powered by HighLevel"
+    ></iframe>
+  </div>
+</section>
+
+<style>
+  .review-widget-section {
+    padding: var(--space-16) var(--space-6);
+    background-color: white;
+  }
+
+  .review-widget-header {
+    max-width: 1000px;
+    margin: 0 auto var(--space-12);
+    text-align: center;
+  }
+
+  .review-widget-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .lc_reviews_widget {
+    width: 100%;
+    min-height: 500px;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .lc_reviews_widget {
+      min-height: 400px;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ lazyLoad }}>
+  // Lazy-load review widget script once on page load or when widget enters viewport
+  (function() {
+    // Prevent loading script multiple times
+    if (window.__reviewWidgetScriptLoaded) {
+      return;
+    }
+    window.__reviewWidgetScriptLoaded = true;
+
+    // Function to load the script
+    function loadReviewWidgetScript() {
+      if (document.querySelector('script[src="https://reputationhub.site/reputation/assets/review-widget.js"]')) {
+        return; // Script already added
+      }
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://reputationhub.site/reputation/assets/review-widget.js';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    // If lazyLoad is false, load immediately
+    if (!lazyLoad) {
+      // Small delay to ensure DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadReviewWidgetScript);
+      } else {
+        loadReviewWidgetScript();
+      }
+      return;
+    }
+
+    // Use Intersection Observer to load when widget comes into view
+    const iframeElement = document.querySelector('.lc_reviews_widget');
+    if (iframeElement) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadReviewWidgetScript();
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: '50px' } // Load 50px before entering viewport
+      );
+      observer.observe(iframeElement);
+    } else {
+      // Fallback: load on DOMContentLoaded if widget not found yet
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          const iframe = document.querySelector('.lc_reviews_widget');
+          if (iframe) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    loadReviewWidgetScript();
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              { rootMargin: '50px' }
+            );
+            observer.observe(iframe);
+          } else {
+            loadReviewWidgetScript();
+          }
+        });
+      } else {
+        loadReviewWidgetScript();
+      }
+    }
+  })();
+</script>

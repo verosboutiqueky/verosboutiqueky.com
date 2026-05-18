@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@cloudcannon/editable-regions": "^0.0.12",
-    "astro": "^5.17.1"
+    "astro": "^6.3.4"
   },
   "devDependencies": {
     "sharp": "^0.34.5"

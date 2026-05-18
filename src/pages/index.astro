@@ -5,18 +5,22 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/hero/Hero.astro';
-import GoogleReviewCard from '../components/GoogleReviewCard.astro';
+import ReviewWidget from '../components/ReviewWidget.astro';
+
+// Import hero images for secondary services
+import weddingVenue3 from '../assets/event-planning-quinceaneras-weddings-richmond-ky/wedding-venue-3.webp';
+import flowerHeroImage from '../assets/hero/wedding-prom-florist-richmond-ky/wedding-prom-florist-richmond-ky.hero.webp';
 
 const metadata = {
-  title: "Vero's Boutique | Luxury Gowns & Private Fittings",
-  description: "Richmond's premier private boutique specializing in curated bridal gowns, formal evening wear, and bespoke floral event design.",
+  title: "Vero's Boutique | Beautiful Gowns for Every Budget",
+  description: "Beautiful designer gowns for every budget. Expert bridal, quinceañera, and prom styling. Flexible payment plans available. Private appointments in Richmond, Kentucky.",
 };
 
 // Hero content — structured so CloudCannon data-prop bindings in Hero.astro are data-backed
 const heroData = {
   title: "Elegance,",
   titleItalic: "Redefined.",
-  subtitle: "Private appointment boutique offering curated wedding & quinceañera dresses, prom gowns, and formal evening wear for clients throughout Richmond, Lexington, and Central Kentucky — along with bespoke event planning and floral design.",
+  subtitle: "Expert gowns and styling for every price point. Weddings. Quinceañeras. Prom. Florals. Every girl deserves to feel beautiful and heard.",
   primaryCTA: "Book a Private Appointment",
   primaryCTAUrl: "#appointment",
   secondaryCTA: "Visit the Boutique",
@@ -25,28 +29,6 @@ const heroData = {
   heroImage: "/images/hero.webp",
   categories: ["Bridal", "Formal", "Florals"],
 };
-
-// Reviews array — structured so CloudCannon array/text editable bindings in GoogleReviewCard.astro are data-backed
-const reviews = [
-  {
-    reviewerName: "Sarah M.",
-    rating: 5,
-    reviewText: "Found my wedding dress at Vero's! The stylists took time to understand my vision. No pressure, just genuine expertise. This is where brides should dress shop in Richmond.",
-    timeAgo: "2 weeks ago",
-  },
-  {
-    reviewerName: "Maria G.",
-    rating: 5,
-    reviewText: "My daughter's quinceañera dress was absolutely perfect. The team understood XV tradition AND her personal style. Worth every mile to drive to Richmond.",
-    timeAgo: "1 month ago",
-  },
-  {
-    reviewerName: "Jessica L.",
-    rating: 5,
-    reviewText: "Professional, elegant, and they truly listen. My prom dress was exactly what I envisioned. Vero's sets the standard for boutique service.",
-    timeAgo: "3 weeks ago",
-  },
-];
 
 // Check for form submission success
 const submitted = Astro.url.searchParams.get("submitted");
@@ -67,76 +49,189 @@ const submitted = Astro.url.searchParams.get("submitted");
   <Hero {...heroData} />
 
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <!-- SECTION 1: BOUTIQUE AUTHORITY INTRO -->
+  <!-- SECTION 1: VISUAL DISCOVERY - PRIMARY SHOPPING CATEGORIES -->
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="boutique-intro">
-    <div class="boutique-intro__container">
-      <h2 class="section-title section-title-lg boutique-intro__heading">A Destination Built for Your Moment</h2>
-      
-      <p class="boutique-intro__text">
-        Vero's Boutique specializes in five core services: bridal expertise, quinceañera traditions, formal elegance, complete event planning, and floral artistry. Located in downtown Richmond, Kentucky, we offer what mass retailers can't—expert stylists, thoughtfully curated selections, and a private environment where your vision becomes reality. Whether from Richmond, Lexington, or Central Kentucky, you deserve an experience built just for you.
-      </p>
-    </div>
-  </section>
+  <section class="visual-discovery">
+    <div class="visual-discovery__container">
+      <!-- Pill Navigation -->
+      <nav class="discovery-pills">
+        <a href="/formal-gowns-richmond-ky/prom-2026/" class="pill">Prom 2026</a>
+        <a href="/formal-gowns-richmond-ky/gala-evening/" class="pill">Gala & Evening</a>
+        <a href="/wedding-dresses-richmond-ky/" class="pill">Wedding Gowns</a>
+        <a href="/quinceanera-dresses-richmond-ky/" class="pill">Quinceañera</a>
+        <a href="/formal-gowns-richmond-ky/new-arrivals/" class="pill">New Arrivals</a>
+      </nav>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <!-- SECTION 2: CORE SERVICE CATEGORIES -->
-  <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="service-categories">
-    <div class="service-categories__container">
-      <h2 class="section-title section-title-lg service-categories__title">Explore Our Services</h2>
-
-      <div class="service-categories__list">
-        <!-- Category 1: Bridal -->
-        <a href="/wedding-dresses-richmond-ky/" class="service-category">
-          <div class="service-category__content">
-            <h3 class="service-category__title">Bridal Gowns</h3>
-            <p class="service-category__description">Expert wedding dress fitting. Designer selection. Your dream gown, expertly styled.</p>
+      <!-- Card Grid -->
+      <div class="discovery-grid">
+        <!-- Card 1: Prom 2026 -->
+        <a href="/formal-gowns-richmond-ky/prom-2026/" class="visual-card">
+          <div class="visual-card__image-wrapper">
+            <img
+              src="/images/formal-gowns-hero.webp"
+              alt="Prom dresses and formal gowns at Vero's Boutique Richmond Kentucky"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="visual-card__overlay"></div>
           </div>
-          <span class="service-category__arrow">→</span>
+          <div class="visual-card__content">
+            <h3 class="visual-card__title">Prom 2026</h3>
+            <p class="visual-card__cta">Shop Prom 2026 →</p>
+          </div>
         </a>
 
-        <!-- Category 2: Quinceañera -->
-        <a href="/quinceanera-dresses-richmond-ky/" class="service-category">
-          <div class="service-category__content">
-            <h3 class="service-category__title">Quinceañera Dresses</h3>
-            <p class="service-category__description">XV tradition meets modern style. Court coordination, cultural respect, personal expression.</p>
+        <!-- Card 2: Gala & Evening Wear -->
+        <a href="/formal-gowns-richmond-ky/gala-evening/" class="visual-card">
+          <div class="visual-card__image-wrapper">
+            <img
+              src="/images/formal-gowns-hero.webp"
+              alt="Elegant gala and evening wear collection at Vero's Boutique"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="visual-card__overlay"></div>
           </div>
-          <span class="service-category__arrow">→</span>
+          <div class="visual-card__content">
+            <h3 class="visual-card__title">Gala & Evening Wear</h3>
+            <p class="visual-card__cta">Shop Evening Wear →</p>
+          </div>
         </a>
 
-        <!-- Category 3: Formal -->
-        <a href="/formal-gowns-richmond-ky/" class="service-category">
-          <div class="service-category__content">
-            <h3 class="service-category__title">Formal Evening Wear</h3>
-            <p class="service-category__description">Prom, galas, black-tie elegance. Gowns that command presence and photograph beautifully.</p>
+        <!-- Card 3: Wedding Gowns -->
+        <a href="/wedding-dresses-richmond-ky/" class="visual-card">
+          <div class="visual-card__image-wrapper">
+            <img
+              src="/images/hero.webp"
+              alt="Wedding dresses and bridal gowns at Vero's Boutique"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="visual-card__overlay"></div>
           </div>
-          <span class="service-category__arrow">→</span>
+          <div class="visual-card__content">
+            <h3 class="visual-card__title">Wedding Gowns</h3>
+            <p class="visual-card__cta">Find Your Dress →</p>
+          </div>
         </a>
 
-        <!-- Category 4: Wedding Planning -->
-        <a href="/wedding-planning-richmond-ky/" class="service-category">
-          <div class="service-category__content">
-            <h3 class="service-category__title">Event Planning</h3>
-            <p class="service-category__description">Full-service coordination. From dress to florals to venue. Cohesive, elegant, yours.</p>
+        <!-- Card 4: Quinceañera Dresses -->
+        <a href="/quinceanera-dresses-richmond-ky/" class="visual-card">
+          <div class="visual-card__image-wrapper">
+            <img
+              src="/images/quinceanera-dresses-richmond-ky/hero-quinceanera-court-styling.webp"
+              alt="Quinceañera XV dresses and court styling at Vero's Boutique"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="visual-card__overlay"></div>
           </div>
-          <span class="service-category__arrow">→</span>
+          <div class="visual-card__content">
+            <h3 class="visual-card__title">Quinceañera Dresses</h3>
+            <p class="visual-card__cta">Explore XV Styles →</p>
+          </div>
         </a>
 
-        <!-- Category 5: Florals -->
-        <a href="/wedding-prom-florist-richmond-ky/" class="service-category">
-          <div class="service-category__content">
-            <h3 class="service-category__title">Event Florals</h3>
-            <p class="service-category__description">Bridal bouquets, corsages, installations. Gown-coordinated, beautifully executed florals.</p>
+        <!-- Card 5: New Arrivals -->
+        <a href="/formal-gowns-richmond-ky/new-arrivals/" class="visual-card">
+          <div class="visual-card__image-wrapper">
+            <img
+              src="/images/hero.webp"
+              alt="New arrival dresses at Vero's Boutique Richmond Kentucky"
+              width="600"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="visual-card__overlay"></div>
           </div>
-          <span class="service-category__arrow">→</span>
+          <div class="visual-card__content">
+            <h3 class="visual-card__title">New Arrivals</h3>
+            <p class="visual-card__cta">See What's New →</p>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <!-- SECTION 3: THE VERO'S APPROACH -->
+  <!-- SECTION 2: BOUTIQUE AUTHORITY INTRO -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="boutique-intro">
+    <div class="boutique-intro__container">
+      <h2 class="section-title section-title-lg boutique-intro__heading">Every Girl Deserves to Celebrate Her Moment</h2>
+      
+      <p class="boutique-intro__text">
+        At Vero's Boutique, we believe beautiful gowns shouldn't come with complicated prices or pressure. We specialize in bridal gowns, quinceañera dresses, prom and formal wear, florals, and complete event planning. Located in downtown Richmond, Kentucky, we curate stunning collections, offer expert styling, and work with families to make your celebration possible. Flexible payment options and personalized attention are part of who we are.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 2B: SECONDARY SERVICES - EVENT PLANNING & FLORALS -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="secondary-services">
+    <div class="secondary-services__container">
+      <h3 class="section-title section-title-md secondary-services__title">Complete Celebration Services</h3>
+      
+      <div class="secondary-services__grid">
+        <!-- Event Planning -->
+        <a href="/event-planning-richmond-ky/" class="secondary-card">
+          <div class="secondary-card__image-wrapper">
+            <img
+              src={weddingVenue3.src}
+              alt="Event planning and wedding venue coordination at Vero's Boutique Richmond Kentucky"
+              width="600"
+              height="350"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="secondary-card__overlay"></div>
+          </div>
+          <div class="secondary-card__content">
+            <h4 class="secondary-card__title">Event Planning</h4>
+            <p class="secondary-card__cta">Explore Planning →</p>
+          </div>
+        </a>
+
+        <!-- Florals -->
+        <a href="/wedding-prom-florist-richmond-ky/" class="secondary-card">
+          <div class="secondary-card__image-wrapper">
+            <img
+              src={flowerHeroImage.src}
+              alt="Wedding florals and prom corsages at Vero's Boutique Richmond Kentucky"
+              width="600"
+              height="350"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="secondary-card__overlay"></div>
+          </div>
+          <div class="secondary-card__content">
+            <h4 class="secondary-card__title">Event Florals</h4>
+            <p class="secondary-card__cta">View Designs →</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 3: CORE SERVICE CATEGORIES (ARCHIVED - REPLACED BY VISUAL DISCOVERY) -->
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- This section has been replaced by the Visual Discovery grid above -->
+  <!-- Keeping structure for reference but removing from render -->
+
+  <!-- ═══════════════════════════════════════════════════════════════════════ -->
+  <!-- SECTION 4: THE VERO'S APPROACH -->
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
   <section class="approach-section">
     <div class="approach-section__container">
@@ -145,12 +240,12 @@ const submitted = Astro.url.searchParams.get("submitted");
       <div class="approach-section__grid">
         <div class="approach-item">
           <h3>Private Appointments</h3>
-          <p>One stylist, one client. Your dedicated time, undivided attention, no pressure—just expert guidance tailored to you.</p>
+          <p>One stylist, one client. Your dedicated time. We listen to you, never pressure you. Someone who understands your vision and your budget.</p>
         </div>
 
         <div class="approach-item">
           <h3>Expert Curation</h3>
-          <p>We hand-select every piece. No overwhelming racks. Our inventory reflects quality, current trends, and timeless elegance.</p>
+          <p>We hand-select every piece with you in mind. No overwhelming racks. Quality, style, AND prices that work for real families.</p>
         </div>
 
         <div class="approach-item">
@@ -164,29 +259,7 @@ const submitted = Astro.url.searchParams.get("submitted");
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
   <!-- SECTION 4: SOCIAL PROOF - TRUSTED BY RICHMOND FAMILIES -->
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="reviews-section">
-    <div class="reviews-section__container">
-      <h2 class="section-title section-title-lg reviews-section__title">Trusted by Richmond Families</h2>
-      <p class="reviews-section__subtitle">Real client reviews from real moments.</p>
-
-      <div class="reviews-section__cards" data-editable="array" data-prop="reviews">
-        {reviews.map((review) => (
-          <div data-editable="array-item">
-            <GoogleReviewCard
-              reviewerName={review.reviewerName}
-              rating={review.rating}
-              reviewText={review.reviewText}
-              timeAgo={review.timeAgo}
-            />
-          </div>
-        ))}
-      </div>
-
-      <div class="reviews-section__cta">
-        <a href="/reviews/" class="section-link">Read More Client Stories →</a>
-      </div>
-    </div>
-  </section>
+  <ReviewWidget title="Trusted by Richmond Families" />
 
   <!-- ═══════════════════════════════════════════════════════════════════════ -->
   <!-- SECTION 5: FINAL CTA - APPOINTMENT BOOKING -->
@@ -475,6 +548,282 @@ const submitted = Astro.url.searchParams.get("submitted");
     font-size: 0.9375rem;
     font-weight: 500;
     color: #166534;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════ */
+  /* SECTION 1: VISUAL DISCOVERY - PRIMARY SHOPPING GRID */
+  /* ═══════════════════════════════════════════════════════════════ */
+
+  .visual-discovery {
+    padding: var(--space-16) var(--space-6);
+    background-color: white;
+  }
+
+  .visual-discovery__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Pill Navigation */
+  .discovery-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .discovery-pills {
+      gap: var(--space-6);
+    }
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    text-decoration: none;
+    color: var(--color-black);
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-black) 15%, transparent);
+    border-radius: 24px;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .pill:hover {
+    background-color: var(--color-black);
+    color: white;
+    border-color: var(--color-black);
+  }
+
+  /* Discovery Grid - Clean, Balanced Layout */
+  .discovery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .discovery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .discovery-grid {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  /* Visual Card - Primary Shopping Cards (Immersive Editorial Style) */
+  .visual-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 420px;
+    cursor: pointer;
+  }
+
+  .visual-card__image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .visual-card__image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-normal);
+    display: block;
+  }
+
+  .visual-card:hover .visual-card__image-wrapper img {
+    transform: scale(1.08);
+  }
+
+  .visual-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(26, 26, 26, 0.95) 0%,
+      rgba(26, 26, 26, 0.5) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .visual-card:hover .visual-card__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(26, 26, 26, 0.85) 0%,
+      rgba(26, 26, 26, 0.4) 50%,
+      transparent 100%
+    );
+  }
+
+  .visual-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    z-index: 5;
+  }
+
+  .visual-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .visual-card__cta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    color: rgba(255, 255, 255, 0.95);
+    transition: color var(--transition-fast);
+    margin: 0;
+  }
+
+  .visual-card:hover .visual-card__cta {
+    color: white;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════ */
+  /* SECTION 2B: SECONDARY SERVICES - EVENT PLANNING & FLORALS */
+  /* ═══════════════════════════════════════════════════════════════ */
+
+  .secondary-services {
+    padding: var(--space-12) var(--space-6);
+    background-color: var(--color-ivory);
+  }
+
+  .secondary-services__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .secondary-services__title {
+    margin-bottom: var(--space-8);
+  }
+
+  .secondary-services__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .secondary-services__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  /* Secondary Card - Smaller Editorial Cards (Immersive Style, Lower Visual Weight) */
+  .secondary-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 300px;
+    cursor: pointer;
+  }
+
+  .secondary-card__image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .secondary-card__image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-normal);
+    display: block;
+  }
+
+  .secondary-card:hover .secondary-card__image-wrapper img {
+    transform: scale(1.08);
+  }
+
+  .secondary-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(26, 26, 26, 0.90) 0%,
+      rgba(26, 26, 26, 0.45) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  .secondary-card:hover .secondary-card__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(26, 26, 26, 0.80) 0%,
+      rgba(26, 26, 26, 0.35) 50%,
+      transparent 100%
+    );
+  }
+
+  .secondary-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    z-index: 5;
+  }
+
+  .secondary-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .secondary-card__cta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    color: rgba(255, 255, 255, 0.95);
+    transition: color var(--transition-fast);
+    margin: 0;
+  }
+
+  .secondary-card:hover .secondary-card__cta {
+    color: white;
   }
 </style>
 

@@ -1,21 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/hero/Hero.astro';
-import GoogleReviewCard from '../../components/GoogleReviewCard.astro';
+import ReviewWidget from '../../components/ReviewWidget.astro';
 
 const heroCategories = ['Quinceañera', 'Formal Events', 'Court Styling'];
 ---
 
 <BaseLayout
   title="Quinceañera Dresses & XV Gowns in Richmond, KY | Vero's Boutique"
-  description="Expert quinceañera dress selection, court coordination, and XV styling in Richmond, Kentucky. Bilingual consultations, family-centered fittings, and complete celebration planning."
+  description="XV gowns for every girl and every family. Expert quinceañera styling, bilingual consultations, court coordination, and complete celebration support in Richmond, Kentucky. Flexible options available."
   canonicalURL="https://verosboutiqueky.com/quinceanera-dresses-richmond-ky/"
   ogImage="/og-images/quinceanera-dresses.jpg"
 >
   <!-- SECTION 1: HERO -->
   <Hero
     title="Find Your Perfect Quinceañera Gown"
-    subtitle="XV celebration dresses curated for authenticity, beauty, and cultural pride. Expert styling, family-centered fittings, and complete celebration support from Richmond's quinceañera specialists."
+    subtitle="XV gowns that match your vision and your family's traditions. Guided by stylists who know and respect XV."
     heroImage="/images/quinceanera-dresses-richmond-ky/hero-quinceanera-court-styling.webp"
     imageAlt="Diverse quinceañera celebration with court styling and traditional dress"
     categories={heroCategories}
@@ -29,15 +29,15 @@ const heroCategories = ['Quinceañera', 'Formal Events', 'Court Styling'];
       <h2 class="section-title section-title-lg boutique-intro__heading">A Quinceañera Partner, Not Just a Dress Shop</h2>
       
       <p class="boutique-intro__text">
-        Your quinceañera is a milestone moment—a celebration of family, culture, and the beautiful young woman you're becoming. At Vero's, we understand the significance of XV. It's not about filling a closet; it's about honoring tradition while expressing your unique style. Our team of XV specialists has spent years perfecting the art of quinceañera styling—from gown selection to court coordination.
+        Your quinceañera is a significant moment—a celebration of family, culture, and who you're becoming. We understand what XV means. It's about honoring your traditions while expressing your style and your family's vision. Our stylists have spent years perfecting quinceañera styling: gown selection, court coordination, all with respect for your cultural traditions.
       </p>
 
       <p class="boutique-intro__text">
-        We celebrate diverse cultural expressions of XV. Whether your celebration follows tradition or creates something entirely new, we're here to support your vision. Our bilingual team understands the importance of family involvement. We welcome mothers, grandmothers, and court members to fittings. We guide court aesthetic decisions. We listen to your cultural preferences, timeline needs, and dream vision.
+        We celebrate diverse expressions of XV. Whether your celebration follows tradition or creates something new, we're here for your vision and your family's dreams. Our bilingual team welcomes mothers, grandmothers, and court members to fittings. We guide court aesthetic decisions and listen to your cultural preferences, timeline, and style goals. We offer flexible options so every family can celebrate.
       </p>
 
       <div class="button-row">
-        <a href="/book-an-appointment/" class="button button--primary">Schedule Your 90-Minute XV Fitting</a>
+        <a href="/book-an-appointment/" class="button button--primary">Book Your Fitting</a>
       </div>
     </div>
   </section>
@@ -46,7 +46,7 @@ const heroCategories = ['Quinceañera', 'Formal Events', 'Court Styling'];
   <section id="quince-collections" class="collection-section">
     <div class="collection-section__container">
       <h2 class="section-title section-title-lg collection-section__title">Quinceañera Gowns & XV Dresses</h2>
-      <p class="section-subtitle collection-section__description">Hand-curated dresses for every XV vision—from classic tradition to bold contemporary styles. Diverse sizes, colors, and silhouettes that celebrate you.</p>
+      <p class="section-subtitle collection-section__description">Hand-curated XV dresses for every girl, every family, every style—from classic tradition to bold contemporary. Diverse sizes, colors, and silhouettes that celebrate you.</p>
       <div id='collection-component-1772828940032'></div>
       <script type="text/javascript">
         /*<![CDATA[*/
@@ -578,39 +578,7 @@ const heroCategories = ['Quinceañera', 'Formal Events', 'Court Styling'];
   </section>
 
   <!-- SECTION 9: TESTIMONIALS -->
-  <section class="reviews-section">
-    <div class="reviews-section__container">
-      <h2 class="section-title section-title-lg section-heading-small-margin">Real Quinceañera Families Share Their Experience</h2>
-      <p class="section-intro">
-        Hear from XV families who celebrated with Vero's—mothers, quinceañeras, and court members sharing their experience.
-      </p>
-      <div class="reviews-grid">
-        <GoogleReviewCard
-          reviewerName="Rosa María García"
-          rating={5}
-          timeAgo="3 weeks ago"
-          reviewText="Mother of XV Celebrant. Vero's treated my daughter's XV with such respect and expertise. The team understood our cultural traditions, involved me in every decision, and helped us feel celebrated—not just like we were buying a dress. I'll recommend them forever to every mother planning a quinceañera."
-        />
-        <GoogleReviewCard
-          reviewerName="Sofia Reyes"
-          rating={5}
-          timeAgo="1 month ago"
-          reviewText="Quinceañera Celebrant. I was nervous about finding a dress that felt like me, but Vero's team made the fitting so fun and supportive. They didn't push me toward trends; they helped me find what made me feel beautiful and confident for my XV. I felt heard, and I loved the result."
-        />
-        <GoogleReviewCard
-          reviewerName="María Elena Ortiz"
-          rating={5}
-          timeAgo="6 weeks ago"
-          reviewText="Court Member (Dama). The attention to detail for court coordination was amazing. We felt like part of the celebration, not just afterthoughts. Vero's team helped us find dresses that complemented the XV beautifully while celebrating each of us individually. Professional, caring, and culturally mindful."
-        />
-      </div>
-      <div class="centered-content">
-        <a href="/reviews/" class="button button--outline">
-          See More Quinceañera Family Reviews
-        </a>
-      </div>
-    </div>
-  </section>
+  <ReviewWidget title="Real Quinceañera Families Share Their Experience" />
 </BaseLayout>
 
 <style>

@@ -501,17 +501,19 @@
       if (submitBtn) submitBtn.disabled = true;
 
       try {
-        // Attempt POST to HighLevel webhook
+        // Build flat JSON payload for HighLevel webhook
         const payload = {
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone'),
           interest: formData.get('interest'),
-          offer: formData.get('offer'),
           source: 'Vero Website Popup',
           pageUrl: window.location.href,
           submittedAt: new Date().toISOString()
         };
+
+        // Log outbound payload for debugging
+        console.log('[OfferPopup] Submitting webhook payload:', JSON.stringify(payload, null, 2));
 
         const response = await fetch('https://services.leadconnectorhq.com/hooks/UreSZbriEfpQQ2KrZfQz/webhook-trigger/EZYpgiM6lhFVlVcx9tuo', {
           method: 'POST',
@@ -521,7 +523,12 @@
           body: JSON.stringify(payload),
         });
 
+        // Log webhook response
+        console.log('[OfferPopup] Webhook response status:', response.status);
+
         if (response.ok) {
+          console.log('[OfferPopup] Webhook submission successful');
+          
           // Success - show message and redirect
           if (messageDiv) {
             messageDiv.textContent = 'Code sent to your email!';
@@ -538,6 +545,8 @@
           throw new Error('Form submission failed');
         }
       } catch (error) {
+        console.error('[OfferPopup] Webhook submission error:', error.message);
+        
         // Fallback: Show redirect button and mark as seen anyway
         if (messageDiv) {
           messageDiv.innerHTML = 'Code: <strong>LOVEVEROS10</strong> – Click below to shop';
